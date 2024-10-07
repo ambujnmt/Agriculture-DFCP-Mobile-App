@@ -1,8 +1,8 @@
 import 'package:dfcp/utils/custom_text.dart';
+import 'package:dfcp/views/auth_screen.dart/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'dart:developer';
-
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -11,8 +11,8 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMixin {
-
+class _SplashScreenState extends State<SplashScreen>
+    with TickerProviderStateMixin {
   dynamic size;
   final customText = CustomText();
 
@@ -23,11 +23,12 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
   void initState() {
     super.initState();
 
-    logoController = AnimationController(duration: const Duration(seconds: 1000), vsync: this);
-    logoController.forward();
+    logoController = AnimationController(
+        duration: const Duration(seconds: 1000), vsync: this);
+    // logoController.forward();
 
-
-    cloudController = AnimationController(vsync: this, duration: const Duration(seconds: 10));
+    cloudController =
+        AnimationController(vsync: this, duration: const Duration(seconds: 10));
     cloudAnimation = Tween<double>(begin: -2, end: 2).animate(cloudController)
       ..addListener(() {
         setState(() {});
@@ -39,7 +40,11 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
           cloudController.forward();
         }
       });
-    cloudController.forward();
+    // cloudController.forward();
+    Future.delayed(
+        const Duration(seconds: 5),
+        () => Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => const LoginScreen())));
   }
 
   @override
@@ -49,14 +54,12 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
       body: Container(
         height: size.height,
         width: size.width,
-        decoration: const BoxDecoration(image: DecorationImage(
-          image: AssetImage("assets/images/simple_bgImage.png"),
-            fit: BoxFit.cover
-          )
-        ),
+        decoration: const BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("assets/images/simple_bgImage.png"),
+                fit: BoxFit.cover)),
         child: Stack(
           children: [
-
             Positioned(
               top: size.height * 0.71,
               left: size.width * 0.75,
@@ -66,7 +69,6 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
                 child: Lottie.asset("assets/images/slowWind.json"),
               ),
             ),
-
             Opacity(
               opacity: 0.8,
               child: Align(
@@ -78,40 +80,48 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
                 ),
               ),
             ),
-            
             Center(
               child: Column(
                 children: [
-                  SizedBox(height: size.height * 0.2,),
+                  SizedBox(
+                    height: size.height * 0.2,
+                  ),
                   Stack(
                     children: [
                       RotationTransition(
-                        turns: Tween(begin: 0.0, end: 10.0).animate(logoController),
+                        turns: Tween(begin: 0.0, end: 10.0)
+                            .animate(logoController),
                         child: SizedBox(
                           height: size.height * 0.2,
                           child: Image.asset("assets/images/logo base.png"),
                         ),
                       ),
                       SizedBox(
-                        height: size.height * 0.2,
-                        child: Image.asset("assets/images/logo top.png")
-                      )
-
+                          height: size.height * 0.2,
+                          child: Image.asset("assets/images/logo top.png"))
                     ],
                   ),
-                  SizedBox(height: size.height * 0.02,),
+                  SizedBox(
+                    height: size.height * 0.02,
+                  ),
                   Stack(
                     children: [
                       SizedBox(
                         height: size.width * 0.25,
-                        child: customText.kHeadingText("DFCP", 75, FontWeight.w800, Colors.white, TextAlign.center),
+                        child: customText.kHeadingText("DFCP", 75,
+                            FontWeight.w800, Colors.white, TextAlign.center),
                       ),
                       Positioned(
                         top: -1,
                         left: -1,
                         child: SizedBox(
                           height: size.width * 0.25,
-                          child: customText.kHeadingText("DFCP", 75, FontWeight.w800, Color(0xff01720f), TextAlign.center),
+                          child: customText.kHeadingText(
+                              "DFCP",
+                              75,
+                              FontWeight.w800,
+                              Color(0xff01720f),
+                              TextAlign.center),
                         ),
                       ),
                     ],
@@ -124,9 +134,4 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
       ),
     );
   }
-
-
 }
-
-
-
