@@ -5,6 +5,7 @@ class ColorConstants {
   static const kTextGreen = Color(0xff01720F);
   static final buttonColor = HexColor("#FDC200");
   static final buttonTextColor = HexColor("#01720F");
+  static final kPrimary = HexColor("#01570B");
 }
 
 class HexColor extends Color {
