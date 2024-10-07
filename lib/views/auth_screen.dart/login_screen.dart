@@ -33,6 +33,9 @@ class _LoginScreenState extends State<LoginScreen> {
           children: [
             CustomButton(
               buttonText: 'Login',
+              onpress: () {
+                print('This is login butotn');
+              },
             ),
             const SizedBox(height: 20),
             CustomButton(
