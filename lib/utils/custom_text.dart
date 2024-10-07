@@ -13,7 +13,7 @@ class CustomText {
   }
 
   kTextStyle(double fontSize, FontWeight fontWeight, Color color) {
-    return TextStyle(fontSize: fontSize, fontWeight: fontWeight, color: color, fontFamily: "Red Rose");
+    return TextStyle(fontSize: fontSize, fontWeight: fontWeight, color: color, fontFamily: "Poppins");
   }
 
   kHeadingText(String hint, double fontSize, FontWeight fontWeight, Color color,

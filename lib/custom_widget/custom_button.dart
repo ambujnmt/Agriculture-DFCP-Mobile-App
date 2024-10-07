@@ -1,4 +1,5 @@
 import 'package:dfcp/constants/color_constants.dart';
+import 'package:dfcp/utils/custom_text.dart';
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatefulWidget {
@@ -11,6 +12,9 @@ class CustomButton extends StatefulWidget {
 }
 
 class _CustomButtonState extends State<CustomButton> {
+  
+  final customText = CustomText(); 
+  
   @override
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
@@ -18,19 +22,23 @@ class _CustomButtonState extends State<CustomButton> {
     return GestureDetector(
       onTap: widget.onpress,
       child: Container(
-        height: 50,
+        height: height * 0.065,
         width: double.infinity,
         decoration: BoxDecoration(
-            color: ColorConstants.buttonColor,
-            borderRadius: BorderRadius.circular(12)),
+          color: ColorConstants.buttonColor,
+          borderRadius: BorderRadius.circular(width * 0.04),
+          boxShadow: const [
+            BoxShadow(
+              offset: Offset(2, 4),
+              color: Colors.black45,
+              blurRadius: 9.9
+            )
+          ]
+        ),
         child: Center(
           child: Text(
             widget.buttonText.toString(),
-            style: TextStyle(
-                color: ColorConstants.buttonTextColor,
-                fontSize: 18,
-                fontWeight: FontWeight.w700,
-                fontFamily: "Red Rose"),
+            style: customText.kTextStyle(26, FontWeight.w700, ColorConstants.kPrimary),
           ),
         ),
       ),

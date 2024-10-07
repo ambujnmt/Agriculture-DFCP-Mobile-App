@@ -6,6 +6,7 @@ class ColorConstants {
   static final buttonColor = HexColor("#FDC200");
   static final buttonTextColor = HexColor("#01720F");
   static final kPrimary = HexColor("#01570B");
+  static final kTextFieldColor = HexColor("#03600E");
 }
 
 class HexColor extends Color {
