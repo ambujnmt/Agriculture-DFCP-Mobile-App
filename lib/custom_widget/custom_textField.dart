@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 class CustomTextField extends StatelessWidget {
 
   final controller, textInputType, textInputAction, hint, isSuffixIcon,
-      prefixIcon, suffixIcon;
+      prefixIcon, suffixIcon, obsecureText;
   Function()? onSuffixTap;
 
   CustomTextField({super.key, this.controller, this.textInputType,
     this.textInputAction, this.hint, this.isSuffixIcon = false, this.prefixIcon,
-    this.suffixIcon, this.onSuffixTap});
+    this.suffixIcon, this.onSuffixTap, this.obsecureText = false});
 
   final customText = CustomText();
 
@@ -18,21 +18,21 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
-    return Scaffold(
-      body: Container(
-        height: height * 0.065,
-        width: width * 0.7,
-        padding: const EdgeInsets.symmetric(vertical: 5),
-        decoration: BoxDecoration(
-            color: ColorConstants.kTextFieldColor,
-            borderRadius: BorderRadius.circular(width * 0.04)
-        ),
-        child: TextField(
-          controller: controller,
-          keyboardType: textInputType,
-          textInputAction: textInputAction,
-          style: customText.kTextStyle(20, FontWeight.w400, ColorConstants.kYellow),
-          decoration: InputDecoration(
+    return Container(
+      height: height * 0.065,
+      width: width * 0.95,
+      padding: const EdgeInsets.symmetric(vertical: 5),
+      decoration: BoxDecoration(
+          color: ColorConstants.kTextFieldColor,
+          borderRadius: BorderRadius.circular(width * 0.04)
+      ),
+      child: TextField(
+        controller: controller,
+        obscureText: obsecureText,
+        keyboardType: textInputType,
+        textInputAction: textInputAction,
+        style: customText.kTextStyle(20, FontWeight.w400, ColorConstants.kYellow),
+        decoration: InputDecoration(
             border: InputBorder.none,
             hintText: hint,
             hintStyle: customText.kTextStyle(20, FontWeight.w400, ColorConstants.kYellow),
@@ -43,7 +43,6 @@ class CustomTextField extends StatelessWidget {
                   onTap: onSuffixTap,
                 )
               : const SizedBox()
-          ),
         ),
       ),
     );
