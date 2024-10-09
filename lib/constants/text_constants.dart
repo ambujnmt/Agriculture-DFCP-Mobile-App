@@ -32,4 +32,6 @@ class TextConstants {
   static const String confirmPass = "Confirm password";
   static const String kContinue = "Continue";
   static const String dashboard = "Dashboard";
+  static const String products = "Products";
+  static const String services = "Services";
 }

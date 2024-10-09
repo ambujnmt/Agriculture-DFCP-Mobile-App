@@ -1,6 +1,8 @@
 import 'package:dfcp/constants/color_constants.dart';
 import 'package:dfcp/constants/text_constants.dart';
 import 'package:dfcp/utils/custom_text.dart';
+import 'package:dfcp/views/products/products_view_screen.dart';
+import 'package:dfcp/views/services/services_view_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 
@@ -71,24 +73,43 @@ class _CustomDrawerState extends State<CustomDrawer> {
               ],
             ),
           ),
-          Container(
-            margin: EdgeInsets.only(left: 20),
-            child: customText.kText(
-              "Products",
-              25,
-              FontWeight.w700,
-              ColorConstants.drawerTextColor,
-              TextAlign.start,
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const ProductsViewScreen()),
+              );
+            },
+            child: Container(
+              margin: EdgeInsets.only(left: 20),
+              child: customText.kText(
+                "Products",
+                25,
+                FontWeight.w700,
+                ColorConstants.drawerTextColor,
+                TextAlign.start,
+              ),
             ),
           ),
-          Container(
-            margin: EdgeInsets.only(left: 20),
-            child: customText.kText(
-              "Services",
-              25,
-              FontWeight.w700,
-              ColorConstants.drawerTextColor,
-              TextAlign.start,
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ServicesViewScreen(),
+                ),
+              );
+            },
+            child: Container(
+              margin: EdgeInsets.only(left: 20),
+              child: customText.kText(
+                "Services",
+                25,
+                FontWeight.w700,
+                ColorConstants.drawerTextColor,
+                TextAlign.start,
+              ),
             ),
           ),
           Container(
