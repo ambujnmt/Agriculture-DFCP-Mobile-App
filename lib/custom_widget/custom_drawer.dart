@@ -61,9 +61,9 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   ],
                 ),
                 Container(
-                  margin: const EdgeInsets.only(left: 20),
+                  margin: const EdgeInsets.only(left: 2),
                   child: customText.kText(
-                    "Profile",
+                    TextConstants.profile.toUpperCase(),
                     22,
                     FontWeight.w700,
                     ColorConstants.drawerTextColor,
@@ -82,10 +82,11 @@ class _CustomDrawerState extends State<CustomDrawer> {
               );
             },
             child: Container(
-              margin: EdgeInsets.only(left: 20),
+              margin: const EdgeInsets.only(left: 20),
+              height: height * 0.05,
               child: customText.kText(
-                "Products",
-                25,
+                TextConstants.products.toUpperCase(),
+                20,
                 FontWeight.w700,
                 ColorConstants.drawerTextColor,
                 TextAlign.start,
@@ -103,9 +104,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
             },
             child: Container(
               margin: EdgeInsets.only(left: 20),
+              height: height * 0.05,
               child: customText.kText(
-                "Services",
-                25,
+                TextConstants.services.toUpperCase(),
+                20,
                 FontWeight.w700,
                 ColorConstants.drawerTextColor,
                 TextAlign.start,
@@ -114,9 +116,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
           ),
           Container(
             margin: EdgeInsets.only(left: 20),
+            height: height * 0.05,
             child: customText.kText(
-              "Orders",
-              25,
+              TextConstants.orders.toUpperCase(),
+              20,
               FontWeight.w700,
               ColorConstants.drawerTextColor,
               TextAlign.start,
@@ -124,9 +127,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
           ),
           Container(
             margin: EdgeInsets.only(left: 20),
+            height: height * 0.05,
             child: customText.kText(
-              "Chat",
-              25,
+              TextConstants.chat.toUpperCase(),
+              20,
               FontWeight.w700,
               ColorConstants.drawerTextColor,
               TextAlign.start,
@@ -134,9 +138,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
           ),
           Container(
             margin: EdgeInsets.only(left: 20),
+            height: height * 0.05,
             child: customText.kText(
-              "Schedule Meeting",
-              25,
+              TextConstants.scheduleMeeting.toUpperCase(),
+              20,
               FontWeight.w700,
               ColorConstants.drawerTextColor,
               TextAlign.start,
@@ -144,9 +149,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
           ),
           Container(
             margin: EdgeInsets.only(left: 20),
+            height: height * 0.05,
             child: customText.kText(
-              "Regulation",
-              25,
+              TextConstants.regulation.toUpperCase(),
+              20,
               FontWeight.w700,
               ColorConstants.drawerTextColor,
               TextAlign.start,
@@ -154,9 +160,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
           ),
           Container(
             margin: EdgeInsets.only(left: 20),
+            height: height * 0.05,
             child: customText.kText(
-              "General Information",
-              25,
+              TextConstants.generalInfo.toUpperCase(),
+              20,
               FontWeight.w700,
               ColorConstants.drawerTextColor,
               TextAlign.start,
@@ -164,9 +171,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
           ),
           Container(
             margin: EdgeInsets.only(left: 20),
+            height: height * 0.05,
             child: customText.kText(
-              "Engagement Agreement",
-              25,
+              TextConstants.engagementAgreement.toUpperCase(),
+              20,
               FontWeight.w700,
               ColorConstants.drawerTextColor,
               TextAlign.start,
@@ -174,9 +182,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
           ),
           Container(
             margin: EdgeInsets.only(left: 20),
+            height: height * 0.05,
             child: customText.kText(
-              "Refferal link",
-              25,
+              TextConstants.referralLink.toUpperCase(),
+              20,
               FontWeight.w700,
               ColorConstants.drawerTextColor,
               TextAlign.start,
@@ -184,9 +193,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
           ),
           Container(
             margin: EdgeInsets.only(left: 20),
+            height: height * 0.05,
             child: customText.kText(
-              "Wallet",
-              25,
+              TextConstants.wallet.toUpperCase(),
+              20,
               FontWeight.w700,
               ColorConstants.drawerTextColor,
               TextAlign.start,
@@ -194,9 +204,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
           ),
           Container(
             margin: EdgeInsets.only(left: 20),
+            height: height * 0.05,
             child: customText.kText(
-              "Logout",
-              25,
+              TextConstants.logout.toUpperCase(),
+              20,
               FontWeight.w700,
               ColorConstants.drawerTextColor,
               TextAlign.start,

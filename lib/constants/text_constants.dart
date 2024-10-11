@@ -34,4 +34,14 @@ class TextConstants {
   static const String dashboard = "Dashboard";
   static const String products = "Products";
   static const String services = "Services";
+  static const String profile = "Profile";
+  static const String orders = "Orders";
+  static const String chat = "Chat";
+  static const String scheduleMeeting = "Schedule Meeting";
+  static const String regulation = "Regulation";
+  static const String generalInfo = "General Information";
+  static const String engagementAgreement = "Engagement Agreement";
+  static const String referralLink = "Referral Link";
+  static const String wallet = "Wallet";
+  static const String logout = "Logout";
 }

@@ -83,23 +83,32 @@ class _SplashScreenState extends State<SplashScreen>
             Center(
               child: Column(
                 children: [
+                  // SizedBox(
+                  //   height: size.height * 0.2,
+                  // ),
+                  // Stack(
+                  //   children: [
+                  //     RotationTransition(
+                  //       turns: Tween(begin: 0.0, end: 10.0)
+                  //           .animate(logoController),
+                  //       child: SizedBox(
+                  //         height: size.height * 0.2,
+                  //         child: Image.asset("assets/images/logo base.png"),
+                  //       ),
+                  //     ),
+                  //     SizedBox(
+                  //         height: size.height * 0.2,
+                  //         child: Image.asset("assets/images/logo top.png"))
+                  //   ],
+                  // ),
                   SizedBox(
-                    height: size.height * 0.2,
+                    height: size.height * 0.1,
                   ),
-                  Stack(
-                    children: [
-                      RotationTransition(
-                        turns: Tween(begin: 0.0, end: 10.0)
-                            .animate(logoController),
-                        child: SizedBox(
-                          height: size.height * 0.2,
-                          child: Image.asset("assets/images/logo base.png"),
-                        ),
-                      ),
-                      SizedBox(
-                          height: size.height * 0.2,
-                          child: Image.asset("assets/images/logo top.png"))
-                    ],
+                  Container(
+                    color: Colors.transparent,
+                    height: size.width * 0.7,
+                    width: size.width * 0.7,
+                    child: Lottie.asset('assets/images/3.json'),
                   ),
                   SizedBox(
                     height: size.height * 0.02,

@@ -95,8 +95,6 @@ class _IntroScreenState extends State<IntroScreen> with SingleTickerProviderStat
                   height: size.height * 0.2,
                   width: size.width * 0.2,
                   child: Lottie.asset("assets/images/slowWind.json"),
-                  // child: Lottie.asset("assets/images/wind_turbineAnimation.json"),
-                  // child: Lottie.asset("assets/images/wAdSR3Cpal.json"),
                 ),
               ), // SizedBox(
 
@@ -151,17 +149,21 @@ class _IntroScreenState extends State<IntroScreen> with SingleTickerProviderStat
                   introPage == 0
                       ? Column(
                           children: [
-                            // SizedBox(height: size.height * 0.08),
-                            Align(
-                              alignment: Alignment(animation.value, 1),
-                              child: Container(
-                                color: Colors.transparent,
-                                height: size.width * 0.7,
-                                width: size.width * 0.7,
-                                child: Lottie.asset('assets/images/tractor.json'),
-                              ),
+                            // Align(
+                            //   alignment: Alignment(animation.value, 1),
+                            //   child: Container(
+                            //     color: Colors.transparent,
+                            //     height: size.width * 0.7,
+                            //     width: size.width * 0.7,
+                            //     child: Lottie.asset('assets/images/tractor.json'),
+                            //   ),
+                            // ),
+                            Container(
+                              color: Colors.transparent,
+                              height: size.width * 0.7,
+                              width: size.width * 0.7,
+                              child: Lottie.asset('assets/images/10.json'),
                             ),
-                            // SizedBox(height: size.height * 0.02),
                             SizedBox(
                               height: size.width * 0.35,
                               child: customText.kText(
@@ -172,11 +174,16 @@ class _IntroScreenState extends State<IntroScreen> with SingleTickerProviderStat
                         )
                       : Column(
                           children: [
-                            // SizedBox(height: size.height * 0.08),
-                            SizedBox(
+                            // SizedBox(
+                            //   height: size.width * 0.7,
+                            //   width: size.width * 0.7,
+                            //   child: Image.asset('assets/images/smart farming.png'),
+                            // ),
+                            Container(
+                              color: Colors.transparent,
                               height: size.width * 0.7,
                               width: size.width * 0.7,
-                              child: Image.asset('assets/images/smart farming.png'),
+                              child: Lottie.asset('assets/images/1.json'),
                             ),
                             SizedBox(height: size.height * 0.02),
                             SizedBox(

@@ -18,53 +18,67 @@ class _ServicesViewScreenState extends State<ServicesViewScreen> {
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
-    return SafeArea(
-      child: Scaffold(
-        body: Container(
-          margin: EdgeInsets.all(15),
+    return Scaffold(
+      appBar: AppBar(
+        leading: GestureDetector(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 10),
+            child: Image.asset('assets/images/send_image.png'),
+          ),
+          onTap: () {
+            Navigator.pushReplacement(context, MaterialPageRoute(
+                builder: (context) => const DashboardScreen()),
+            );
+          },
+        ),
+        title: Image.asset("assets/images/dfcp_image.png"),
+      ),
+      body: SafeArea(
+        child: Container(
+          margin: const EdgeInsets.all(15),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  GestureDetector(
-                    child: Container(
-                      height: 45,
-                      width: 45,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: ColorConstants.kTextGreen,
-                        image: DecorationImage(
-                          image: AssetImage('assets/images/send_image.png'),
-                        ),
-                      ),
-                    ),
-                    onTap: () {
-                      // _key.currentState!.openDrawer();
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const DashboardScreen()),
-                      );
-                    },
-                  ),
-                  SizedBox(
-                    width: width * .3,
-                  ),
-                  Container(
-                    height: 40,
-                    width: width * .23,
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('assets/images/dfcp_image.png'),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.start,
+              //   crossAxisAlignment: CrossAxisAlignment.start,
+              //   children: [
+              //     GestureDetector(
+              //       child: Container(
+              //         height: 45,
+              //         width: 45,
+              //         decoration: const BoxDecoration(
+              //           shape: BoxShape.circle,
+              //           color: ColorConstants.kTextGreen,
+              //           image: DecorationImage(
+              //             image: AssetImage('assets/images/send_image.png'),
+              //           ),
+              //         ),
+              //       ),
+              //       onTap: () {
+              //         // _key.currentState!.openDrawer();
+              //         Navigator.pushReplacement(
+              //           context,
+              //           MaterialPageRoute(
+              //               builder: (context) => const DashboardScreen()),
+              //         );
+              //       },
+              //     ),
+              //     SizedBox(
+              //       width: width * .3,
+              //     ),
+              //     Container(
+              //       height: 40,
+              //       width: width * .23,
+              //       decoration: const BoxDecoration(
+              //         image: DecorationImage(
+              //           image: AssetImage('assets/images/dfcp_image.png'),
+              //         ),
+              //       ),
+              //     ),
+              //   ],
+              // ),
               const SizedBox(height: 10),
               customText.kText(
                 TextConstants.services,
