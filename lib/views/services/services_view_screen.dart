@@ -21,17 +21,25 @@ class _ServicesViewScreenState extends State<ServicesViewScreen> {
     return Scaffold(
       appBar: AppBar(
         leading: GestureDetector(
-          child: Padding(
-            padding: const EdgeInsets.only(left: 10),
-            child: Image.asset('assets/images/send_image.png'),
+          child: Container(
+            margin: const EdgeInsets.only(left: 15),
+            height: 40,
+            width: 40,
+            decoration: const BoxDecoration(
+                color: ColorConstants.kTextGreen, shape: BoxShape.circle),
+            child: Center(
+              child: Image.asset('assets/images/send_image.png'),
+            ),
           ),
           onTap: () {
-            Navigator.pushReplacement(context, MaterialPageRoute(
-                builder: (context) => const DashboardScreen()),
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => const DashboardScreen()),
             );
           },
         ),
         title: Image.asset("assets/images/dfcp_image.png"),
+        centerTitle: true,
       ),
       body: SafeArea(
         child: Container(

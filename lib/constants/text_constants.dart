@@ -44,4 +44,13 @@ class TextConstants {
   static const String referralLink = "Referral Link";
   static const String wallet = "Wallet";
   static const String logout = "Logout";
+  static const String ordersDashboard = "Orders";
+  static const String overview = "Overview";
+  static const String newOrder = "New Order";
+  static const String cancelledOrder = "Cancelled Order";
+  static const String orderInProcess = "Order in Process";
+  static const String pendingOrder = "Pending Orders";
+  static const String ordersSummary = "Oders Summary";
+  static const String allChats = "All Chats";
+  static const String meetings = "Meetings";
 }

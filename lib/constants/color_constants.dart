@@ -8,6 +8,9 @@ class ColorConstants {
   static final kPrimary = HexColor("#01570B");
   static final kTextFieldColor = HexColor("#03600E");
   static final drawerTextColor = HexColor("#FDC200");
+  static final searchBoxColor = HexColor("#E8E8E8");
+  static final searchColor = HexColor("#898989");
+  static final chatColor = HexColor("#707070");
 }
 
 class HexColor extends Color {

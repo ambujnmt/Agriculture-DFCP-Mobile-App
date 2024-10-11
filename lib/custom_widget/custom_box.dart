@@ -11,6 +11,8 @@ class CustomBox extends StatefulWidget {
   final Color? textColor;
   final String? text;
   final String? count;
+  double? countFontSize = 26;
+  double? textFontSize = 26;
   CustomBox({
     super.key,
     this.height,
@@ -19,6 +21,8 @@ class CustomBox extends StatefulWidget {
     this.textColor,
     this.text,
     this.count,
+    this.countFontSize,
+    this.textFontSize,
   });
 
   @override
@@ -36,7 +40,7 @@ class _CustomBoxState extends State<CustomBox> {
       width: widget.width,
       decoration: BoxDecoration(
         color: widget.boxColor,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(20),
       ),
       child: Container(
         margin: const EdgeInsets.only(left: 15, top: 20),
@@ -48,7 +52,7 @@ class _CustomBoxState extends State<CustomBox> {
               widget.text.toString(),
               style: TextStyle(
                 color: widget.textColor,
-                fontSize: 26,
+                fontSize: widget.textFontSize,
                 fontFamily: "Poppins",
                 fontWeight: FontWeight.w700,
               ),
@@ -58,7 +62,7 @@ class _CustomBoxState extends State<CustomBox> {
               widget.count.toString(),
               style: TextStyle(
                 color: widget.textColor,
-                fontSize: 26,
+                fontSize: widget.countFontSize,
                 fontFamily: "Poppins",
                 fontWeight: FontWeight.w700,
               ),

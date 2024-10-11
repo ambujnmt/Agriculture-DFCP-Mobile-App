@@ -161,6 +161,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     Expanded(
                       flex: 1,
                       child: CustomBox(
+                        textFontSize: 26,
+                        countFontSize: 26,
                         textColor: ColorConstants.kYellow,
                         height: height * .17,
                         count: "20",
@@ -172,6 +174,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     Expanded(
                       flex: 1,
                       child: CustomBox(
+                        textFontSize: 26,
+                        countFontSize: 26,
                         height: height * .17,
                         count: "50",
                         text: "Farmers",
@@ -189,6 +193,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     Expanded(
                       flex: 1,
                       child: CustomBox(
+                        textFontSize: 26,
+                        countFontSize: 26,
                         textColor: ColorConstants.kTextGreen,
                         height: height * .17,
                         count: "20",
@@ -200,6 +206,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     Expanded(
                       flex: 1,
                       child: CustomBox(
+                        textFontSize: 26,
+                        countFontSize: 26,
                         height: height * .17,
                         count: "50",
                         text: "Products",
@@ -211,6 +219,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 ),
                 const SizedBox(height: 10),
                 CustomBox(
+                  textFontSize: 26,
+                  countFontSize: 26,
                   text: "User Queries",
                   count: "80",
                   textColor: ColorConstants.kYellow,

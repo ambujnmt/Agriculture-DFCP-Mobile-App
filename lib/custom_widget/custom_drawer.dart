@@ -1,6 +1,9 @@
 import 'package:dfcp/constants/color_constants.dart';
 import 'package:dfcp/constants/text_constants.dart';
 import 'package:dfcp/utils/custom_text.dart';
+import 'package:dfcp/views/chat/all_chat_list_screen.dart';
+import 'package:dfcp/views/meetings/meetings_screen.dart';
+import 'package:dfcp/views/orders/orders_dashboard_screen.dart';
 import 'package:dfcp/views/products/products_view_screen.dart';
 import 'package:dfcp/views/services/services_view_screen.dart';
 import 'package:flutter/material.dart';
@@ -114,37 +117,67 @@ class _CustomDrawerState extends State<CustomDrawer> {
               ),
             ),
           ),
-          Container(
-            margin: EdgeInsets.only(left: 20),
-            height: height * 0.05,
-            child: customText.kText(
-              TextConstants.orders.toUpperCase(),
-              20,
-              FontWeight.w700,
-              ColorConstants.drawerTextColor,
-              TextAlign.start,
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const OrdersDashboardScreen(),
+                ),
+              );
+            },
+            child: Container(
+              margin: EdgeInsets.only(left: 20),
+              height: height * 0.05,
+              child: customText.kText(
+                TextConstants.orders.toUpperCase(),
+                20,
+                FontWeight.w700,
+                ColorConstants.drawerTextColor,
+                TextAlign.start,
+              ),
             ),
           ),
-          Container(
-            margin: EdgeInsets.only(left: 20),
-            height: height * 0.05,
-            child: customText.kText(
-              TextConstants.chat.toUpperCase(),
-              20,
-              FontWeight.w700,
-              ColorConstants.drawerTextColor,
-              TextAlign.start,
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const AllChatListScreen(),
+                ),
+              );
+            },
+            child: Container(
+              margin: EdgeInsets.only(left: 20),
+              height: height * 0.05,
+              child: customText.kText(
+                TextConstants.chat.toUpperCase(),
+                20,
+                FontWeight.w700,
+                ColorConstants.drawerTextColor,
+                TextAlign.start,
+              ),
             ),
           ),
-          Container(
-            margin: EdgeInsets.only(left: 20),
-            height: height * 0.05,
-            child: customText.kText(
-              TextConstants.scheduleMeeting.toUpperCase(),
-              20,
-              FontWeight.w700,
-              ColorConstants.drawerTextColor,
-              TextAlign.start,
+          GestureDetector(
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const MeetingsScreen(),
+                ),
+              );
+            },
+            child: Container(
+              margin: EdgeInsets.only(left: 20),
+              height: height * 0.05,
+              child: customText.kText(
+                TextConstants.scheduleMeeting.toUpperCase(),
+                20,
+                FontWeight.w700,
+                ColorConstants.drawerTextColor,
+                TextAlign.start,
+              ),
             ),
           ),
           Container(
