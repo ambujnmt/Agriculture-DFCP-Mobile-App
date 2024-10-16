@@ -1,4 +1,5 @@
 import 'package:dfcp/views/intro_screen.dart';
+import 'package:dfcp/views/new_intro.dart';
 import 'package:flutter/material.dart';
 // import 'package:media_kit/media_kit.dart';
 
@@ -15,13 +16,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'DFCP',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: const IntroScreen(),
+      home: const NewIntroScreen(),
     );
   }
 }

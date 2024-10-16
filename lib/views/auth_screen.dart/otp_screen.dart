@@ -66,7 +66,7 @@ class _OtpScreenState extends State<OtpScreen> {
     return Scaffold(
       body: Stack(
         children: [
-          const Background(),
+          Background(),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: width * 0.03),
             child: Column(
