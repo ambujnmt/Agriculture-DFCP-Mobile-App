@@ -169,7 +169,7 @@ class _ReferralScreenState extends State<ReferralScreen> {
                   GestureDetector(
                     onTap: () {
                       // Place your share function here
-                      Share.share("Hello i want to share this code");
+                      Share.share("Hello i want to share this code PRADEEP500");
                     },
                     child: Container(
                       height: height * .060,
