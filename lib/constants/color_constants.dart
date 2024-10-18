@@ -14,6 +14,8 @@ class ColorConstants {
   static final otpFieldColor = HexColor("#03420A");
   static final kDarkGreenColor = HexColor("#05600D");
   static final blueColor = HexColor("#0084B5");
+  static final kChatInputColor = HexColor('#4e4e4e');
+  static final kChatMessageColor = HexColor('#009c12');
 }
 
 class HexColor extends Color {

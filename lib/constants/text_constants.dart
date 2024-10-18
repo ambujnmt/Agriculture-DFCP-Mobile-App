@@ -77,4 +77,9 @@ class TextConstants {
   static const String refCode = "Referral Code";
   static const String refNow = "Refer Now";
   static const String advertiseAndNews = "Advertising & News";
+  static const String chatInputPlaceholder = "Message .......";
+  static const String date = "Date";
+  static const String time = 'Time';
+  static const String members = "Members";
+  static const String description = "Description";
 }

@@ -2,10 +2,10 @@ import 'package:dfcp/constants/color_constants.dart';
 import 'package:dfcp/constants/text_constants.dart';
 import 'package:dfcp/custom_widget/divider_widget.dart';
 import 'package:dfcp/utils/custom_text.dart';
+import 'package:dfcp/views/chat/chat_screen.dart';
 import 'package:dfcp/views/dashboard/dashboard_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
-import 'package:textfield_search/textfield_search.dart';
+import 'dart:developer';
 
 class AllChatListScreen extends StatefulWidget {
   const AllChatListScreen({super.key});
@@ -22,25 +22,6 @@ class _AllChatListScreenState extends State<AllChatListScreen> {
     final double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.white,
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      // floatingActionButton: Align(
-      //   alignment: Alignment.bottomCenter,
-      //   child: Container(
-      //     height: 50,
-      //     width: 50,
-      //     decoration: const BoxDecoration(
-      //       shape: BoxShape.circle,
-      //       image: DecorationImage(
-      //           image: AssetImage('assets/images/add_image.png'),
-      //       ),
-      //     ),
-      //   ),
-      // ),
-      // floatingActionButton: Container(
-      //   height: 20,
-      //   width: width,
-      //   color: ColorConstants.kPrimary,
-      // ),
       appBar: AppBar(
         leading: GestureDetector(
           child: Container(
@@ -211,37 +192,23 @@ class _AllChatListScreenState extends State<AllChatListScreen> {
           ),
           Positioned(
             bottom: 20,
-            child: Container(
-              height: 75,
-              width: width,
-              padding: const EdgeInsets.all(10),
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                shape: BoxShape.circle
+            child: GestureDetector(
+              child: Container(
+                height: 75,
+                width: width,
+                padding: const EdgeInsets.all(10),
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  shape: BoxShape.circle
+                ),
+                child: Image.asset('assets/images/add_image.png'),
               ),
-              child: Image.asset('assets/images/add_image.png'),
+              onTap: () {
+                log("add button called");
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const ChatScreen() ));
+              },
             ),
           )
-          // Stack(
-          //   children: [
-          //     Container(
-          //       height: 55,
-          //       width: width,
-          //       color: ColorConstants.kPrimary,
-          //     ),
-          //     Positioned(
-          //       top: -10,
-          //       child: Container(
-          //         height: 105,
-          //         width: width,
-          //         decoration: BoxDecoration(
-          //           color: Colors.yellow,
-          //           shape: BoxShape.circle
-          //         ),
-          //       ),
-          //     )
-          //   ],
-          // )
         ],
       ),
     );

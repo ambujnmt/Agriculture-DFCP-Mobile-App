@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:dfcp/constants/text_constants.dart';
+import 'package:dfcp/custom_widget/divider_widget.dart';
 import 'package:dfcp/utils/custom_text.dart';
 import 'package:dfcp/views/dashboard/dashboard_screen.dart';
 import 'package:flutter/material.dart';
@@ -22,17 +23,17 @@ class _MeetingsScreenState extends State<MeetingsScreen> {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      floatingActionButton: Align(
-        alignment: Alignment.bottomCenter,
-        child: Container(
-          height: 50,
-          width: 50,
-          decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                  image: AssetImage('assets/images/add_image.png'))),
-        ),
-      ),
+      // floatingActionButton: Align(
+      //   alignment: Alignment.bottomCenter,
+      //   child: Container(
+      //     height: 50,
+      //     width: 50,
+      //     decoration: const BoxDecoration(
+      //         shape: BoxShape.circle,
+      //         image: DecorationImage(
+      //             image: AssetImage('assets/images/add_image.png'))),
+      //   ),
+      // ),
       appBar: AppBar(
         leading: GestureDetector(
           child: Container(
@@ -42,7 +43,10 @@ class _MeetingsScreenState extends State<MeetingsScreen> {
             decoration: const BoxDecoration(
                 color: ColorConstants.kTextGreen, shape: BoxShape.circle),
             child: Center(
-              child: Image.asset('assets/images/send_image.png'),
+              child: SizedBox(
+                height: 25,
+                child: Image.asset('assets/images/send_image1.png'),
+              ),
             ),
           ),
           onTap: () {
@@ -52,187 +56,218 @@ class _MeetingsScreenState extends State<MeetingsScreen> {
             );
           },
         ),
-        title: Image.asset("assets/images/dfcp_image.png"),
+        title: customText.kHeadingText(TextConstants.appTitle,
+            45, FontWeight.w800, ColorConstants.kTextGreen, TextAlign.center),
         centerTitle: true,
       ),
-      body: Container(
-        margin: EdgeInsets.all(15),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 10),
-            customText.kText(
-              TextConstants.meetings,
-              30,
-              FontWeight.w700,
-              ColorConstants.kTextGreen,
-              TextAlign.center,
-            ),
-            Container(
-              height: 5,
-              width: width * .2,
-              decoration: BoxDecoration(
-                color: ColorConstants.kYellow,
-                borderRadius: BorderRadius.circular(12),
-              ),
-            ),
-            SizedBox(height: height * .025),
-            Expanded(
-              child: Container(
-                child: ListView.builder(
-                  itemCount: 2,
-                  itemBuilder: (context, index) => Container(
-                    margin: EdgeInsets.only(bottom: 10),
-                    padding: EdgeInsets.all(10),
-                    height: height * .24,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: ColorConstants.kTextGreen,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
+      body: Stack(
+        alignment: Alignment.bottomCenter,
+        children: [
+          Container(
+            margin: EdgeInsets.all(15),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 10),
+                customText.kText(
+                  TextConstants.meetings,
+                  30,
+                  FontWeight.w700,
+                  ColorConstants.kTextGreen,
+                  TextAlign.center,
+                ),
+                const DividerWidget(),
+                // Container(
+                //   height: 5,
+                //   width: width * .2,
+                //   decoration: BoxDecoration(
+                //     color: ColorConstants.kYellow,
+                //     borderRadius: BorderRadius.circular(12),
+                //   ),
+                // ),
+                SizedBox(height: height * .025),
+                Expanded(
+                  child: Container(
+                    child: ListView.builder(
+                      itemCount: 2,
+                      itemBuilder: (context, index) => Container(
+                        margin: EdgeInsets.only(bottom: 10),
+                        padding: EdgeInsets.all(10),
+                        height: height * .24,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: ColorConstants.kTextGreen,
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Container(
-                              child: customText.kText(
-                                "Name :-",
-                                18,
-                                FontWeight.w700,
-                                ColorConstants.kYellow,
-                                TextAlign.center,
-                              ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  child: customText.kText(
+                                    "Name :-",
+                                    18,
+                                    FontWeight.w700,
+                                    ColorConstants.kYellow,
+                                    TextAlign.center,
+                                  ),
+                                ),
+                                const SizedBox(width: 10),
+                                Container(
+                                  child: customText.kText(
+                                    "Developer",
+                                    18,
+                                    FontWeight.w700,
+                                    Colors.white,
+                                    TextAlign.center,
+                                  ),
+                                ),
+                              ],
                             ),
-                            const SizedBox(width: 10),
-                            Container(
-                              child: customText.kText(
-                                "Developer",
-                                18,
-                                FontWeight.w700,
-                                Colors.white,
-                                TextAlign.center,
-                              ),
+                            const SizedBox(height: 10),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  child: customText.kText(
+                                    "Date :-",
+                                    18,
+                                    FontWeight.w700,
+                                    ColorConstants.kYellow,
+                                    TextAlign.center,
+                                  ),
+                                ),
+                                const SizedBox(width: 10),
+                                Container(
+                                  child: customText.kText(
+                                    "22/08/2025",
+                                    18,
+                                    FontWeight.w700,
+                                    Colors.white,
+                                    TextAlign.center,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 10),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  child: customText.kText(
+                                    "Time :-",
+                                    18,
+                                    FontWeight.w700,
+                                    ColorConstants.kYellow,
+                                    TextAlign.center,
+                                  ),
+                                ),
+                                const SizedBox(width: 10),
+                                Container(
+                                  child: customText.kText(
+                                    "5:38 PM",
+                                    18,
+                                    FontWeight.w700,
+                                    Colors.white,
+                                    TextAlign.center,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 10),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  child: customText.kText(
+                                    "Members :-",
+                                    18,
+                                    FontWeight.w700,
+                                    ColorConstants.kYellow,
+                                    TextAlign.center,
+                                  ),
+                                ),
+                                const SizedBox(width: 10),
+                                Container(
+                                  child: customText.kText(
+                                    "Students, Farmers",
+                                    18,
+                                    FontWeight.w700,
+                                    Colors.white,
+                                    TextAlign.center,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 10),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  child: customText.kText(
+                                    "Description :-",
+                                    18,
+                                    FontWeight.w700,
+                                    ColorConstants.kYellow,
+                                    TextAlign.center,
+                                  ),
+                                ),
+                                const SizedBox(width: 10),
+                                Container(
+                                  width: width * .5,
+                                  child: customText.kText(
+                                    "Important meetings",
+                                    18,
+                                    FontWeight.w700,
+                                    Colors.white,
+                                    TextAlign.start,
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),
-                        const SizedBox(height: 10),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              child: customText.kText(
-                                "Date :-",
-                                18,
-                                FontWeight.w700,
-                                ColorConstants.kYellow,
-                                TextAlign.center,
-                              ),
-                            ),
-                            const SizedBox(width: 10),
-                            Container(
-                              child: customText.kText(
-                                "22/08/2025",
-                                18,
-                                FontWeight.w700,
-                                Colors.white,
-                                TextAlign.center,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 10),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              child: customText.kText(
-                                "Time :-",
-                                18,
-                                FontWeight.w700,
-                                ColorConstants.kYellow,
-                                TextAlign.center,
-                              ),
-                            ),
-                            const SizedBox(width: 10),
-                            Container(
-                              child: customText.kText(
-                                "5:38 PM",
-                                18,
-                                FontWeight.w700,
-                                Colors.white,
-                                TextAlign.center,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 10),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              child: customText.kText(
-                                "Members :-",
-                                18,
-                                FontWeight.w700,
-                                ColorConstants.kYellow,
-                                TextAlign.center,
-                              ),
-                            ),
-                            const SizedBox(width: 10),
-                            Container(
-                              child: customText.kText(
-                                "Students, Farmers",
-                                18,
-                                FontWeight.w700,
-                                Colors.white,
-                                TextAlign.center,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 10),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              child: customText.kText(
-                                "Description :-",
-                                18,
-                                FontWeight.w700,
-                                ColorConstants.kYellow,
-                                TextAlign.center,
-                              ),
-                            ),
-                            const SizedBox(width: 10),
-                            Container(
-                              width: width * .5,
-                              child: customText.kText(
-                                "Important meetings",
-                                18,
-                                FontWeight.w700,
-                                Colors.white,
-                                TextAlign.start,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
+                      ),
                     ),
                   ),
+                )
+              ],
+            ),
+          ),
+          Container(
+            height: 55,
+            width: width,
+            color: ColorConstants.kPrimary,
+          ),
+          Positioned(
+            bottom: 20,
+            child: GestureDetector(
+              child: Container(
+                height: 75,
+                width: width,
+                padding: const EdgeInsets.all(10),
+                decoration: const BoxDecoration(
+                    color: Colors.white,
+                    shape: BoxShape.circle
                 ),
+                child: Image.asset('assets/images/add_image.png'),
               ),
-            )
-          ],
-        ),
+              onTap: () {
+                // log("add button called");
+                // Navigator.push(context, MaterialPageRoute(builder: (context) => const ChatScreen() ));
+              },
+            ),
+          )
+        ],
       ),
     );
   }
