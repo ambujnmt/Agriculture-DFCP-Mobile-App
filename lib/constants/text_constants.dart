@@ -67,4 +67,9 @@ class TextConstants {
   static const String qtyBox = "Qty/Box";
   static const String status = "Status";
   static const String expectedDeliveryData = "Expected Delivery Data";
+  static const String chatInputPlaceholder = "Message .......";
+  static const String date = "Date";
+  static const String time = 'Time';
+  static const String members = "Members";
+  static const String description = "Description";
 }
