@@ -13,6 +13,7 @@ class ColorConstants {
   static final chatColor = HexColor("#707070");
   static final otpFieldColor = HexColor("#03420A");
   static final kDarkGreenColor = HexColor("#05600D");
+  static final blueColor = HexColor("#0084B5");
 }
 
 class HexColor extends Color {

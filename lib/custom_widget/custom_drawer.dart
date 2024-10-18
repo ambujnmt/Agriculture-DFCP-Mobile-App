@@ -5,7 +5,11 @@ import 'package:dfcp/views/chat/all_chat_list_screen.dart';
 import 'package:dfcp/views/meetings/meetings_screen.dart';
 import 'package:dfcp/views/orders/orders_dashboard_screen.dart';
 import 'package:dfcp/views/products/products_view_screen.dart';
+import 'package:dfcp/views/referral/referral_screen.dart';
 import 'package:dfcp/views/services/services_view_screen.dart';
+import 'package:dfcp/views/static_content/engagement_agreement_screen.dart';
+import 'package:dfcp/views/static_content/general_information.dart';
+import 'package:dfcp/views/static_content/regulations_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 
@@ -180,48 +184,88 @@ class _CustomDrawerState extends State<CustomDrawer> {
               ),
             ),
           ),
-          Container(
-            margin: EdgeInsets.only(left: 20),
-            height: height * 0.05,
-            child: customText.kText(
-              TextConstants.regulation.toUpperCase(),
-              20,
-              FontWeight.w700,
-              ColorConstants.drawerTextColor,
-              TextAlign.start,
+          GestureDetector(
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const RegulationScreen(),
+                ),
+              );
+            },
+            child: Container(
+              margin: EdgeInsets.only(left: 20),
+              height: height * 0.05,
+              child: customText.kText(
+                TextConstants.regulation.toUpperCase(),
+                20,
+                FontWeight.w700,
+                ColorConstants.drawerTextColor,
+                TextAlign.start,
+              ),
             ),
           ),
-          Container(
-            margin: EdgeInsets.only(left: 20),
-            height: height * 0.05,
-            child: customText.kText(
-              TextConstants.generalInfo.toUpperCase(),
-              20,
-              FontWeight.w700,
-              ColorConstants.drawerTextColor,
-              TextAlign.start,
+          GestureDetector(
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const GeneralInformation(),
+                ),
+              );
+            },
+            child: Container(
+              margin: EdgeInsets.only(left: 20),
+              height: height * 0.05,
+              child: customText.kText(
+                TextConstants.generalInfo.toUpperCase(),
+                20,
+                FontWeight.w700,
+                ColorConstants.drawerTextColor,
+                TextAlign.start,
+              ),
             ),
           ),
-          Container(
-            margin: EdgeInsets.only(left: 20),
-            height: height * 0.05,
-            child: customText.kText(
-              TextConstants.engagementAgreement.toUpperCase(),
-              20,
-              FontWeight.w700,
-              ColorConstants.drawerTextColor,
-              TextAlign.start,
+          GestureDetector(
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const EngagementAgreementScreen(),
+                ),
+              );
+            },
+            child: Container(
+              margin: EdgeInsets.only(left: 20),
+              height: height * 0.05,
+              child: customText.kText(
+                TextConstants.engagementAgreement.toUpperCase(),
+                20,
+                FontWeight.w700,
+                ColorConstants.drawerTextColor,
+                TextAlign.start,
+              ),
             ),
           ),
-          Container(
-            margin: EdgeInsets.only(left: 20),
-            height: height * 0.05,
-            child: customText.kText(
-              TextConstants.referralLink.toUpperCase(),
-              20,
-              FontWeight.w700,
-              ColorConstants.drawerTextColor,
-              TextAlign.start,
+          GestureDetector(
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ReferralScreen(),
+                ),
+              );
+            },
+            child: Container(
+              margin: EdgeInsets.only(left: 20),
+              height: height * 0.05,
+              child: customText.kText(
+                TextConstants.referralLink.toUpperCase(),
+                20,
+                FontWeight.w700,
+                ColorConstants.drawerTextColor,
+                TextAlign.start,
+              ),
             ),
           ),
           Container(
