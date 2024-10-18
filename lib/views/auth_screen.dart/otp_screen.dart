@@ -86,7 +86,7 @@ class _OtpScreenState extends State<OtpScreen> {
                   isDense: true,
                   outlineBorderRadius: 20,
                   otpFieldStyle: OtpFieldStyle(
-                    backgroundColor: Color(0xff03420A),
+                    backgroundColor: ColorConstants.otpFieldColor,
                   ),
                   onCompleted: (pin) {
                     log("otp entered :- $pin");
@@ -98,10 +98,10 @@ class _OtpScreenState extends State<OtpScreen> {
                     alignment: Alignment.center,
                     child: GestureDetector(
                       child: customText.kText(
-                          "Resend OTP",
+                          TextConstants.resendOtp,
                           18,
                           FontWeight.w900,
-                          Colors.blue.shade300,
+                          Colors.blue.shade900,
                           TextAlign.start),
                       onTap: () {
                         if (resendOTPTimes < 3) {
@@ -113,7 +113,7 @@ class _OtpScreenState extends State<OtpScreen> {
                     alignment: Alignment.center,
                     child: RichText(
                       text: TextSpan(
-                          text: "You can resend code request in",
+                          text: TextConstants.resendOtpDesc,
                           style: customText.kTextStyle(
                               18, FontWeight.w600, ColorConstants.kYellow),
                           children: [

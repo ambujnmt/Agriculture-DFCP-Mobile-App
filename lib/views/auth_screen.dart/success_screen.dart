@@ -7,8 +7,9 @@ import 'package:dfcp/views/auth_screen.dart/login_screen.dart';
 import 'package:flutter/material.dart';
 
 class SuccessScreen extends StatelessWidget {
-  SuccessScreen({super.key});
-  
+  SuccessScreen({super.key, this.from});
+
+  final from;
   final customText = CustomText();
 
   @override
@@ -26,7 +27,7 @@ class SuccessScreen extends StatelessWidget {
                 SizedBox(height: height * 0.15),
                 Image.asset("assets/images/success.png"),
                 SizedBox(height: height * 0.02),
-                customText.kText(TextConstants.regSuccessMsg, 32, FontWeight.w700, ColorConstants.kYellow, TextAlign.center),
+                customText.kText(from == "registration" ? TextConstants.regSuccessMsg : TextConstants.passwordChangeDesc, 32, FontWeight.w700, ColorConstants.kYellow, TextAlign.center),
                 SizedBox(height: height * 0.15),
                 CustomButton(
                   buttonText: TextConstants.backToHome,

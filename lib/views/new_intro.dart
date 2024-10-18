@@ -176,7 +176,7 @@ class _NewIntroScreenState extends State<NewIntroScreen> with TickerProviderStat
                             context,
                             PageTransition(
                                 type: PageTransitionType.leftToRight,
-                                child: const SplashScreen(),
+                                child: const NewSplashScreen(),
                                 duration: const Duration(seconds: 1)));
                       },
                     ),
@@ -199,7 +199,7 @@ class _NewIntroScreenState extends State<NewIntroScreen> with TickerProviderStat
                           TextConstants.intelligentFarming,
                           45,
                           FontWeight.w700,
-                          const Color(0xffFDC200),
+                          ColorConstants.kYellow,
                           TextAlign.center),
                     )
                   ],
@@ -211,7 +211,7 @@ class _NewIntroScreenState extends State<NewIntroScreen> with TickerProviderStat
                       children: [
                         SizedBox(
                           height: size.width * 0.25,
-                          child: customText.kHeadingText("DFCP", 75,
+                          child: customText.kHeadingText(TextConstants.appTitle, 75,
                               FontWeight.w800, Colors.white, TextAlign.center),
                         ),
                         Positioned(
@@ -220,10 +220,10 @@ class _NewIntroScreenState extends State<NewIntroScreen> with TickerProviderStat
                           child: SizedBox(
                             height: size.width * 0.25,
                             child: customText.kHeadingText(
-                                "DFCP",
+                                TextConstants.appTitle,
                                 75,
                                 FontWeight.w800,
-                                Color(0xff01720f),
+                                ColorConstants.kTextGreen,
                                 TextAlign.center),
                           ),
                         ),

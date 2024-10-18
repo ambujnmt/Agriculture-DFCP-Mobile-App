@@ -37,7 +37,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
             _key.currentState!.openDrawer();
           },
         ),
-        title: Image.asset("assets/images/dfcp_image.png"),
+        title: customText.kHeadingText(TextConstants.appTitle,
+            45, FontWeight.w800, ColorConstants.kTextGreen, TextAlign.center),
       ),
       body: SafeArea(
         child: Container(
@@ -47,38 +48,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.start,
-                //   crossAxisAlignment: CrossAxisAlignment.start,
-                //   children: [
-                //     GestureDetector(
-                //       child: Container(
-                //         height: 50,
-                //         width: 50,
-                //         decoration: const BoxDecoration(
-                //           image: DecorationImage(
-                //             image: AssetImage('assets/images/dashboard_icon.png'),
-                //           ),
-                //         ),
-                //       ),
-                //       onTap: () {
-                //         _key.currentState!.openDrawer();
-                //       },
-                //     ),
-                //     SizedBox(
-                //       width: width * .3,
-                //     ),
-                //     Container(
-                //       height: 40,
-                //       width: width * .23,
-                //       decoration: const BoxDecoration(
-                //         image: DecorationImage(
-                //           image: AssetImage('assets/images/dfcp_image.png'),
-                //         ),
-                //       ),
-                //     ),
-                //   ],
-                // ),
                 const SizedBox(height: 10),
                 customText.kText(
                   TextConstants.dashboard,
@@ -166,7 +135,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         textColor: ColorConstants.kYellow,
                         height: height * .17,
                         count: "20",
-                        text: "Meeting",
+                        text: TextConstants.meetings,
                         boxColor: ColorConstants.kTextGreen,
                       ),
                     ),
@@ -178,7 +147,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         countFontSize: 26,
                         height: height * .17,
                         count: "50",
-                        text: "Farmers",
+                        text: TextConstants.farmers,
                         boxColor: ColorConstants.kYellow,
                         textColor: ColorConstants.kTextGreen,
                       ),
@@ -198,7 +167,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         textColor: ColorConstants.kTextGreen,
                         height: height * .17,
                         count: "20",
-                        text: "Orders",
+                        text: TextConstants.orders,
                         boxColor: ColorConstants.kYellow,
                       ),
                     ),
@@ -210,7 +179,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         countFontSize: 26,
                         height: height * .17,
                         count: "50",
-                        text: "Products",
+                        text: TextConstants.products,
                         boxColor: ColorConstants.kTextGreen,
                         textColor: ColorConstants.kYellow,
                       ),
@@ -221,7 +190,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 CustomBox(
                   textFontSize: 26,
                   countFontSize: 26,
-                  text: "User Queries",
+                  text: TextConstants.userQueries,
                   count: "80",
                   textColor: ColorConstants.kYellow,
                   height: height * .170,
@@ -236,3 +205,36 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 }
+
+// Row(
+//   mainAxisAlignment: MainAxisAlignment.start,
+//   crossAxisAlignment: CrossAxisAlignment.start,
+//   children: [
+//     GestureDetector(
+//       child: Container(
+//         height: 50,
+//         width: 50,
+//         decoration: const BoxDecoration(
+//           image: DecorationImage(
+//             image: AssetImage('assets/images/dashboard_icon.png'),
+//           ),
+//         ),
+//       ),
+//       onTap: () {
+//         _key.currentState!.openDrawer();
+//       },
+//     ),
+//     SizedBox(
+//       width: width * .3,
+//     ),
+//     Container(
+//       height: 40,
+//       width: width * .23,
+//       decoration: const BoxDecoration(
+//         image: DecorationImage(
+//           image: AssetImage('assets/images/dfcp_image.png'),
+//         ),
+//       ),
+//     ),
+//   ],
+// ),

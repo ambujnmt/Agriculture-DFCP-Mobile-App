@@ -187,9 +187,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   ),
                   SizedBox(height: height * 0.1),
                   CustomButton(
-                    buttonText: 'Register',
+                    buttonText: TextConstants.register,
                     onpress: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => SuccessScreen() ));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => SuccessScreen(from: "registration") ));
                     },
                   ),
                 ],

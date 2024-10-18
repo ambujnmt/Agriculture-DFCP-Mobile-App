@@ -37,17 +37,28 @@ class _ProductsViewScreenState extends State<ProductsViewScreen> {
       drawer: const CustomDrawer(),
       appBar: AppBar(
         leading: GestureDetector(
-          child: Padding(
-            padding: const EdgeInsets.only(left: 10),
-            child: Image.asset('assets/images/send_image.png'),
+          child: Container(
+            margin: const EdgeInsets.only(left: 15),
+            height: 40,
+            width: 40,
+            decoration: const BoxDecoration(
+                color: ColorConstants.kTextGreen, shape: BoxShape.circle),
+            child: Center(
+              child: SizedBox(
+                height: 25,
+                child: Image.asset('assets/images/send_image1.png'),
+              ),
+            ),
           ),
           onTap: () {
-            Navigator.pushReplacement(context, MaterialPageRoute(
-              builder: (context) => const DashboardScreen()),
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => const DashboardScreen()),
             );
           },
         ),
-        title: Image.asset("assets/images/dfcp_image.png"),
+        title: customText.kHeadingText(TextConstants.appTitle,
+            45, FontWeight.w800, ColorConstants.kTextGreen, TextAlign.center),
       ),
       body: SafeArea(
         child: Container(
@@ -56,7 +67,6 @@ class _ProductsViewScreenState extends State<ProductsViewScreen> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 10),
               customText.kText(
                 TextConstants.products,
                 30,

@@ -50,9 +50,21 @@ class TextConstants {
   static const String cancelledOrder = "Cancelled Order";
   static const String orderInProcess = "Order in Process";
   static const String pendingOrder = "Pending Orders";
-  static const String ordersSummary = "Oders Summary";
+  static const String ordersSummary = "Summary";
   static const String allChats = "All Chats";
   static const String meetings = "Meetings";
   static const String intelligentFarming = "Intelligent Farming";
   static const String skip = "Skip";
+  static const String createAccount = "Create Account";
+  static const String register = "Register";
+  static const String resendOtp = "Resend OTP";
+  static const String resendOtpDesc = "You can resend code request in";
+  static const String passwordChangeDesc = "Password changed successfully";
+  static const String farmers = "Farmers";
+  static const String userQueries = "User Queries";
+  static const String orderNumber = "Order No.";
+  static const String productDetail = "Product Detail";
+  static const String qtyBox = "Qty/Box";
+  static const String status = "Status";
+  static const String expectedDeliveryData = "Expected Delivery Data";
 }

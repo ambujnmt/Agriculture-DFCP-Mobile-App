@@ -4,6 +4,7 @@ import 'package:dfcp/custom_widget/background.dart';
 import 'package:dfcp/custom_widget/custom_button.dart';
 import 'package:dfcp/custom_widget/custom_textField.dart';
 import 'package:dfcp/utils/custom_text.dart';
+import 'package:dfcp/views/auth_screen.dart/success_screen.dart';
 import 'package:flutter/material.dart';
 
 class CreatePassword extends StatefulWidget {
@@ -82,6 +83,10 @@ class _CreatePasswordState extends State<CreatePassword> {
                 SizedBox(height: height * 0.2),
                 CustomButton(
                   buttonText: TextConstants.kContinue,
+                  onpress: () {
+                    // SuccessScreen
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SuccessScreen(from: "createPassword") ));
+                  },
                 )
               ],
             ),
