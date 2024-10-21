@@ -3,10 +3,20 @@ import 'package:dfcp/views/new_intro.dart';
 import 'package:flutter/material.dart';
 // import 'package:media_kit/media_kit.dart';
 
+import 'package:flutter/services.dart';
+
 void main() {
   // WidgetsFlutterBinding.ensureInitialized();
   // MediaKit.ensureInitialized();
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  // runApp(const MyApp());
+  // Lock the orientation to portrait mode.
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]).then((_) {
+    runApp(const MyApp());
+  });
 }
 
 class MyApp extends StatelessWidget {
@@ -26,5 +36,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-

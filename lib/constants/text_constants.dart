@@ -82,4 +82,20 @@ class TextConstants {
   static const String time = 'Time';
   static const String members = "Members";
   static const String description = "Description";
+  static const String yourBalance = "Your Balance";
+  static const String byReferal = "By Referal";
+  static const String byAdvise = "By Giving Advising";
+  static const String addMoney = "Add Money";
+  static const String select = "Select";
+  static const String byUPI = "By UPI";
+  static const String byCreditCard = "By Credit Card";
+  static const String byDebitCard = "By Debit Card";
+  static const String byNetBanking = "By Net Banking";
+  static const String buttonText = "Continue";
+  static const String completeYourPayment = "Complete your payment";
+  static const String enterAmount = "Enter Amt";
+  static const String enterUpi = "Enter upi";
+  static const String verifyNow = "Verify";
+  static const String payNow = "Pay Now";
+  static const String cardNumber = "Card Number";
 }
