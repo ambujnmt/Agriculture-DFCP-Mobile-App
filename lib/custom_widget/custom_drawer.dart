@@ -5,6 +5,7 @@ import 'package:dfcp/views/chat/all_chat_list_screen.dart';
 import 'package:dfcp/views/meetings/meetings_screen.dart';
 import 'package:dfcp/views/orders/orders_dashboard_screen.dart';
 import 'package:dfcp/views/products/products_view_screen.dart';
+import 'package:dfcp/views/profile/profile_screen.dart';
 import 'package:dfcp/views/referral/referral_screen.dart';
 import 'package:dfcp/views/services/services_view_screen.dart';
 import 'package:dfcp/views/static_content/engagement_agreement_screen.dart';
@@ -68,15 +69,20 @@ class _CustomDrawerState extends State<CustomDrawer> {
                     )
                   ],
                 ),
-                Container(
-                  margin: const EdgeInsets.only(left: 2),
-                  child: customText.kText(
-                    TextConstants.profile.toUpperCase(),
-                    22,
-                    FontWeight.w700,
-                    ColorConstants.drawerTextColor,
-                    TextAlign.center,
+                GestureDetector(
+                  child: Container(
+                    margin: const EdgeInsets.only(left: 2),
+                    child: customText.kText(
+                      TextConstants.profile.toUpperCase(),
+                      22,
+                      FontWeight.w700,
+                      ColorConstants.drawerTextColor,
+                      TextAlign.center,
+                    ),
                   ),
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfileScreen() ));
+                  },
                 ),
               ],
             ),

@@ -12,6 +12,18 @@ class CustomText {
     );
   }
 
+  kEllipseText(String hint, double fontSize, FontWeight fontWeight, Color color,
+      TextAlign textAlign, TextOverflow overflow, int lines) {
+    return Text(
+      hint,
+      style: TextStyle(fontSize: fontSize, fontWeight: fontWeight, color: color,
+          fontFamily: "Poppins"),
+      textAlign: textAlign,
+      overflow: overflow,
+      maxLines: lines,
+    );
+  }
+
   kTextStyle(double fontSize, FontWeight fontWeight, Color color) {
     return TextStyle(fontSize: fontSize, fontWeight: fontWeight, color: color, fontFamily: "Poppins");
   }

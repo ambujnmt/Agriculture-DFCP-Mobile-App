@@ -82,4 +82,8 @@ class TextConstants {
   static const String time = 'Time';
   static const String members = "Members";
   static const String description = "Description";
+  static const String search = "Search";
+  static const String subscribeNow = "Subscribe Now";
+  static const String changePassword = "Change Password";
+  static const String contact = "Contact";
 }
