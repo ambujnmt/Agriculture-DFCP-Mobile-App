@@ -98,4 +98,8 @@ class TextConstants {
   static const String verifyNow = "Verify";
   static const String payNow = "Pay Now";
   static const String cardNumber = "Card Number";
+  static const String search = "Search";
+  static const String subscribeNow = "Subscribe Now";
+  static const String changePassword = "Change Password";
+  static const String contact = "Contact";
 }

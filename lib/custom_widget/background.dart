@@ -30,31 +30,31 @@ class Background extends StatelessWidget {
               // child: Image.asset('assets/images/login_background.png', fit: BoxFit.fill,),
               child: Image.asset('assets/images/simple_bgImage.png', fit: BoxFit.fill,),
             ),
-            Positioned(
-              top: height * 0.45,
-              child: Stack(
-                children: [
-                  SizedBox(
-                    height: width * 0.25,
-                    child: customText.kHeadingText(TextConstants.appTitle, 75,
-                        FontWeight.w800, Colors.white, TextAlign.center),
-                  ),
-                  Positioned(
-                    top: -1,
-                    left: -1,
-                    child: SizedBox(
-                      height: width * 0.25,
-                      child: customText.kHeadingText(
-                          TextConstants.appTitle,
-                          75,
-                          FontWeight.w800,
-                          ColorConstants.kTextGreen,
-                          TextAlign.center),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            // Positioned(
+            //   top: height * 0.45,
+            //   child: Stack(
+            //     children: [
+            //       SizedBox(
+            //         height: width * 0.25,
+            //         child: customText.kHeadingText(TextConstants.appTitle, 75,
+            //             FontWeight.w800, Colors.white, TextAlign.center),
+            //       ),
+            //       Positioned(
+            //         top: -1,
+            //         left: -1,
+            //         child: SizedBox(
+            //           height: width * 0.25,
+            //           child: customText.kHeadingText(
+            //               TextConstants.appTitle,
+            //               75,
+            //               FontWeight.w800,
+            //               ColorConstants.kTextGreen,
+            //               TextAlign.center),
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
             Positioned(
               top: -325,
               left: 40,

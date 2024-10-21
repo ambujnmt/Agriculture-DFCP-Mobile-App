@@ -32,6 +32,57 @@ class _LoginScreenState extends State<LoginScreen> {
       body: Stack(
         children: [
           Background(),
+          Positioned(
+            top: height * 0.46,
+            left: width * 0.18,
+            child: Stack(
+              children: [
+                SizedBox(
+                  height: width * 0.25,
+                  child: customText.kHeadingText(TextConstants.appTitle, 75,
+                      FontWeight.w800, Colors.white, TextAlign.center),
+                ),
+                Positioned(
+                  top: -1,
+                  left: -1,
+                  child: SizedBox(
+                    height: width * 0.25,
+                    child: customText.kHeadingText(
+                        TextConstants.appTitle,
+                        75,
+                        FontWeight.w800,
+                        ColorConstants.kTextGreen,
+                        TextAlign.center),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          // Positioned(
+          //   top: height * 0.45,
+          //   child: Stack(
+          //     children: [
+          //       SizedBox(
+          //         height: width * 0.25,
+          //         child: customText.kHeadingText(TextConstants.appTitle, 75,
+          //             FontWeight.w800, Colors.white, TextAlign.center),
+          //       ),
+          //       Positioned(
+          //         top: -1,
+          //         left: -1,
+          //         child: SizedBox(
+          //           height: width * 0.25,
+          //           child: customText.kHeadingText(
+          //               TextConstants.appTitle,
+          //               75,
+          //               FontWeight.w800,
+          //               ColorConstants.kTextGreen,
+          //               TextAlign.center),
+          //         ),
+          //       ),
+          //     ],
+          //   ),
+          // ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: width * 0.03),
             child: SingleChildScrollView(
