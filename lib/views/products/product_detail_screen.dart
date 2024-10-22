@@ -5,6 +5,7 @@ import 'package:dfcp/custom_widget/custom_button.dart';
 import 'package:dfcp/custom_widget/divider_widget.dart';
 import 'package:dfcp/utils/custom_text.dart';
 import 'package:dfcp/views/dashboard/dashboard_screen.dart';
+import 'package:dfcp/views/products/add_to_cart.dart';
 import 'package:dfcp/views/products/products_view_screen.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
@@ -199,6 +200,10 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               GestureDetector(
                 onTap: () {
                   // onpress
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const AddToCart()),
+                  );
                 },
                 child: Container(
                   height: height * 0.060,

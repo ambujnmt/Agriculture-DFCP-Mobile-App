@@ -16,116 +16,142 @@ class ChangePassword extends StatefulWidget {
 
 class _ChangePasswordState extends State<ChangePassword> {
   final customText = CustomText();
-  bool isNewPassHidden = true, isConfirmPassHidden = true;
+  bool oldHidden = true, newHidden = true, confirmNewHidden = true;
 
-  TextEditingController newPassController = TextEditingController();
-  TextEditingController confirmPassController = TextEditingController();
+  final TextEditingController oldPasswordController = TextEditingController();
+  final TextEditingController newPasswordController = TextEditingController();
+  final TextEditingController confirmNewPasswordController =
+      TextEditingController();
+
+  @override
+  void dispose() {
+    // Clean up the controllers when the widget is disposed
+    oldPasswordController.dispose();
+    newPasswordController.dispose();
+    confirmNewPasswordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
+
     return Scaffold(
       body: Stack(
         children: [
           Background(),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: width * 0.03),
-            child: Column(
-              children: [
-                SizedBox(height: height * 0.18),
-                customText.kText(TextConstants.changePassword, 32,
-                    FontWeight.w700, ColorConstants.kYellow, TextAlign.center),
-                SizedBox(height: height * 0.01),
-                customText.kText(TextConstants.createPassDesc, 18,
-                    FontWeight.w400, ColorConstants.kYellow, TextAlign.center),
-                SizedBox(height: height * 0.08),
-                CustomTextField(
-                  controller: newPassController,
-                  obsecureText: isNewPassHidden,
-                  textInputType: TextInputType.text,
-                  textInputAction: TextInputAction.done,
-                  hint: TextConstants.oldPassword,
-                  prefixIcon: const Icon(
-                    Icons.lock_outline,
-                    color: Colors.white,
-                  ),
-                  isSuffixIcon: true,
-                  suffixIcon: Icon(
-                    isNewPassHidden
-                        ? Icons.visibility_off_outlined
-                        : Icons.visibility_outlined,
-                    color: Colors.white,
-                  ),
-                  onSuffixTap: () {
-                    setState(() {
-                      isNewPassHidden = !isNewPassHidden;
-                    });
-                  },
-                ),
-                SizedBox(height: height * 0.02),
-                CustomTextField(
-                  controller: confirmPassController,
-                  obsecureText: isConfirmPassHidden,
-                  textInputType: TextInputType.text,
-                  textInputAction: TextInputAction.done,
-                  hint: TextConstants.newPassword,
-                  prefixIcon: const Icon(
-                    Icons.lock_outline,
-                    color: Colors.white,
-                  ),
-                  isSuffixIcon: true,
-                  suffixIcon: Icon(
-                    isConfirmPassHidden
-                        ? Icons.visibility_off_outlined
-                        : Icons.visibility_outlined,
-                    color: Colors.white,
-                  ),
-                  onSuffixTap: () {
-                    setState(() {
-                      isConfirmPassHidden = !isConfirmPassHidden;
-                    });
-                  },
-                ),
-                SizedBox(height: height * 0.02),
-                CustomTextField(
-                  controller: confirmPassController,
-                  obsecureText: isConfirmPassHidden,
-                  textInputType: TextInputType.text,
-                  textInputAction: TextInputAction.done,
-                  hint: TextConstants.confirmNewPassword,
-                  prefixIcon: const Icon(
-                    Icons.lock_outline,
-                    color: Colors.white,
-                  ),
-                  isSuffixIcon: true,
-                  suffixIcon: Icon(
-                    isConfirmPassHidden
-                        ? Icons.visibility_off_outlined
-                        : Icons.visibility_outlined,
-                    color: Colors.white,
-                  ),
-                  onSuffixTap: () {
-                    setState(() {
-                      isConfirmPassHidden = !isConfirmPassHidden;
-                    });
-                  },
-                ),
-                SizedBox(height: height * 0.2),
-                CustomButton(
-                  buttonText: TextConstants.kContinue,
-                  onpress: () {
-                    // SuccessScreen
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
+          SafeArea(
+            child: SingleChildScrollView(
+              padding: EdgeInsets.symmetric(horizontal: width * 0.03),
+              child: Container(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: height * 0.1),
+                    Center(
+                      child: customText.kText(
+                        TextConstants.changePassword,
+                        32,
+                        FontWeight.w700,
+                        ColorConstants.kYellow,
+                        TextAlign.center,
+                      ),
+                    ),
+                    SizedBox(height: height * 0.01),
+                    Center(
+                      child: customText.kText(
+                        TextConstants.createPassDesc,
+                        18,
+                        FontWeight.w400,
+                        ColorConstants.kYellow,
+                        TextAlign.center,
+                      ),
+                    ),
+                    SizedBox(height: height * 0.08),
+                    CustomTextField(
+                      controller: oldPasswordController,
+                      obsecureText: oldHidden,
+                      textInputType: TextInputType.text,
+                      textInputAction: TextInputAction.done,
+                      hint: TextConstants.oldPassword,
+                      prefixIcon:
+                          const Icon(Icons.lock_outline, color: Colors.white),
+                      isSuffixIcon: true,
+                      suffixIcon: Icon(
+                        oldHidden
+                            ? Icons.visibility_off_outlined
+                            : Icons.visibility_outlined,
+                        color: Colors.white,
+                      ),
+                      onSuffixTap: () {
+                        setState(() {
+                          oldHidden = !oldHidden;
+                        });
+                      },
+                    ),
+                    SizedBox(height: height * 0.02),
+                    CustomTextField(
+                      controller: newPasswordController,
+                      obsecureText: newHidden,
+                      textInputType: TextInputType.text,
+                      textInputAction: TextInputAction.done,
+                      hint: TextConstants.newPassword,
+                      prefixIcon:
+                          const Icon(Icons.lock_outline, color: Colors.white),
+                      isSuffixIcon: true,
+                      suffixIcon: Icon(
+                        newHidden
+                            ? Icons.visibility_off_outlined
+                            : Icons.visibility_outlined,
+                        color: Colors.white,
+                      ),
+                      onSuffixTap: () {
+                        setState(() {
+                          newHidden = !newHidden;
+                        });
+                      },
+                    ),
+                    SizedBox(height: height * 0.02),
+                    CustomTextField(
+                      controller: confirmNewPasswordController,
+                      obsecureText: confirmNewHidden,
+                      textInputType: TextInputType.text,
+                      textInputAction: TextInputAction.done,
+                      hint: TextConstants.confirmNewPassword,
+                      prefixIcon:
+                          const Icon(Icons.lock_outline, color: Colors.white),
+                      isSuffixIcon: true,
+                      suffixIcon: Icon(
+                        confirmNewHidden
+                            ? Icons.visibility_off_outlined
+                            : Icons.visibility_outlined,
+                        color: Colors.white,
+                      ),
+                      onSuffixTap: () {
+                        setState(() {
+                          confirmNewHidden = !confirmNewHidden;
+                        });
+                      },
+                    ),
+                    SizedBox(height: height * 0.1),
+                    CustomButton(
+                      buttonText: TextConstants.kContinue,
+                      onpress: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
                             builder: (context) =>
-                                SuccessScreen(from: "createPassword")));
-                  },
-                )
-              ],
+                                SuccessScreen(from: "createPassword"),
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ),
             ),
-          )
+          ),
         ],
       ),
     );

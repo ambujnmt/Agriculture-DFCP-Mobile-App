@@ -116,4 +116,5 @@ class TextConstants {
   static const String oldPassword = "Old Password";
   static const String newPassword = "New Password";
   static const String confirmNewPassword = "Confirm New Password";
+  static const String cart = "Cart Details";
 }
