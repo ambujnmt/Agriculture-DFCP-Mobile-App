@@ -12,9 +12,8 @@ class CustomButton extends StatefulWidget {
 }
 
 class _CustomButtonState extends State<CustomButton> {
-  
-  final customText = CustomText(); 
-  
+  final customText = CustomText();
+
   @override
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
@@ -22,23 +21,20 @@ class _CustomButtonState extends State<CustomButton> {
     return GestureDetector(
       onTap: widget.onpress,
       child: Container(
-        height: height * 0.065,
+        height: height * 0.060,
         width: double.infinity,
         decoration: BoxDecoration(
-          color: ColorConstants.buttonColor,
-          borderRadius: BorderRadius.circular(width * 0.04),
-          boxShadow: const [
-            BoxShadow(
-              offset: Offset(2, 4),
-              color: Colors.black45,
-              blurRadius: 9.9
-            )
-          ]
-        ),
+            color: ColorConstants.buttonColor,
+            borderRadius: BorderRadius.circular(width * 0.04),
+            boxShadow: const [
+              BoxShadow(
+                  offset: Offset(2, 4), color: Colors.black45, blurRadius: 9.9)
+            ]),
         child: Center(
           child: Text(
             widget.buttonText.toString(),
-            style: customText.kTextStyle(26, FontWeight.w700, ColorConstants.kPrimary),
+            style: customText.kTextStyle(
+                22, FontWeight.w700, ColorConstants.kPrimary),
           ),
         ),
       ),

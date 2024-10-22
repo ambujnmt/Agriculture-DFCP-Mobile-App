@@ -116,12 +116,12 @@ class _UpiPaymentState extends State<UpiPayment> {
                   buttonText: TextConstants.payNow,
                   onpress: () {
                     // place your onpress function here
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) => const CardPayment(),
-                    //   ),
-                    // );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const CardPayment(),
+                      ),
+                    );
                   },
                 ),
               ),

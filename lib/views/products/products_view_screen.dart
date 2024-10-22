@@ -3,6 +3,7 @@ import 'package:dfcp/constants/text_constants.dart';
 import 'package:dfcp/custom_widget/custom_drawer.dart';
 import 'package:dfcp/utils/custom_text.dart';
 import 'package:dfcp/views/dashboard/dashboard_screen.dart';
+import 'package:dfcp/views/products/product_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -57,8 +58,8 @@ class _ProductsViewScreenState extends State<ProductsViewScreen> {
             );
           },
         ),
-        title: customText.kHeadingText(TextConstants.appTitle,
-            45, FontWeight.w800, ColorConstants.kTextGreen, TextAlign.center),
+        title: customText.kHeadingText(TextConstants.appTitle, 45,
+            FontWeight.w800, ColorConstants.kTextGreen, TextAlign.center),
       ),
       body: SafeArea(
         child: Container(
@@ -101,14 +102,24 @@ class _ProductsViewScreenState extends State<ProductsViewScreen> {
                     ),
                     childrenDelegate: SliverChildBuilderDelegate(
                       childCount: imageList.length,
-                      (context, index) => Container(
-                        height: 300,
-                        decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(12),
-                          image: DecorationImage(
-                            fit: BoxFit.fill,
-                            image: AssetImage('${imageList[index]}'),
+                      (context, index) => GestureDetector(
+                        onTap: () {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const ProductDetailScreen(),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          height: 300,
+                          decoration: BoxDecoration(
+                            color: Colors.grey,
+                            borderRadius: BorderRadius.circular(12),
+                            image: DecorationImage(
+                              fit: BoxFit.fill,
+                              image: AssetImage('${imageList[index]}'),
+                            ),
                           ),
                         ),
                       ),

@@ -102,4 +102,18 @@ class TextConstants {
   static const String subscribeNow = "Subscribe Now";
   static const String changePassword = "Change Password";
   static const String contact = "Contact";
+  static const String mm = "MM";
+  static const String yy = "YY";
+  static const String masterCard =
+      "If you maestro Card does not have expiry Date/CVV, skip these fields";
+  static const String checkText = "Save this card for faster checkout";
+  static const String details = "Details";
+  static const String byNow = "Buy Now";
+  static const String addToCart = "Add To Cart";
+  static const String premiumMonthly = "Premium Monthly";
+  static const String premiumAnnualy = "Premium Annually";
+  static const String continueAndPay = "Continue & Pay";
+  static const String oldPassword = "Old Password";
+  static const String newPassword = "New Password";
+  static const String confirmNewPassword = "Confirm New Password";
 }
