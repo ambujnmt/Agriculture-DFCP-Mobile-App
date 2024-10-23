@@ -3,6 +3,7 @@ import 'package:dfcp/constants/text_constants.dart';
 import 'package:dfcp/custom_widget/divider_widget.dart';
 import 'package:dfcp/utils/custom_text.dart';
 import 'package:dfcp/views/chat/chat_screen.dart';
+import 'package:dfcp/views/chat/select_chat_user.dart';
 import 'package:dfcp/views/dashboard/dashboard_screen.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer';
@@ -44,8 +45,8 @@ class _AllChatListScreenState extends State<AllChatListScreen> {
             );
           },
         ),
-        title: customText.kHeadingText(TextConstants.appTitle,
-            45, FontWeight.w800, ColorConstants.kTextGreen, TextAlign.center),
+        title: customText.kHeadingText(TextConstants.appTitle, 45,
+            FontWeight.w800, ColorConstants.kTextGreen, TextAlign.center),
         centerTitle: true,
       ),
       body: Stack(
@@ -80,7 +81,8 @@ class _AllChatListScreenState extends State<AllChatListScreen> {
                   child: TextField(
                     decoration: InputDecoration(
                       hintText: TextConstants.search,
-                      hintStyle: customText.kTextStyle(18, FontWeight.w400, ColorConstants.searchColor),
+                      hintStyle: customText.kTextStyle(
+                          18, FontWeight.w400, ColorConstants.searchColor),
                       border: InputBorder.none,
                       enabledBorder: InputBorder.none,
                       focusedBorder: InputBorder.none,
@@ -114,12 +116,14 @@ class _AllChatListScreenState extends State<AllChatListScreen> {
                                 height: 60,
                                 width: 60,
                                 decoration: BoxDecoration(
-                                  border: Border.all(width: 4, color: ColorConstants.kYellow),
+                                  border: Border.all(
+                                      width: 4, color: ColorConstants.kYellow),
                                   color: Colors.red,
                                   shape: BoxShape.circle,
                                   image: const DecorationImage(
                                     fit: BoxFit.fill,
-                                    image: AssetImage('assets/images/girl_image.png'),
+                                    image: AssetImage(
+                                        'assets/images/girl_image.png'),
                                   ),
                                 ),
                               ),
@@ -127,64 +131,63 @@ class _AllChatListScreenState extends State<AllChatListScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       SizedBox(
                                         height: height * 0.035,
                                         width: width * 0.59,
                                         // color: Colors.red,
                                         child: customText.kEllipseText(
-                                          "Hannah",
-                                          18,
-                                          FontWeight.w400,
-                                          Colors.black,
-                                          TextAlign.start,
-                                          TextOverflow.ellipsis,
-                                          1
-                                        ),
+                                            "Hannah",
+                                            18,
+                                            FontWeight.w400,
+                                            Colors.black,
+                                            TextAlign.start,
+                                            TextOverflow.ellipsis,
+                                            1),
                                       ),
                                       SizedBox(
-                                        height: height * 0.035,
-                                        width: width * 0.16,
-                                        // color: Colors.white,
-                                        child: Center(
-                                          child: customText.kText(
-                                            "Just Now",
-                                            12,
-                                            FontWeight.w500,
-                                            Colors.black,
-                                            TextAlign.center,
-                                          ),
-                                        )
-                                      ),
-
+                                          height: height * 0.035,
+                                          width: width * 0.16,
+                                          // color: Colors.white,
+                                          child: Center(
+                                            child: customText.kText(
+                                              "Just Now",
+                                              12,
+                                              FontWeight.w500,
+                                              Colors.black,
+                                              TextAlign.center,
+                                            ),
+                                          )),
                                     ],
                                   ),
-
                                   Row(
                                     children: [
                                       SizedBox(
-                                        height: height * 0.045,
+                                        // height: height * 0.045,
                                         width: width * 0.65,
                                         // color: Colors.yellow,
                                         child: customText.kEllipseText(
-                                          "A good example of a contains paragraph a topic sentence, details and a conclusion.",
-                                          12,
-                                          FontWeight.w400,
-                                          ColorConstants.chatColor,
-                                          TextAlign.start,
-                                          TextOverflow.ellipsis,
-                                          2
-                                        ),
+                                            "A good example of a contains paragraph a topic sentence, details and a conclusion. ",
+                                            12,
+                                            FontWeight.w400,
+                                            ColorConstants.chatColor,
+                                            TextAlign.start,
+                                            TextOverflow.ellipsis,
+                                            2),
                                       ),
                                       Container(
                                         height: height * 0.035,
                                         width: width * 0.1,
-                                        padding: EdgeInsets.symmetric(horizontal: width * 0.02, vertical: width * 0.01),
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: width * 0.02,
+                                            vertical: width * 0.01),
                                         child: Container(
                                           decoration: BoxDecoration(
                                               color: ColorConstants.kTextGreen,
-                                              borderRadius: BorderRadius.circular(8)),
+                                              borderRadius:
+                                                  BorderRadius.circular(8)),
                                           child: Center(
                                             child: customText.kText(
                                               "${index + 1}",
@@ -204,7 +207,10 @@ class _AllChatListScreenState extends State<AllChatListScreen> {
                           ),
                         ),
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => const ChatScreen() ));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const ChatScreen()));
                         },
                       ),
                     ),
@@ -226,13 +232,16 @@ class _AllChatListScreenState extends State<AllChatListScreen> {
                 width: width,
                 padding: const EdgeInsets.all(10),
                 decoration: const BoxDecoration(
-                  color: Colors.white,
-                  shape: BoxShape.circle
-                ),
+                    color: Colors.white, shape: BoxShape.circle),
                 child: Image.asset('assets/images/add_image.png'),
               ),
               onTap: () {
-                log("add button called");
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const SelectChatUser(),
+                  ),
+                );
               },
             ),
           )

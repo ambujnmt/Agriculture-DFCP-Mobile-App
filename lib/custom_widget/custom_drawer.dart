@@ -1,9 +1,11 @@
 import 'package:dfcp/constants/color_constants.dart';
 import 'package:dfcp/constants/text_constants.dart';
 import 'package:dfcp/utils/custom_text.dart';
+import 'package:dfcp/views/address/new_address.dart';
 import 'package:dfcp/views/chat/all_chat_list_screen.dart';
 import 'package:dfcp/views/meetings/meetings_screen.dart';
 import 'package:dfcp/views/orders/orders_dashboard_screen.dart';
+import 'package:dfcp/views/products/add_to_cart.dart';
 import 'package:dfcp/views/products/products_view_screen.dart';
 import 'package:dfcp/views/profile/profile_screen.dart';
 import 'package:dfcp/views/referral/referral_screen.dart';
@@ -81,7 +83,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
                     ),
                   ),
                   onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfileScreen() ));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const ProfileScreen()));
                   },
                 ),
               ],
@@ -142,6 +147,27 @@ class _CustomDrawerState extends State<CustomDrawer> {
               height: height * 0.05,
               child: customText.kText(
                 TextConstants.orders.toUpperCase(),
+                20,
+                FontWeight.w700,
+                ColorConstants.drawerTextColor,
+                TextAlign.start,
+              ),
+            ),
+          ),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const AddToCart(),
+                ),
+              );
+            },
+            child: Container(
+              margin: EdgeInsets.only(left: 20),
+              height: height * 0.05,
+              child: customText.kText(
+                TextConstants.cartText.toUpperCase(),
                 20,
                 FontWeight.w700,
                 ColorConstants.drawerTextColor,
@@ -289,6 +315,27 @@ class _CustomDrawerState extends State<CustomDrawer> {
               height: height * 0.05,
               child: customText.kText(
                 TextConstants.wallet.toUpperCase(),
+                20,
+                FontWeight.w700,
+                ColorConstants.drawerTextColor,
+                TextAlign.start,
+              ),
+            ),
+          ),
+          GestureDetector(
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const NewAddress(),
+                ),
+              );
+            },
+            child: Container(
+              margin: EdgeInsets.only(left: 20),
+              height: height * 0.05,
+              child: customText.kText(
+                TextConstants.addAddress.toUpperCase(),
                 20,
                 FontWeight.w700,
                 ColorConstants.drawerTextColor,
