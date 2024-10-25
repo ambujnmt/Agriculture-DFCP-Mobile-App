@@ -15,8 +15,8 @@ class NewIntroScreen extends StatefulWidget {
   State<NewIntroScreen> createState() => _NewIntroScreenState();
 }
 
-class _NewIntroScreenState extends State<NewIntroScreen> with TickerProviderStateMixin {
-
+class _NewIntroScreenState extends State<NewIntroScreen>
+    with TickerProviderStateMixin {
   dynamic size;
   final customText = CustomText();
   bool movedToSplash = false;
@@ -24,7 +24,6 @@ class _NewIntroScreenState extends State<NewIntroScreen> with TickerProviderStat
   late Animation<double> animation;
   late AnimationController controller;
   late VideoPlayerController videoController1, videoController2;
-
 
   @override
   void initState() {
@@ -55,11 +54,11 @@ class _NewIntroScreenState extends State<NewIntroScreen> with TickerProviderStat
 
     videoController1.play();
 
-    videoController2 = VideoPlayerController.asset("assets/videos/aiAnimation.mp4")
-      ..initialize().then((_) {
-        setState(() {});
-    });
-
+    videoController2 =
+        VideoPlayerController.asset("assets/videos/aiAnimation45.mp4")
+          ..initialize().then((_) {
+            setState(() {});
+          });
   }
 
   moveForward() {
@@ -73,16 +72,14 @@ class _NewIntroScreenState extends State<NewIntroScreen> with TickerProviderStat
       });
     } else {
       if (!movedToSplash) {
-
         Future.delayed(const Duration(seconds: 6), () {
           Navigator.pushReplacement(
-            context,
-            PageTransition(
-              type: PageTransitionType.leftToRight,
-              child: const NewSplashScreen(),
-              duration: const Duration(seconds: 1)));
+              context,
+              PageTransition(
+                  type: PageTransitionType.leftToRight,
+                  child: const NewSplashScreen(),
+                  duration: const Duration(seconds: 1)));
         });
-
       }
     }
   }
@@ -104,25 +101,23 @@ class _NewIntroScreenState extends State<NewIntroScreen> with TickerProviderStat
         width: size.width,
         child: Stack(
           children: [
-
             SizedBox(
-              height: size.height,
-              width: size.width,
-              child: introPage == 0
-                // ? Image.asset("assets/images/simple_bgImage.png", fit: BoxFit.cover,)
-                ? videoController1.value.isInitialized
-                      ? AspectRatio(
-                    aspectRatio: videoController1.value.aspectRatio,
-                    child: VideoPlayer(videoController1),
-                  )
-                  : Container()
-                : videoController2.value.isInitialized
-                  ? AspectRatio(
-                      aspectRatio: videoController2.value.aspectRatio,
-                      child: VideoPlayer(videoController2),
-                    )
-                  : Container()
-            ),
+                height: size.height,
+                width: size.width,
+                child: introPage == 0
+                    // ? Image.asset("assets/images/simple_bgImage.png", fit: BoxFit.cover,)
+                    ? videoController1.value.isInitialized
+                        ? AspectRatio(
+                            aspectRatio: videoController1.value.aspectRatio,
+                            child: VideoPlayer(videoController1),
+                          )
+                        : Container()
+                    : videoController2.value.isInitialized
+                        ? AspectRatio(
+                            aspectRatio: videoController2.value.aspectRatio,
+                            child: VideoPlayer(videoController2),
+                          )
+                        : Container()),
 
             // windmill
             Positioned(
@@ -150,7 +145,6 @@ class _NewIntroScreenState extends State<NewIntroScreen> with TickerProviderStat
 
             Column(
               children: [
-
                 //skip button
                 Padding(
                   padding: EdgeInsets.only(
@@ -160,12 +154,18 @@ class _NewIntroScreenState extends State<NewIntroScreen> with TickerProviderStat
                     child: GestureDetector(
                       // child: customText.kText("Skip", 22, FontWeight.w400, Colors.black, TextAlign.center),
                       child: Container(
-                        padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: size.width * 0.02),
                         decoration: BoxDecoration(
                             color: ColorConstants.kYellow,
-                            borderRadius: BorderRadius.circular(size.width * 0.03)),
-                        child: customText.kText(TextConstants.skip, 16, FontWeight.w900,
-                            ColorConstants.kTextGreen, TextAlign.center),
+                            borderRadius:
+                                BorderRadius.circular(size.width * 0.03)),
+                        child: customText.kText(
+                            TextConstants.skip,
+                            16,
+                            FontWeight.w900,
+                            ColorConstants.kTextGreen,
+                            TextAlign.center),
                       ),
                       onTap: () {
                         setState(() {
@@ -184,60 +184,62 @@ class _NewIntroScreenState extends State<NewIntroScreen> with TickerProviderStat
                 ),
 
                 introPage == 0
-                ? Column(
-                  children: [
-                    // Container(
-                    //   color: Colors.transparent,
-                    //   height: size.width * 0.7,
-                    //   width: size.width * 0.7,
-                    //   child: Lottie.asset('assets/images/2.json'),
-                    // ),
-                    SizedBox(height: size.width * 0.7),
-                    SizedBox(
-                      height: size.width * 0.35,
-                      child: customText.kText(
-                          TextConstants.intelligentFarming,
-                          45,
-                          FontWeight.w700,
-                          ColorConstants.kYellow,
-                          TextAlign.center),
-                    )
-                  ],
-                )
-                : Column(
-                  children: [
-                    SizedBox(height: size.width * 0.7),
-                    Stack(
-                      children: [
-                        SizedBox(
-                          height: size.width * 0.25,
-                          child: customText.kHeadingText(TextConstants.appTitle, 75,
-                              FontWeight.w800, Colors.white, TextAlign.center),
-                        ),
-                        Positioned(
-                          top: -1,
-                          left: -1,
-                          child: SizedBox(
-                            height: size.width * 0.25,
-                            child: customText.kHeadingText(
-                                TextConstants.appTitle,
-                                75,
-                                FontWeight.w800,
-                                ColorConstants.kTextGreen,
+                    ? Column(
+                        children: [
+                          // Container(
+                          //   color: Colors.transparent,
+                          //   height: size.width * 0.7,
+                          //   width: size.width * 0.7,
+                          //   child: Lottie.asset('assets/images/2.json'),
+                          // ),
+                          SizedBox(height: size.width * 0.7),
+                          SizedBox(
+                            height: size.width * 0.35,
+                            child: customText.kText(
+                                TextConstants.intelligentFarming,
+                                45,
+                                FontWeight.w700,
+                                ColorConstants.kYellow,
                                 TextAlign.center),
+                          )
+                        ],
+                      )
+                    : Column(
+                        children: [
+                          SizedBox(height: size.width * 0.7),
+                          Stack(
+                            children: [
+                              SizedBox(
+                                height: size.width * 0.25,
+                                child: customText.kHeadingText(
+                                    TextConstants.appTitle,
+                                    75,
+                                    FontWeight.w800,
+                                    Colors.white,
+                                    TextAlign.center),
+                              ),
+                              Positioned(
+                                top: -1,
+                                left: -1,
+                                child: SizedBox(
+                                  height: size.width * 0.25,
+                                  child: customText.kHeadingText(
+                                      TextConstants.appTitle,
+                                      75,
+                                      FontWeight.w800,
+                                      ColorConstants.kTextGreen,
+                                      TextAlign.center),
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
-                )
+                        ],
+                      )
               ],
             )
-
           ],
         ),
       ),
     );
   }
-
 }
