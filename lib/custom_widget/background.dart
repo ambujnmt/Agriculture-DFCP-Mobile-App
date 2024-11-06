@@ -13,7 +13,7 @@ class Background extends StatelessWidget {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
     return Scaffold(
-        body: SizedBox(
+      body: SizedBox(
         height: height,
         width: width,
         child: Stack(
@@ -28,7 +28,11 @@ class Background extends StatelessWidget {
               height: height,
               width: width,
               // child: Image.asset('assets/images/login_background.png', fit: BoxFit.fill,),
-              child: Image.asset('assets/images/simple_bgImage.png', fit: BoxFit.fill,),
+              // child: Image.asset('assets/images/simple_bgImage.png', fit: BoxFit.fill,),
+              child: Image.asset(
+                'assets/images/updated_bg.png',
+                fit: BoxFit.fill,
+              ),
             ),
             // Positioned(
             //   top: height * 0.45,
