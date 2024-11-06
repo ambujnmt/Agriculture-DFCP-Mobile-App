@@ -1,6 +1,7 @@
 import 'package:dfcp/constants/color_constants.dart';
 import 'package:dfcp/constants/text_constants.dart';
 import 'package:dfcp/utils/custom_text.dart';
+import 'package:dfcp/views/auth_screen.dart/login_screen.dart';
 import 'package:dfcp/views/new_splash.dart';
 import 'package:dfcp/views/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -21,33 +22,38 @@ class _NewIntroScreenState extends State<NewIntroScreen>
   final customText = CustomText();
   bool movedToSplash = false;
   int introPage = 0;
-  late Animation<double> animation;
-  late AnimationController controller;
   late VideoPlayerController videoController1, videoController2;
+  late Animation<double> cloudAnimation, logoAnimation;
+  late AnimationController cloudController, logoController;
 
   @override
   void initState() {
     super.initState();
     moveForward();
 
-    controller =
+
+    logoController = AnimationController(
+        duration: const Duration(seconds: 1000), vsync: this);
+
+    cloudController =
         AnimationController(vsync: this, duration: const Duration(seconds: 10));
 
-    animation = Tween<double>(begin: -2, end: 2).animate(controller)
+    cloudAnimation = Tween<double>(begin: -2, end: 2).animate(cloudController)
       ..addListener(() {
         // setState(() {});
       })
       ..addStatusListener((status) {
         if (status == AnimationStatus.completed) {
-          controller.reverse();
+          cloudController.reverse();
         } else if (status == AnimationStatus.dismissed) {
-          controller.forward();
+          cloudController.forward();
         }
       });
 
-    controller.forward();
+    cloudController.forward();
 
-    videoController1 = VideoPlayerController.asset("assets/videos/globe.mp4")
+    // videoController1 = VideoPlayerController.asset("assets/videos/globe.mp4")
+    videoController1 = VideoPlayerController.asset("assets/videos/globeFramedAnimation.mp4")
       ..initialize().then((_) {
         setState(() {});
       });
@@ -55,7 +61,8 @@ class _NewIntroScreenState extends State<NewIntroScreen>
     videoController1.play();
 
     videoController2 =
-        VideoPlayerController.asset("assets/videos/aiAnimation45.mp4")
+        // VideoPlayerController.asset("assets/videos/aiAnimation45.mp4")
+        VideoPlayerController.asset("assets/videos/3aFramedAnimation.mp4")
           ..initialize().then((_) {
             setState(() {});
           });
@@ -70,17 +77,21 @@ class _NewIntroScreenState extends State<NewIntroScreen>
         moveForward();
         videoController2.play();
       });
-    } else {
-      if (!movedToSplash) {
-        Future.delayed(const Duration(seconds: 6), () {
-          Navigator.pushReplacement(
-              context,
-              PageTransition(
-                  type: PageTransitionType.leftToRight,
-                  child: const NewSplashScreen(),
-                  duration: const Duration(seconds: 1)));
+    } else if (introPage == 1){
+      Future.delayed(const Duration(seconds: 3), () {
+        setState(() {
+          introPage = 2;
         });
-      }
+        moveForward();
+        // videoController2.play();
+        logoController.forward();
+      });
+    }
+      else {
+      Future.delayed(
+          const Duration(seconds: 5),
+          () => Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => const LoginScreen())));
     }
   }
 
@@ -89,35 +100,62 @@ class _NewIntroScreenState extends State<NewIntroScreen>
     // TODO: implement dispose
     super.dispose();
     // animation.removeListener(listener)
-    controller.dispose();
+    cloudController.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     size = MediaQuery.of(context).size;
     return Scaffold(
-      body: SizedBox(
+      body: Container(
         height: size.height,
         width: size.width,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/simple_bgImage.png"),
+            fit: BoxFit.fitHeight
+          )
+        ),
         child: Stack(
           children: [
-            SizedBox(
-                height: size.height,
-                width: size.width,
-                child: introPage == 0
-                    // ? Image.asset("assets/images/simple_bgImage.png", fit: BoxFit.cover,)
-                    ? videoController1.value.isInitialized
+            Container(
+              height: size.height * 0.35,
+              width: size.width * 0.95,
+              // padding: EdgeInsets.all(2),
+              // color: Colors.white,
+              margin: EdgeInsets.only(top: size.height * 0.05, left: size.width * 0.025),
+              child: introPage == 0
+                  // ? Image.asset("assets/images/simple_bgImage.png", fit: BoxFit.cover,)
+                  ? videoController1.value.isInitialized
+                      ? AspectRatio(
+                          aspectRatio: videoController1.value.aspectRatio,
+                          child: VideoPlayer(videoController1),
+                        )
+                      : Container()
+                  : introPage == 1
+                    ? videoController2.value.isInitialized
                         ? AspectRatio(
-                            aspectRatio: videoController1.value.aspectRatio,
-                            child: VideoPlayer(videoController1),
-                          )
+                          aspectRatio: videoController2.value.aspectRatio,
+                          child: VideoPlayer(videoController2),
+                        )
                         : Container()
-                    : videoController2.value.isInitialized
-                        ? AspectRatio(
-                            aspectRatio: videoController2.value.aspectRatio,
-                            child: VideoPlayer(videoController2),
-                          )
-                        : Container()),
+                    : Center(
+                      child: Stack(
+                          children: [
+                            RotationTransition(
+                              turns: Tween(begin: 0.0, end: 20.0).animate(logoController),
+                              child: SizedBox(
+                                height: size.height * 0.2,
+                                child: Image.asset("assets/images/logo base.png"),
+                              ),
+                            ),
+                            SizedBox(
+                                height: size.height * 0.2,
+                                child: Image.asset("assets/images/logo top.png"))
+                          ],
+                        ),
+                    ),
+            ),
 
             // windmill
             Positioned(
@@ -134,7 +172,7 @@ class _NewIntroScreenState extends State<NewIntroScreen>
             Opacity(
               opacity: 0.8,
               child: Align(
-                alignment: Alignment(animation.value, 0.6),
+                alignment: Alignment(cloudAnimation.value, 0.6),
                 child: SizedBox(
                   height: size.width * 1.0,
                   width: size.width,
@@ -171,13 +209,17 @@ class _NewIntroScreenState extends State<NewIntroScreen>
                         setState(() {
                           movedToSplash = true;
                         });
-                        controller.dispose();
-                        Navigator.pushReplacement(
-                            context,
-                            PageTransition(
-                                type: PageTransitionType.leftToRight,
-                                child: const NewSplashScreen(),
-                                duration: const Duration(seconds: 1)));
+                        cloudController.dispose();
+                        Future.delayed(
+                            const Duration(seconds: 5),
+                                () => Navigator.pushReplacement(context,
+                                MaterialPageRoute(builder: (context) => const LoginScreen())));
+                        // Navigator.pushReplacement(
+                        //     context,
+                        //     PageTransition(
+                        //         type: PageTransitionType.leftToRight,
+                        //         child: const NewSplashScreen(),
+                        //         duration: const Duration(seconds: 1)));
                       },
                     ),
                   ),

@@ -43,10 +43,10 @@ class _NewSplashScreenState extends State<NewSplashScreen>  with TickerProviderS
       });
     // cloudController.forward();
 
-    Future.delayed(
-        const Duration(seconds: 5),
-        () => Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) => const LoginScreen())));
+    // Future.delayed(
+    //     const Duration(seconds: 5),
+    //     () => Navigator.pushReplacement(context,
+    //         MaterialPageRoute(builder: (context) => const LoginScreen())));
   }
 
   @override
