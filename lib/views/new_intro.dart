@@ -54,7 +54,7 @@ class _NewIntroScreenState extends State<NewIntroScreen>
     // videoController1 = VideoPlayerController.asset("assets/videos/globe.mp4")
     videoController1 =
         // VideoPlayerController.asset("assets/videos/globeFramedAnimation.mp4")
-        VideoPlayerController.asset("assets/videos/updated_globe_video.mp4")
+        VideoPlayerController.asset("assets/videos/globe_dfcp3.mp4")
           ..initialize().then((_) {
             setState(() {});
           });
@@ -64,7 +64,7 @@ class _NewIntroScreenState extends State<NewIntroScreen>
     videoController2 =
         // VideoPlayerController.asset("assets/videos/aiAnimation45.mp4")
         // VideoPlayerController.asset("assets/videos/3aFramedAnimation.mp4") // latest
-        VideoPlayerController.asset("assets/videos/updated_animation_of_ai.mp4")
+        VideoPlayerController.asset("assets/videos/ai_dfcp3.mp4")
           ..initialize().then((_) {
             setState(() {});
           });
@@ -114,7 +114,7 @@ class _NewIntroScreenState extends State<NewIntroScreen>
         decoration: const BoxDecoration(
           image: DecorationImage(
             // image: AssetImage("assets/images/simple_bgImage.png"),
-            image: AssetImage("assets/images/updated_bg.png"),
+            image: AssetImage("assets/images/sample2.png"),
             fit: BoxFit.fitHeight,
           ),
         ),
