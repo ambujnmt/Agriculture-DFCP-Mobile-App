@@ -31,7 +31,6 @@ class _NewIntroScreenState extends State<NewIntroScreen>
     super.initState();
     moveForward();
 
-
     logoController = AnimationController(
         duration: const Duration(seconds: 1000), vsync: this);
 
@@ -53,10 +52,11 @@ class _NewIntroScreenState extends State<NewIntroScreen>
     cloudController.forward();
 
     // videoController1 = VideoPlayerController.asset("assets/videos/globe.mp4")
-    videoController1 = VideoPlayerController.asset("assets/videos/globeFramedAnimation.mp4")
-      ..initialize().then((_) {
-        setState(() {});
-      });
+    videoController1 =
+        VideoPlayerController.asset("assets/videos/globeFramedAnimation.mp4")
+          ..initialize().then((_) {
+            setState(() {});
+          });
 
     videoController1.play();
 
@@ -77,7 +77,7 @@ class _NewIntroScreenState extends State<NewIntroScreen>
         moveForward();
         videoController2.play();
       });
-    } else if (introPage == 1){
+    } else if (introPage == 1) {
       Future.delayed(const Duration(seconds: 3), () {
         setState(() {
           introPage = 2;
@@ -86,8 +86,7 @@ class _NewIntroScreenState extends State<NewIntroScreen>
         // videoController2.play();
         logoController.forward();
       });
-    }
-      else {
+    } else {
       Future.delayed(
           const Duration(seconds: 5),
           () => Navigator.pushReplacement(context,
@@ -113,8 +112,8 @@ class _NewIntroScreenState extends State<NewIntroScreen>
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/images/simple_bgImage.png"),
-            fit: BoxFit.fitHeight
-          )
+            fit: BoxFit.fitHeight,
+          ),
         ),
         child: Stack(
           children: [
@@ -123,7 +122,8 @@ class _NewIntroScreenState extends State<NewIntroScreen>
               width: size.width * 0.95,
               // padding: EdgeInsets.all(2),
               // color: Colors.white,
-              margin: EdgeInsets.only(top: size.height * 0.05, left: size.width * 0.025),
+              margin: EdgeInsets.only(
+                  top: size.height * 0.05, left: size.width * 0.025),
               child: introPage == 0
                   // ? Image.asset("assets/images/simple_bgImage.png", fit: BoxFit.cover,)
                   ? videoController1.value.isInitialized
@@ -133,28 +133,31 @@ class _NewIntroScreenState extends State<NewIntroScreen>
                         )
                       : Container()
                   : introPage == 1
-                    ? videoController2.value.isInitialized
-                        ? AspectRatio(
-                          aspectRatio: videoController2.value.aspectRatio,
-                          child: VideoPlayer(videoController2),
-                        )
-                        : Container()
-                    : Center(
-                      child: Stack(
-                          children: [
-                            RotationTransition(
-                              turns: Tween(begin: 0.0, end: 20.0).animate(logoController),
-                              child: SizedBox(
-                                height: size.height * 0.2,
-                                child: Image.asset("assets/images/logo base.png"),
+                      ? videoController2.value.isInitialized
+                          ? AspectRatio(
+                              aspectRatio: videoController2.value.aspectRatio,
+                              child: VideoPlayer(videoController2),
+                            )
+                          : Container()
+                      : Center(
+                          child: Stack(
+                            children: [
+                              RotationTransition(
+                                turns: Tween(begin: 0.0, end: 20.0)
+                                    .animate(logoController),
+                                child: SizedBox(
+                                  height: size.height * 0.2,
+                                  child: Image.asset(
+                                      "assets/images/logo base.png"),
+                                ),
                               ),
-                            ),
-                            SizedBox(
-                                height: size.height * 0.2,
-                                child: Image.asset("assets/images/logo top.png"))
-                          ],
+                              SizedBox(
+                                  height: size.height * 0.2,
+                                  child:
+                                      Image.asset("assets/images/logo top.png"))
+                            ],
+                          ),
                         ),
-                    ),
             ),
 
             // windmill
@@ -177,6 +180,7 @@ class _NewIntroScreenState extends State<NewIntroScreen>
                   height: size.width * 1.0,
                   width: size.width,
                   child: Lottie.asset('assets/images/cloud animation.json'),
+                  // child: Lottie.asset('assets/images/cloud_colour2.json'),
                 ),
               ),
             ),
@@ -212,8 +216,11 @@ class _NewIntroScreenState extends State<NewIntroScreen>
                         cloudController.dispose();
                         Future.delayed(
                             const Duration(seconds: 5),
-                                () => Navigator.pushReplacement(context,
-                                MaterialPageRoute(builder: (context) => const LoginScreen())));
+                            () => Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const LoginScreen())));
                         // Navigator.pushReplacement(
                         //     context,
                         //     PageTransition(

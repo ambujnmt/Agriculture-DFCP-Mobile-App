@@ -29,152 +29,154 @@ class _LoginScreenState extends State<LoginScreen> {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      body: Stack(
-        children: [
-          Background(),
-          Positioned(
-            top: height * 0.46,
-            left: width * 0.18,
-            child: Stack(
-              children: [
-                SizedBox(
+        body: Stack(
+      children: [
+        Background(),
+        Positioned(
+          // top: height * 0.46,
+          top: height * .14,
+          left: width * 0.18,
+          child: Stack(
+            children: [
+              SizedBox(
+                height: width * 0.25,
+                child: customText.kHeadingText(TextConstants.appTitle, 75,
+                    FontWeight.w800, Colors.white, TextAlign.center),
+              ),
+              Positioned(
+                top: -1,
+                left: -1,
+                child: SizedBox(
                   height: width * 0.25,
-                  child: customText.kHeadingText(TextConstants.appTitle, 75,
-                      FontWeight.w800, Colors.white, TextAlign.center),
+                  child: customText.kHeadingText(
+                      TextConstants.appTitle,
+                      75,
+                      FontWeight.w800,
+                      ColorConstants.kTextGreen,
+                      TextAlign.center),
                 ),
-                Positioned(
-                  top: -1,
-                  left: -1,
-                  child: SizedBox(
-                    height: width * 0.25,
-                    child: customText.kHeadingText(
-                        TextConstants.appTitle,
-                        75,
-                        FontWeight.w800,
-                        ColorConstants.kTextGreen,
-                        TextAlign.center),
+              ),
+            ],
+          ),
+        ),
+        // Positioned(
+        //   top: height * 0.45,
+        //   child: Stack(
+        //     children: [
+        //       SizedBox(
+        //         height: width * 0.25,
+        //         child: customText.kHeadingText(TextConstants.appTitle, 75,
+        //             FontWeight.w800, Colors.white, TextAlign.center),
+        //       ),
+        //       Positioned(
+        //         top: -1,
+        //         left: -1,
+        //         child: SizedBox(
+        //           height: width * 0.25,
+        //           child: customText.kHeadingText(
+        //               TextConstants.appTitle,
+        //               75,
+        //               FontWeight.w800,
+        //               ColorConstants.kTextGreen,
+        //               TextAlign.center),
+        //         ),
+        //       ),
+        //     ],
+        //   ),
+        // ),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: width * 0.03),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                // SizedBox(height: height * 0.18),
+                SizedBox(height: height * 0.26),
+
+                customText.kText(TextConstants.login, 32, FontWeight.w700,
+                    ColorConstants.kYellow, TextAlign.center),
+                SizedBox(height: height * 0.01),
+                customText.kText(TextConstants.loginDesc, 16, FontWeight.w400,
+                    ColorConstants.kYellow, TextAlign.center),
+                SizedBox(height: height * 0.02),
+                CustomTextField(
+                  controller: emailController,
+                  textInputType: TextInputType.emailAddress,
+                  textInputAction: TextInputAction.next,
+                  hint: TextConstants.email,
+                  prefixIcon: const Icon(
+                    Icons.email_outlined,
+                    color: Colors.white,
                   ),
+                ),
+                SizedBox(height: height * 0.02),
+                CustomTextField(
+                  controller: passwordController,
+                  obsecureText: isPassHidden,
+                  textInputType: TextInputType.text,
+                  textInputAction: TextInputAction.done,
+                  hint: TextConstants.password,
+                  prefixIcon: const Icon(
+                    Icons.lock_outline,
+                    color: Colors.white,
+                  ),
+                  isSuffixIcon: true,
+                  suffixIcon: Icon(
+                    isPassHidden
+                        ? Icons.visibility_off_outlined
+                        : Icons.visibility_outlined,
+                    color: Colors.white,
+                  ),
+                  onSuffixTap: () {
+                    setState(() {
+                      isPassHidden = !isPassHidden;
+                    });
+                  },
+                ),
+                SizedBox(height: height * 0.01),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: GestureDetector(
+                    child: customText.kText(
+                        TextConstants.forgotPassword,
+                        16,
+                        FontWeight.w400,
+                        ColorConstants.kYellow,
+                        TextAlign.center),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ForgotPassword()));
+                    },
+                  ),
+                ),
+                SizedBox(height: height * 0.2),
+                CustomButton(
+                  buttonText: TextConstants.login,
+                  onpress: () {
+                    log("login button pressed");
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const DashboardScreen()),
+                    );
+                  },
+                ),
+                SizedBox(height: height * 0.02),
+                CustomButton(
+                  buttonText: TextConstants.createAccount,
+                  onpress: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const RegistrationScreen()));
+                  },
                 ),
               ],
             ),
           ),
-          // Positioned(
-          //   top: height * 0.45,
-          //   child: Stack(
-          //     children: [
-          //       SizedBox(
-          //         height: width * 0.25,
-          //         child: customText.kHeadingText(TextConstants.appTitle, 75,
-          //             FontWeight.w800, Colors.white, TextAlign.center),
-          //       ),
-          //       Positioned(
-          //         top: -1,
-          //         left: -1,
-          //         child: SizedBox(
-          //           height: width * 0.25,
-          //           child: customText.kHeadingText(
-          //               TextConstants.appTitle,
-          //               75,
-          //               FontWeight.w800,
-          //               ColorConstants.kTextGreen,
-          //               TextAlign.center),
-          //         ),
-          //       ),
-          //     ],
-          //   ),
-          // ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: width * 0.03),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  SizedBox(height: height * 0.18),
-                  customText.kText(TextConstants.login, 32, FontWeight.w700,
-                      ColorConstants.kYellow, TextAlign.center),
-                  SizedBox(height: height * 0.01),
-                  customText.kText(TextConstants.loginDesc, 16, FontWeight.w400,
-                      ColorConstants.kYellow, TextAlign.center),
-                  SizedBox(height: height * 0.02),
-                  CustomTextField(
-                    controller: emailController,
-                    textInputType: TextInputType.emailAddress,
-                    textInputAction: TextInputAction.next,
-                    hint: TextConstants.email,
-                    prefixIcon: const Icon(
-                      Icons.email_outlined,
-                      color: Colors.white,
-                    ),
-                  ),
-                  SizedBox(height: height * 0.02),
-                  CustomTextField(
-                    controller: passwordController,
-                    obsecureText: isPassHidden,
-                    textInputType: TextInputType.text,
-                    textInputAction: TextInputAction.done,
-                    hint: TextConstants.password,
-                    prefixIcon: const Icon(
-                      Icons.lock_outline,
-                      color: Colors.white,
-                    ),
-                    isSuffixIcon: true,
-                    suffixIcon: Icon(
-                      isPassHidden
-                          ? Icons.visibility_off_outlined
-                          : Icons.visibility_outlined,
-                      color: Colors.white,
-                    ),
-                    onSuffixTap: () {
-                      setState(() {
-                        isPassHidden = !isPassHidden;
-                      });
-                    },
-                  ),
-                  SizedBox(height: height * 0.01),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: GestureDetector(
-                      child: customText.kText(
-                          TextConstants.forgotPassword,
-                          16,
-                          FontWeight.w400,
-                          ColorConstants.kYellow,
-                          TextAlign.center),
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const ForgotPassword()));
-                      },
-                    ),
-                  ),
-                  SizedBox(height: height * 0.2),
-                  CustomButton(
-                    buttonText: TextConstants.login,
-                    onpress: () {
-                      log("login button pressed");
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const DashboardScreen()),
-                      );
-                    },
-                  ),
-                  SizedBox(height: height * 0.02),
-                  CustomButton(
-                    buttonText: TextConstants.createAccount,
-                    onpress: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const RegistrationScreen()));
-                    },
-                  ),
-                ],
-              ),
-            ),
-          )
-        ],
-      )
-    );
+        )
+      ],
+    ));
   }
 }
