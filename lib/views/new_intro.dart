@@ -54,7 +54,7 @@ class _NewIntroScreenState extends State<NewIntroScreen>
     // videoController1 = VideoPlayerController.asset("assets/videos/globe.mp4")
     videoController1 =
         // VideoPlayerController.asset("assets/videos/globeFramedAnimation.mp4")
-        VideoPlayerController.asset("assets/videos/globe_dfcp3.mp4")
+        VideoPlayerController.asset("assets/videos/globe14.mp4")
           ..initialize().then((_) {
             setState(() {});
           });
@@ -64,7 +64,7 @@ class _NewIntroScreenState extends State<NewIntroScreen>
     videoController2 =
         // VideoPlayerController.asset("assets/videos/aiAnimation45.mp4")
         // VideoPlayerController.asset("assets/videos/3aFramedAnimation.mp4") // latest
-        VideoPlayerController.asset("assets/videos/ai_dfcp3.mp4")
+        VideoPlayerController.asset("assets/videos/ai25.mp4")
           ..initialize().then((_) {
             setState(() {});
           });
@@ -114,19 +114,21 @@ class _NewIntroScreenState extends State<NewIntroScreen>
         decoration: const BoxDecoration(
           image: DecorationImage(
             // image: AssetImage("assets/images/simple_bgImage.png"),
-            image: AssetImage("assets/images/sample2.png"),
+            image: AssetImage("assets/images/sample4.png"),
             fit: BoxFit.fitHeight,
           ),
         ),
         child: Stack(
           children: [
             Container(
-              height: size.height * 0.35,
-              width: size.width * 0.95,
+              // color: Colors.red,
+              // height: size.height * 0.35,
+              // width: size.width * 0.95,
+
               // padding: EdgeInsets.all(2),
               // color: Colors.white,
-              margin: EdgeInsets.only(
-                  top: size.height * 0.05, left: size.width * 0.025),
+              // margin: EdgeInsets.only(
+              //     top: size.height * 0.05, left: size.width * 0.025),
               child: introPage == 0
                   // ? Image.asset("assets/images/simple_bgImage.png", fit: BoxFit.cover,)
                   ? videoController1.value.isInitialized
@@ -142,24 +144,33 @@ class _NewIntroScreenState extends State<NewIntroScreen>
                               child: VideoPlayer(videoController2),
                             )
                           : Container()
-                      : Center(
-                          child: Stack(
-                            children: [
-                              RotationTransition(
+                      : Stack(
+                          children: [
+                            Positioned(
+                              right: 0,
+                              left: 0,
+                              top: size.height * .070,
+                              child: RotationTransition(
                                 turns: Tween(begin: 0.0, end: 20.0)
                                     .animate(logoController),
-                                child: SizedBox(
-                                  height: size.height * 0.2,
+                                child: Container(
+                                  // height: size.height * 0.2,
                                   child: Image.asset(
                                       "assets/images/logo base.png"),
                                 ),
                               ),
-                              SizedBox(
-                                  height: size.height * 0.2,
-                                  child:
-                                      Image.asset("assets/images/logo top.png"))
-                            ],
-                          ),
+                            ),
+                            Positioned(
+                              right: 0,
+                              left: 0,
+                              top: size.height * .070,
+                              child: Container(
+
+                                  // height: size.height * 0.2,
+                                  child: Image.asset(
+                                      "assets/images/logo top.png")),
+                            )
+                          ],
                         ),
             ),
 
@@ -178,7 +189,8 @@ class _NewIntroScreenState extends State<NewIntroScreen>
             Opacity(
               opacity: 0.8,
               child: Align(
-                alignment: Alignment(cloudAnimation.value, 0.6),
+                // alignment: Alignment(cloudAnimation.value, 0.6),
+                alignment: Alignment(cloudAnimation.value, 0.5),
                 child: SizedBox(
                   height: size.width * 1.0,
                   width: size.width,

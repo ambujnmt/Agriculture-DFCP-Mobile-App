@@ -3,11 +3,11 @@ import 'package:dfcp/constants/text_constants.dart';
 import 'package:dfcp/custom_widget/divider_widget.dart';
 import 'package:dfcp/utils/custom_text.dart';
 import 'package:dfcp/views/dashboard/dashboard_screen.dart';
+import 'package:dfcp/views/meetings/advisor_meeting.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer';
 
 import 'add_meeting.dart';
-
 
 class MeetingsScreen extends StatefulWidget {
   const MeetingsScreen({super.key});
@@ -17,7 +17,6 @@ class MeetingsScreen extends StatefulWidget {
 }
 
 class _MeetingsScreenState extends State<MeetingsScreen> {
-
   final customText = CustomText();
 
   @override
@@ -47,8 +46,8 @@ class _MeetingsScreenState extends State<MeetingsScreen> {
             );
           },
         ),
-        title: customText.kHeadingText(TextConstants.appTitle,
-            45, FontWeight.w800, ColorConstants.kTextGreen, TextAlign.center),
+        title: customText.kHeadingText(TextConstants.appTitle, 45,
+            FontWeight.w800, ColorConstants.kTextGreen, TextAlign.center),
         centerTitle: true,
       ),
       body: Stack(
@@ -245,14 +244,21 @@ class _MeetingsScreenState extends State<MeetingsScreen> {
                 width: width,
                 padding: const EdgeInsets.all(10),
                 decoration: const BoxDecoration(
-                    color: Colors.white,
-                    shape: BoxShape.circle
-                ),
+                    color: Colors.white, shape: BoxShape.circle),
                 child: Image.asset('assets/images/add_image.png'),
               ),
               onTap: () {
                 log("meeting add button pressed");
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const AddMeeting() ));
+                // Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //         builder: (context) => const AddMeeting()));
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const AdvisorMeeting(),
+                  ),
+                );
               },
             ),
           )

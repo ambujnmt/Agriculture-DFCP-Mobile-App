@@ -119,4 +119,9 @@ class TextConstants {
   static const String cart = "Cart Details";
   static const String cartText = "Cart";
   static const String addAddress = "Add Address";
+  static const String advisorText = "Advisors";
+  static const String advisorDetailText = "Advisor Details";
+  static const String mobile = "Mobile";
+  static const String readMore = "Read More";
+  static const String purpose = "Purpose";
 }

@@ -18,10 +18,12 @@ class AddMeeting extends StatefulWidget {
 }
 
 class _AddMeetingState extends State<AddMeeting> {
-
   dynamic size;
   final customText = CustomText();
-  String meetingDate = "", meetingTime = "", tempPickedDate = "", currentDate = "";
+  String meetingDate = "",
+      meetingTime = "",
+      tempPickedDate = "",
+      currentDate = "";
 
   TextEditingController nameController = TextEditingController();
   TextEditingController dateController = TextEditingController();
@@ -61,8 +63,8 @@ class _AddMeetingState extends State<AddMeeting> {
             );
           },
         ),
-        title: customText.kHeadingText(TextConstants.appTitle,
-            45, FontWeight.w800, ColorConstants.kTextGreen, TextAlign.center),
+        title: customText.kHeadingText(TextConstants.appTitle, 45,
+            FontWeight.w800, ColorConstants.kTextGreen, TextAlign.center),
         centerTitle: true,
       ),
       body: Container(
@@ -97,11 +99,11 @@ class _AddMeetingState extends State<AddMeeting> {
               Container(
                 height: size.height * 0.065,
                 width: size.width * 0.95,
-                padding: EdgeInsets.symmetric(vertical: 5, horizontal: size.width * 0.05),
+                padding: EdgeInsets.symmetric(
+                    vertical: 5, horizontal: size.width * 0.05),
                 decoration: BoxDecoration(
                     color: ColorConstants.kTextFieldColor,
-                    borderRadius: BorderRadius.circular(size.width * 0.04)
-                ),
+                    borderRadius: BorderRadius.circular(size.width * 0.04)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -111,39 +113,43 @@ class _AddMeetingState extends State<AddMeeting> {
                         FontWeight.w600,
                         ColorConstants.kYellow,
                         TextAlign.start),
-          
                     meetingDate == ""
                         ? GestureDetector(
-                            child: const Icon(Icons.calendar_month, size: 35, color: Colors.white,),
+                            child: const Icon(
+                              Icons.calendar_month,
+                              size: 35,
+                              color: Colors.white,
+                            ),
                             onTap: () async {
-          
                               DateTime? pickedDate = await showDatePicker(
                                   context: context,
                                   initialDate: DateTime.now(),
                                   firstDate: DateTime(1950),
                                   lastDate: DateTime(2200));
-          
-                              currentDate = DateFormat('dd-MM-yyyy').format(DateTime.now());
+
+                              currentDate = DateFormat('dd-MM-yyyy')
+                                  .format(DateTime.now());
                               log("current Date :- $currentDate, ${currentDate.runtimeType}");
-                              tempPickedDate = DateFormat('dd-MM-yyyy').format(pickedDate!);
+                              tempPickedDate =
+                                  DateFormat('dd-MM-yyyy').format(pickedDate!);
                               log("temp picked Date :- $tempPickedDate");
-          
-                              if(pickedDate.isAfter(DateTime.now()) || tempPickedDate == currentDate) {
-          
+
+                              if (pickedDate.isAfter(DateTime.now()) ||
+                                  tempPickedDate == currentDate) {
                                 // meetingDate = DateFormat('dd/MM/yyyy hh:mm:ss').format(pickedDate);
                                 // 2024-05-29
-                                meetingDate = DateFormat('dd-MM-yyyy').format(pickedDate);
+                                meetingDate =
+                                    DateFormat('dd-MM-yyyy').format(pickedDate);
                                 log("meeting Date :- $meetingDate");
                                 setState(() {});
-          
                               } else {
                                 // helper.errorDialog(context, "Please select valid date");
                               }
-          
                             },
                           )
                         : GestureDetector(
-                            child: const Icon(Icons.delete, size: 35, color: Colors.white),
+                            child: const Icon(Icons.delete,
+                                size: 35, color: Colors.white),
                             onTap: () {
                               setState(() {
                                 meetingDate = "";
@@ -157,11 +163,11 @@ class _AddMeetingState extends State<AddMeeting> {
               Container(
                   height: size.height * 0.065,
                   width: size.width * 0.95,
-                  padding: EdgeInsets.symmetric(vertical: 5, horizontal: size.width * 0.05),
+                  padding: EdgeInsets.symmetric(
+                      vertical: 5, horizontal: size.width * 0.05),
                   decoration: BoxDecoration(
                       color: ColorConstants.kTextFieldColor,
-                      borderRadius: BorderRadius.circular(size.width * 0.04)
-                  ),
+                      borderRadius: BorderRadius.circular(size.width * 0.04)),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -171,55 +177,52 @@ class _AddMeetingState extends State<AddMeeting> {
                           FontWeight.w600,
                           ColorConstants.kYellow,
                           TextAlign.start),
-          
                       meetingTime == ""
                           ? GestureDetector(
-                        child: const Icon(Icons.schedule, size: 35, color: Colors.white),
-                        onTap: () async {
-          
-                          TimeOfDay initialTime = TimeOfDay.now();
-                          TimeOfDay? pickedTime = await showTimePicker(
-                            context: context,
-                            initialTime: initialTime,
-                          );
-          
-                          if (pickedTime != null ) {
-          
-                            if(tempPickedDate == currentDate) {
-          
-                              if(pickedTime.hour > DateTime.now().hour) {
-                                meetingTime = pickedTime.format(context);
-                              } else if(pickedTime.hour == DateTime.now().hour) {
-                                if(pickedTime.minute > DateTime.now().minute) {
-                                  meetingTime = pickedTime.format(context);
+                              child: const Icon(Icons.schedule,
+                                  size: 35, color: Colors.white),
+                              onTap: () async {
+                                TimeOfDay initialTime = TimeOfDay.now();
+                                TimeOfDay? pickedTime = await showTimePicker(
+                                  context: context,
+                                  initialTime: initialTime,
+                                );
+
+                                if (pickedTime != null) {
+                                  if (tempPickedDate == currentDate) {
+                                    if (pickedTime.hour > DateTime.now().hour) {
+                                      meetingTime = pickedTime.format(context);
+                                    } else if (pickedTime.hour ==
+                                        DateTime.now().hour) {
+                                      if (pickedTime.minute >
+                                          DateTime.now().minute) {
+                                        meetingTime =
+                                            pickedTime.format(context);
+                                      } else {
+                                        // helper.successDialog(context, "Please select future time");
+                                      }
+                                    }
+                                  } else {
+                                    meetingTime = pickedTime.format(context);
+                                  }
+
+                                  setState(() {});
                                 } else {
-                                  // helper.successDialog(context, "Please select future time");
+                                  // helper.errorDialog(context, "Time is not picked");
                                 }
-                              }
-          
-                            } else {
-                              meetingTime = pickedTime.format(context);
-                            }
-          
-                            setState(() {});
-          
-                          } else {
-                            // helper.errorDialog(context, "Time is not picked");
-                          }
-          
-                        },
-                      )
+                              },
+                            )
                           : GestureDetector(
-                        child: Icon(Icons.delete, size: 35, color: Colors.white),
-                        onTap: () {
-                          setState(() {
-                            meetingTime = "";
-                          });
-                        },
-                      )
+                              child: Icon(Icons.delete,
+                                  size: 35, color: Colors.white),
+                              onTap: () {
+                                setState(() {
+                                  meetingTime = "";
+                                });
+                              },
+                            )
                     ],
-                  )
-              ),
+                  )),
               SizedBox(height: size.height * 0.02),
               DropdownButtonHideUnderline(
                 child: DropdownButton2<String>(
@@ -238,20 +241,22 @@ class _AddMeetingState extends State<AddMeeting> {
                         child: Text(
                           TextConstants.userType,
                           overflow: TextOverflow.ellipsis,
-                          style: customText.kTextStyle(20, FontWeight.w400, ColorConstants.kYellow),
+                          style: customText.kTextStyle(
+                              20, FontWeight.w400, ColorConstants.kYellow),
                         ),
                       ),
                     ],
                   ),
                   items: items
                       .map((String item) => DropdownMenuItem<String>(
-                    value: item,
-                    child: Text(
-                      item,
-                      style: customText.kTextStyle(20, FontWeight.w400, ColorConstants.kYellow),
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ))
+                            value: item,
+                            child: Text(
+                              item,
+                              style: customText.kTextStyle(
+                                  20, FontWeight.w400, ColorConstants.kYellow),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ))
                       .toList(),
                   value: selectedValue,
                   onChanged: (value) {
@@ -303,21 +308,21 @@ class _AddMeetingState extends State<AddMeeting> {
                 padding: EdgeInsets.all(size.width * 0.02),
                 decoration: BoxDecoration(
                     color: ColorConstants.kTextFieldColor,
-                    borderRadius: BorderRadius.circular(size.width * 0.04)
-                ),
+                    borderRadius: BorderRadius.circular(size.width * 0.04)),
                 child: TextField(
                   controller: descController,
                   keyboardType: TextInputType.text,
                   textInputAction: TextInputAction.done,
                   textCapitalization: TextCapitalization.words,
-                  style: customText.kTextStyle(18, FontWeight.w600, ColorConstants.kYellow),
+                  style: customText.kTextStyle(
+                      18, FontWeight.w600, ColorConstants.kYellow),
                   maxLines: 10,
                   decoration: InputDecoration(
                     isDense: true,
                     border: InputBorder.none,
                     hintText: TextConstants.description,
-                    hintStyle: customText.kTextStyle(18, FontWeight.w600, ColorConstants.kYellow),
-          
+                    hintStyle: customText.kTextStyle(
+                        18, FontWeight.w600, ColorConstants.kYellow),
                   ),
                 ),
               ),

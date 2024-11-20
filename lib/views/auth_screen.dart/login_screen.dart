@@ -97,7 +97,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(height: height * 0.01),
                 customText.kText(TextConstants.loginDesc, 16, FontWeight.w400,
                     ColorConstants.kYellow, TextAlign.center),
-                SizedBox(height: height * 0.02),
+                // SizedBox(height: height * 0.02),
+                SizedBox(height: height * 0.050),
                 CustomTextField(
                   controller: emailController,
                   textInputType: TextInputType.emailAddress,
