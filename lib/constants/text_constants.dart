@@ -124,4 +124,18 @@ class TextConstants {
   static const String mobile = "Mobile";
   static const String readMore = "Read More";
   static const String purpose = "Purpose";
+  static const String productDescription = "Product Description";
+  static const String billDetails = "Bill Details";
+  static const String itemTotal = "Item Total";
+  static const String rupeeSymbol = "₹";
+  static const String platFormFee = "PlatForm Fee";
+  static const String deliveryFee = "Delivery Fee";
+  static const String gstAndRestarantCharges = "GST and Restaurant charges";
+  static const String toPayText = "To Pay";
+  static const String sliderToPay = "Slide to pay | ";
+  static const String platFormFeeDescription =
+      "This fee fairly goes to our delivery partners for delivering";
+  static const String thankYou = "Thank you...";
+  static const String orderConfirmation = "Your order is confirmed";
+  static const String doneButton = "Done";
 }

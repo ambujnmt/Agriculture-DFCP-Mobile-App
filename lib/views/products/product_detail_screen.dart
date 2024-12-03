@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:dfcp/cart/view_cart.dart';
 import 'package:dfcp/constants/color_constants.dart';
 import 'package:dfcp/constants/text_constants.dart';
 import 'package:dfcp/custom_widget/custom_button.dart';
@@ -200,9 +201,15 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               GestureDetector(
                 onTap: () {
                   // onpress
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => const AddToCart()),
+                  // );
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const AddToCart()),
+                    MaterialPageRoute(
+                      builder: (context) => const ViewCartScreen(),
+                    ),
                   );
                 },
                 child: Container(

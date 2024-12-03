@@ -30,7 +30,7 @@ class Background extends StatelessWidget {
               // child: Image.asset('assets/images/login_background.png', fit: BoxFit.fill,),
               // child: Image.asset('assets/images/simple_bgImage.png', fit: BoxFit.fill,),
               child: Image.asset(
-                'assets/images/sample4.png',
+                'assets/images/bg_yellow.png',
                 fit: BoxFit.fill,
               ),
             ),

@@ -114,7 +114,7 @@ class _NewIntroScreenState extends State<NewIntroScreen>
         decoration: const BoxDecoration(
           image: DecorationImage(
             // image: AssetImage("assets/images/simple_bgImage.png"),
-            image: AssetImage("assets/images/sample4.png"),
+            image: AssetImage("assets/images/bg_yellow.png"),
             fit: BoxFit.fitHeight,
           ),
         ),

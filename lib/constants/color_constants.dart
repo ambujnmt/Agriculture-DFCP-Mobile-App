@@ -16,6 +16,8 @@ class ColorConstants {
   static final blueColor = HexColor("#0084B5");
   static final kChatInputColor = HexColor('#4e4e4e');
   static final kChatMessageColor = HexColor('#009c12');
+  static final productNameColor = HexColor('#CA3D26');
+  static final greyEight = HexColor('#888888');
 }
 
 class HexColor extends Color {
