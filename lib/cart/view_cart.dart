@@ -3,6 +3,7 @@ import 'package:dfcp/constants/text_constants.dart';
 import 'package:dfcp/custom_widget/divider_widget.dart';
 import 'package:dfcp/utils/custom_text.dart';
 import 'package:dfcp/views/orders/order_confirmation_screen.dart';
+import 'package:dfcp/views/orders/order_tracking_screen.dart';
 import 'package:dfcp/views/products/product_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:slider_button/slider_button.dart';
@@ -367,10 +368,16 @@ class _ViewCartScreenState extends State<ViewCartScreen> {
               ),
               GestureDetector(
                 onTap: () {
+                  // Navigator.pushReplacement(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //     builder: (context) => const OrderConfirmationScreen(),
+                  //   ),
+                  // );
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const OrderConfirmationScreen(),
+                      builder: (context) => const OrderTrackingScreen(),
                     ),
                   );
                 },

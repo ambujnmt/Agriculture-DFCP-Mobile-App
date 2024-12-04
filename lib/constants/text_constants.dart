@@ -138,4 +138,24 @@ class TextConstants {
   static const String thankYou = "Thank you...";
   static const String orderConfirmation = "Your order is confirmed";
   static const String doneButton = "Done";
+  static const String orderTracking = "Order Tracking";
+  static const String home = "Home";
+  static const String order = "Orders";
+  static const String id = "ID";
+  static const String orderId = " Order ID";
+  static const String orderDate = " Order Date";
+  static const String estimatedDelivery = "Estimated Delivery";
+  static const String qty = "Qty:";
+  static const String payment = "Payment:";
+  static const String address = "Address:";
+  static const String delivery = "Delivery:";
+  static const String needHelp = "Need Help";
+  static const String orderInfo = "Order Info";
+  static const String deliveryInfo = "Delivery Info";
+  static const String returns = "Returns";
+  static const String orderSum = "Order Summary";
+  static const String discount = "Discount";
+  static const String orderDel = "Delivery";
+  static const String orderTax = "Tax";
+  static const String orderTotal = "Total";
 }
