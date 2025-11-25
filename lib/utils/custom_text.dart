@@ -1,17 +1,21 @@
 import 'package:dfcp/constants/color_constants.dart';
+import 'package:dfcp/constants/text_constants.dart';
 import 'package:flutter/material.dart';
 
 class CustomText {
+
   kText(String hint, double fontSize, FontWeight fontWeight, Color color,
-      TextAlign textAlign) {
+      TextAlign textAlign, [TextOverflow? textOverFlow, int? lines]) {
     return Text(
       hint,
       style: TextStyle(
           fontSize: fontSize,
           fontWeight: fontWeight,
           color: color,
-          fontFamily: "Poppins"),
+          fontFamily: "Red Rose"),
       textAlign: textAlign,
+      overflow: textOverFlow ?? TextOverflow.ellipsis,
+      maxLines: lines ?? 2,
     );
   }
 
@@ -32,7 +36,7 @@ class CustomText {
                 color: colorLeft,
                 fontSize: 18,
                 fontWeight: FontWeight.w700,
-                fontFamily: "Poppins"),
+                fontFamily: "Red Rose"),
           ),
           TextSpan(
             text: '$textRight',
@@ -40,7 +44,7 @@ class CustomText {
                 color: colorRight,
                 fontSize: 18,
                 fontWeight: FontWeight.w400,
-                fontFamily: "Poppins"),
+                fontFamily: "Red Rose"),
           ),
         ],
       ),
@@ -64,7 +68,7 @@ class CustomText {
                 color: colorLeft,
                 fontSize: 18,
                 fontWeight: FontWeight.w700,
-                fontFamily: "Poppins"),
+                fontFamily: "Red Rose"),
           ),
           TextSpan(
             text: '$textRight',
@@ -72,7 +76,7 @@ class CustomText {
                 color: colorRight,
                 fontSize: 18,
                 fontWeight: FontWeight.w400,
-                fontFamily: "Poppins"),
+                fontFamily: "Red Rose"),
           ),
         ],
       ),
@@ -87,7 +91,7 @@ class CustomText {
           fontSize: fontSize,
           fontWeight: fontWeight,
           color: color,
-          fontFamily: "Poppins"),
+          fontFamily: "Red Rose"),
       textAlign: textAlign,
       overflow: overflow,
       maxLines: lines,
@@ -99,7 +103,7 @@ class CustomText {
         fontSize: fontSize,
         fontWeight: fontWeight,
         color: color,
-        fontFamily: "Poppins");
+        fontFamily: "Red Rose");
   }
 
   kHeadingText(String hint, double fontSize, FontWeight fontWeight, Color color,
@@ -114,4 +118,35 @@ class CustomText {
       textAlign: textAlign,
     );
   }
+
+  kAppTitle() {
+    return const Text(
+      TextConstants.appTitle,
+      style: TextStyle(
+      fontSize: 45,
+      fontWeight: FontWeight.w800,
+      color: ColorConstants.kPrimary,
+      fontFamily: "Race Guard"),
+      textAlign:  TextAlign.center,
+    );
+  }
+
+  kTextStrikeThrough(String hint, double fontSize, FontWeight fontWeight, Color color,
+      TextAlign textAlign, [TextOverflow? textOverFlow, int? lines]) {
+    return Text(
+      hint,
+      style: TextStyle(
+        decoration: TextDecoration.lineThrough,
+        decorationColor: Colors.red,
+        decorationThickness: 2,
+        fontSize: fontSize,
+        fontWeight: fontWeight,
+        color: color,
+        fontFamily: "Red Rose"),
+      textAlign: textAlign,
+      overflow: textOverFlow ?? TextOverflow.ellipsis,
+      maxLines: lines ?? 2,
+    );
+  }
+
 }

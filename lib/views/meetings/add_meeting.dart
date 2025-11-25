@@ -2,6 +2,7 @@ import 'package:dfcp/constants/color_constants.dart';
 import 'package:dfcp/constants/text_constants.dart';
 import 'package:dfcp/custom_widget/custom_button.dart';
 import 'package:dfcp/custom_widget/custom_textField.dart';
+import 'package:dfcp/custom_widget/custom_title.dart';
 import 'package:dfcp/custom_widget/divider_widget.dart';
 import 'package:dfcp/utils/custom_text.dart';
 import 'package:dfcp/views/dashboard/dashboard_screen.dart';
@@ -48,7 +49,7 @@ class _AddMeetingState extends State<AddMeeting> {
             height: 40,
             width: 40,
             decoration: const BoxDecoration(
-                color: ColorConstants.kTextGreen, shape: BoxShape.circle),
+                color: ColorConstants.kPrimary, shape: BoxShape.circle),
             child: Center(
               child: SizedBox(
                 height: 25,
@@ -57,14 +58,14 @@ class _AddMeetingState extends State<AddMeeting> {
             ),
           ),
           onTap: () {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => const DashboardScreen()),
-            );
+            // Navigator.pushReplacement(context,
+            //   MaterialPageRoute(builder: (context) => const DashboardScreen()),
+            // );
+            Navigator.pop(context);
           },
         ),
         title: customText.kHeadingText(TextConstants.appTitle, 45,
-            FontWeight.w800, ColorConstants.kTextGreen, TextAlign.center),
+            FontWeight.w800, ColorConstants.kPrimary, TextAlign.center),
         centerTitle: true,
       ),
       body: Container(
@@ -75,16 +76,7 @@ class _AddMeetingState extends State<AddMeeting> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 10),
-              customText.kText(
-                TextConstants.meetings,
-                30,
-                FontWeight.w700,
-                ColorConstants.kTextGreen,
-                TextAlign.center,
-              ),
-              const DividerWidget(),
-              SizedBox(height: size.height * 0.02),
+              const CustomTitle(title: TextConstants.meetings,),
               CustomTextField(
                 controller: nameController,
                 textInputType: TextInputType.text,
@@ -102,7 +94,7 @@ class _AddMeetingState extends State<AddMeeting> {
                 padding: EdgeInsets.symmetric(
                     vertical: 5, horizontal: size.width * 0.05),
                 decoration: BoxDecoration(
-                    color: ColorConstants.kTextFieldColor,
+                    color: ColorConstants.kPrimary,
                     borderRadius: BorderRadius.circular(size.width * 0.04)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -111,7 +103,7 @@ class _AddMeetingState extends State<AddMeeting> {
                         meetingDate == "" ? TextConstants.date : meetingDate,
                         18,
                         FontWeight.w600,
-                        ColorConstants.kYellow,
+                        ColorConstants.kSecondary,
                         TextAlign.start),
                     meetingDate == ""
                         ? GestureDetector(
@@ -166,7 +158,7 @@ class _AddMeetingState extends State<AddMeeting> {
                   padding: EdgeInsets.symmetric(
                       vertical: 5, horizontal: size.width * 0.05),
                   decoration: BoxDecoration(
-                      color: ColorConstants.kTextFieldColor,
+                      color: ColorConstants.kPrimary,
                       borderRadius: BorderRadius.circular(size.width * 0.04)),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -175,7 +167,7 @@ class _AddMeetingState extends State<AddMeeting> {
                           meetingTime == "" ? TextConstants.time : meetingTime,
                           18,
                           FontWeight.w600,
-                          ColorConstants.kYellow,
+                          ColorConstants.kSecondary,
                           TextAlign.start),
                       meetingTime == ""
                           ? GestureDetector(
@@ -242,7 +234,7 @@ class _AddMeetingState extends State<AddMeeting> {
                           TextConstants.userType,
                           overflow: TextOverflow.ellipsis,
                           style: customText.kTextStyle(
-                              20, FontWeight.w400, ColorConstants.kYellow),
+                              20, FontWeight.w400, ColorConstants.kSecondary),
                         ),
                       ),
                     ],
@@ -253,7 +245,7 @@ class _AddMeetingState extends State<AddMeeting> {
                             child: Text(
                               item,
                               style: customText.kTextStyle(
-                                  20, FontWeight.w400, ColorConstants.kYellow),
+                                  20, FontWeight.w400, ColorConstants.kSecondary),
                               overflow: TextOverflow.ellipsis,
                             ),
                           ))
@@ -307,7 +299,7 @@ class _AddMeetingState extends State<AddMeeting> {
                 width: size.width,
                 padding: EdgeInsets.all(size.width * 0.02),
                 decoration: BoxDecoration(
-                    color: ColorConstants.kTextFieldColor,
+                    color: ColorConstants.kPrimary,
                     borderRadius: BorderRadius.circular(size.width * 0.04)),
                 child: TextField(
                   controller: descController,
@@ -315,14 +307,14 @@ class _AddMeetingState extends State<AddMeeting> {
                   textInputAction: TextInputAction.done,
                   textCapitalization: TextCapitalization.words,
                   style: customText.kTextStyle(
-                      18, FontWeight.w600, ColorConstants.kYellow),
+                      18, FontWeight.w600, ColorConstants.kSecondary),
                   maxLines: 10,
                   decoration: InputDecoration(
                     isDense: true,
                     border: InputBorder.none,
                     hintText: TextConstants.description,
                     hintStyle: customText.kTextStyle(
-                        18, FontWeight.w600, ColorConstants.kYellow),
+                        18, FontWeight.w600, ColorConstants.kSecondary),
                   ),
                 ),
               ),

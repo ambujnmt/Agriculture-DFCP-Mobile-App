@@ -10,8 +10,8 @@ class ProgressStepperScreen extends StatefulWidget {
 }
 
 class _ProgressStepperScreenState extends State<ProgressStepperScreen> {
-  int activeStep = 0;
-  int activeStep2 = 0;
+  int activeStep = 2;
+  int activeStep2 = 2;
   @override
   Widget build(BuildContext context) {
     return EasyStepper(

@@ -1,36 +1,115 @@
 import 'package:dfcp/constants/color_constants.dart';
 import 'package:dfcp/constants/text_constants.dart';
+import 'package:dfcp/controllers/login_controller.dart';
 import 'package:dfcp/custom_widget/custom_button.dart';
 import 'package:dfcp/custom_widget/custom_textField.dart';
+import 'package:dfcp/custom_widget/custom_title.dart';
 import 'package:dfcp/custom_widget/divider_widget.dart';
+import 'package:dfcp/services/api_services.dart';
 import 'package:dfcp/utils/custom_text.dart';
+import 'package:dfcp/utils/helper.dart';
 import 'package:dfcp/views/dashboard/dashboard_screen.dart';
 import 'package:dfcp/views/meetings/meetings_screen.dart';
+import 'package:dfcp/views/products/products_view_screen.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'dart:developer';
 
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 class ScheduleMeeting extends StatefulWidget {
-  const ScheduleMeeting({super.key});
+  final Map<String, dynamic>? userDetails;
+  const ScheduleMeeting({super.key, this.userDetails});
 
   @override
   State<ScheduleMeeting> createState() => _ScheduleMeetingState();
 }
 
 class _ScheduleMeetingState extends State<ScheduleMeeting> {
+
   dynamic size;
-  final customText = CustomText();
+  bool isApiCalling = false;
+  final customText = CustomText(), api = API(), helper = Helper();
   String meetingDate = "",
       meetingTime = "",
       tempPickedDate = "",
       currentDate = "";
+  Map<String, dynamic> userDetails = {};
 
   TextEditingController dateController = TextEditingController();
   TextEditingController descController = TextEditingController();
   TextEditingController purposeController = TextEditingController();
+
+  LoginController loginController = Get.put(LoginController());
+
+  @override
+  void initState() {
+    super.initState();
+    userDetails = widget.userDetails!;
+  }
+
+  createMeeting() async {
+    
+    
+    if(meetingDate != "") {
+      if(meetingTime != "") {
+        if(purposeController.text.isNotEmpty && !purposeController.text.startsWith(" ")) {
+          if(descController.text.isNotEmpty && !descController.text.startsWith(" ")) {
+
+            setState(() {
+              isApiCalling = true;
+            });
+
+            final response = await api.createMeeting(userDetails["user_id"], meetingDate, meetingTime, purposeController.text, descController.text);
+
+            setState(() {
+              isApiCalling = false;
+            });
+
+            if(response["status"] == 1) {
+
+              helper.successDialog(response["message"]);
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const MeetingsScreen() ));
+
+            } else {
+              helper.errorDialog(response["message"]);
+              if(response["message"] == TextConstants.invalidToken) {
+                loginController.clearDataLogout();
+                helper.successDialog(TextConstants.logoutSuccess);
+                Navigator.push(context, MaterialPageRoute(
+                    builder: (context) => const ProductsViewScreen()),
+                );
+              }
+            }
+
+          } else {
+            helper.errorDialog(TextConstants.validMeetingDesc);
+          }
+        } else {
+          helper.errorDialog(TextConstants.validMeetingPurpose);
+        }
+      } else {
+        helper.errorDialog(TextConstants.selectValidTime);
+      }
+    } else {
+      helper.errorDialog(TextConstants.selectValidDate);
+    }
+
+    // setState(() {
+    //   isApiCalling = true;
+    // });
+
+    // {user_id: 7, name: Kissan, mobile: 8588008108, email: farmer@getnada.com, user_type: 3, status: 1, profile_img: }
+
+    // final response = await api.createMeeting(meetingUserId, date, time, purpose, description);
+
+    // setState(() {
+    //   isApiCalling = false;
+    // });
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +122,7 @@ class _ScheduleMeetingState extends State<ScheduleMeeting> {
             height: 40,
             width: 40,
             decoration: const BoxDecoration(
-                color: ColorConstants.kTextGreen, shape: BoxShape.circle),
+                color: ColorConstants.kPrimary, shape: BoxShape.circle),
             child: Center(
               child: SizedBox(
                 height: 25,
@@ -52,18 +131,15 @@ class _ScheduleMeetingState extends State<ScheduleMeeting> {
             ),
           ),
           onTap: () {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => const MeetingsScreen()),
-            );
+            Navigator.pop(context);
           },
         ),
         title: customText.kHeadingText(TextConstants.appTitle, 45,
-            FontWeight.w800, ColorConstants.kTextGreen, TextAlign.center),
+            FontWeight.w800, ColorConstants.kPrimary, TextAlign.center),
         centerTitle: true,
       ),
       body: Container(
-        margin: EdgeInsets.only(bottom: 20),
+        margin: const EdgeInsets.only(bottom: 20),
         height: size.height,
         width: size.width,
         padding: EdgeInsets.symmetric(horizontal: size.width * 0.03),
@@ -71,15 +147,9 @@ class _ScheduleMeetingState extends State<ScheduleMeeting> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 10),
-              customText.kText(
-                TextConstants.meetings,
-                30,
-                FontWeight.w700,
-                ColorConstants.kTextGreen,
-                TextAlign.center,
-              ),
-              const DividerWidget(),
+          
+              const CustomTitle(title: TextConstants.meetings,),
+          
               SizedBox(height: size.height * 0.02),
               Container(
                 height: size.height * 0.065,
@@ -87,7 +157,7 @@ class _ScheduleMeetingState extends State<ScheduleMeeting> {
                 padding: EdgeInsets.symmetric(
                     vertical: 5, horizontal: size.width * 0.05),
                 decoration: BoxDecoration(
-                    color: ColorConstants.kTextFieldColor,
+                    color: ColorConstants.kPrimary,
                     borderRadius: BorderRadius.circular(size.width * 0.04)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -96,37 +166,34 @@ class _ScheduleMeetingState extends State<ScheduleMeeting> {
                         meetingDate == "" ? TextConstants.date : meetingDate,
                         18,
                         FontWeight.w600,
-                        ColorConstants.kYellow,
+                        ColorConstants.kSecondary,
                         TextAlign.start),
                     meetingDate == ""
                         ? GestureDetector(
                             child: const Icon(
                               Icons.calendar_month,
                               size: 35,
-                              color: ColorConstants.kYellow,
+                              color: ColorConstants.kSecondary,
                             ),
                             onTap: () async {
                               DateTime? pickedDate;
-                              // pickedDate = await showDatePicker(
-                              //   context: context,
-                              //   initialDate: DateTime.now(),
-                              //   firstDate: DateTime(1950),
-                              //   lastDate: DateTime(2200),
-                              // );
-
-                              currentDate = DateFormat('dd-MM-yyyy')
-                                  .format(DateTime.now());
+                              pickedDate = await showDatePicker(
+                                context: context,
+                                initialDate: DateTime.now(),
+                                firstDate: DateTime(1950),
+                                lastDate: DateTime(2200),
+                              );
+          
+                              currentDate = DateFormat('dd-MM-yyyy').format(DateTime.now());
                               log("current Date :- $currentDate, ${currentDate.runtimeType}");
-                              tempPickedDate =
-                                  DateFormat('dd-MM-yyyy').format(pickedDate!);
+          
+                              tempPickedDate = DateFormat('dd-MM-yyyy').format(pickedDate!);
                               log("temp picked Date :- $tempPickedDate");
-
-                              if (pickedDate.isAfter(DateTime.now()) ||
-                                  tempPickedDate == currentDate) {
+          
+                              if (pickedDate.isAfter(DateTime.now()) || tempPickedDate == currentDate) {
                                 // meetingDate = DateFormat('dd/MM/yyyy hh:mm:ss').format(pickedDate);
                                 // 2024-05-29
-                                meetingDate =
-                                    DateFormat('dd-MM-yyyy').format(pickedDate);
+                                meetingDate = DateFormat('dd-MM-yyyy').format(pickedDate);
                                 log("meeting Date :- $meetingDate");
                                 setState(() {});
                               } else {
@@ -136,7 +203,7 @@ class _ScheduleMeetingState extends State<ScheduleMeeting> {
                           )
                         : GestureDetector(
                             child: const Icon(Icons.delete,
-                                size: 35, color: Colors.white),
+                                size: 25, color: Colors.white),
                             onTap: () {
                               setState(() {
                                 meetingDate = "";
@@ -146,19 +213,21 @@ class _ScheduleMeetingState extends State<ScheduleMeeting> {
                   ],
                 ),
               ),
-              SizedBox(height: size.height * 0.02),
-              Container(
-                // color: Colors.red,
-                height: size.height * .45,
-                width: double.infinity,
-                child: SfCalendar(
-                  onSelectionChanged: (value) {
-                    print("Date is: ${value.date}");
-                  },
-                  view: CalendarView.month,
-                  monthViewSettings: const MonthViewSettings(),
-                ),
-              ),
+          
+              // SizedBox(height: size.height * 0.02),
+              // Container(
+              //   // color: Colors.red,
+              //   height: size.height * .45,
+              //   width: double.infinity,
+              //   child: SfCalendar(
+              //     onSelectionChanged: (value) {
+              //       print("Date is: ${value.date}");
+              //     },
+              //     view: CalendarView.month,
+              //     monthViewSettings: const MonthViewSettings(),
+              //   ),
+              // ),
+          
               SizedBox(height: size.height * 0.02),
               Container(
                   height: size.height * 0.065,
@@ -166,7 +235,7 @@ class _ScheduleMeetingState extends State<ScheduleMeeting> {
                   padding: EdgeInsets.symmetric(
                       vertical: 5, horizontal: size.width * 0.05),
                   decoration: BoxDecoration(
-                      color: ColorConstants.kTextFieldColor,
+                      color: ColorConstants.kPrimary,
                       borderRadius: BorderRadius.circular(size.width * 0.04)),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -175,14 +244,14 @@ class _ScheduleMeetingState extends State<ScheduleMeeting> {
                           meetingTime == "" ? TextConstants.time : meetingTime,
                           18,
                           FontWeight.w600,
-                          ColorConstants.kYellow,
+                          ColorConstants.kSecondary,
                           TextAlign.start),
                       meetingTime == ""
                           ? GestureDetector(
                               child: const Icon(
                                 Icons.schedule,
                                 size: 35,
-                                color: ColorConstants.kYellow,
+                                color: ColorConstants.kSecondary,
                               ),
                               onTap: () async {
                                 TimeOfDay initialTime = TimeOfDay.now();
@@ -190,7 +259,7 @@ class _ScheduleMeetingState extends State<ScheduleMeeting> {
                                   context: context,
                                   initialTime: initialTime,
                                 );
-
+          
                                 if (pickedTime != null) {
                                   if (tempPickedDate == currentDate) {
                                     if (pickedTime.hour > DateTime.now().hour) {
@@ -208,7 +277,7 @@ class _ScheduleMeetingState extends State<ScheduleMeeting> {
                                   } else {
                                     meetingTime = pickedTime.format(context);
                                   }
-
+          
                                   setState(() {});
                                 } else {
                                   // helper.errorDialog(context, "Time is not picked");
@@ -216,8 +285,8 @@ class _ScheduleMeetingState extends State<ScheduleMeeting> {
                               },
                             )
                           : GestureDetector(
-                              child: Icon(Icons.delete,
-                                  size: 35, color: Colors.white),
+                              child: const Icon(Icons.delete,
+                                  size: 25, color: Colors.white),
                               onTap: () {
                                 setState(() {
                                   meetingTime = "";
@@ -226,6 +295,7 @@ class _ScheduleMeetingState extends State<ScheduleMeeting> {
                             )
                     ],
                   )),
+          
               SizedBox(height: size.height * 0.02),
               CustomTextField(
                 controller: purposeController,
@@ -234,6 +304,7 @@ class _ScheduleMeetingState extends State<ScheduleMeeting> {
                 hint: TextConstants.purpose,
                 horizontalPadding: 20,
               ),
+          
               SizedBox(height: size.height * 0.02),
               Container(
                 height: size.height * 0.25,
@@ -241,32 +312,36 @@ class _ScheduleMeetingState extends State<ScheduleMeeting> {
                 padding:
                     const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
                 decoration: BoxDecoration(
-                    color: ColorConstants.kTextFieldColor,
+                    color: ColorConstants.kPrimary,
                     borderRadius: BorderRadius.circular(size.width * 0.04)),
                 child: TextField(
+                  maxLines: null,
                   controller: descController,
                   keyboardType: TextInputType.text,
                   textInputAction: TextInputAction.done,
                   textCapitalization: TextCapitalization.words,
                   style: customText.kTextStyle(
-                      18, FontWeight.w600, ColorConstants.kYellow),
-                  // maxLines: 10,
+                      18, FontWeight.w600, ColorConstants.kSecondary),
                   decoration: InputDecoration(
                     isDense: true,
                     border: InputBorder.none,
                     hintText: TextConstants.description,
                     hintStyle: customText.kTextStyle(
-                        18, FontWeight.w600, ColorConstants.kYellow),
+                        18, FontWeight.w600, ColorConstants.kSecondary),
                   ),
                 ),
               ),
-              SizedBox(height: size.height * 0.05),
+
+              SizedBox(height: size.height * 0.1,),
+          
               CustomButton(
                 buttonText: TextConstants.submit,
+                loader: isApiCalling,
                 onpress: () {
-                  // Navigator.push(context, MaterialPageRoute(builder: (context) =>  ));
+                  createMeeting();
                 },
               ),
+          
             ],
           ),
         ),

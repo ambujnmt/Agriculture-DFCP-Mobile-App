@@ -30,7 +30,7 @@ class _AddToCartState extends State<AddToCart> {
             height: 40,
             width: 40,
             decoration: const BoxDecoration(
-                color: ColorConstants.kTextGreen, shape: BoxShape.circle),
+                color: ColorConstants.kPrimary, shape: BoxShape.circle),
             child: Center(
               child: SizedBox(
                 height: 25,
@@ -39,14 +39,14 @@ class _AddToCartState extends State<AddToCart> {
             ),
           ),
           onTap: () {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => const DashboardScreen()),
-            );
+            // Navigator.pushReplacement(
+            //   context,
+            //   MaterialPageRoute(builder: (context) => const DashboardScreen()),
+            // );
           },
         ),
         title: customText.kHeadingText(TextConstants.appTitle, 45,
-            FontWeight.w800, ColorConstants.kTextGreen, TextAlign.center),
+            FontWeight.w800, ColorConstants.kPrimary, TextAlign.center),
       ),
       body: Container(
         margin: EdgeInsets.all(15),
@@ -58,7 +58,7 @@ class _AddToCartState extends State<AddToCart> {
               TextConstants.cart,
               30,
               FontWeight.w700,
-              ColorConstants.kTextGreen,
+              ColorConstants.kPrimary,
               TextAlign.center,
             ),
             DividerWidget(),

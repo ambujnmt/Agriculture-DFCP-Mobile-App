@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 class CustomButton extends StatefulWidget {
   String? buttonText;
   Function()? onpress;
-  CustomButton({super.key, this.buttonText, this.onpress});
+  bool loader;
+  CustomButton({super.key, this.buttonText, this.onpress, this.loader = false});
 
   @override
   State<CustomButton> createState() => _CustomButtonState();
@@ -13,6 +14,8 @@ class CustomButton extends StatefulWidget {
 
 class _CustomButtonState extends State<CustomButton> {
   final customText = CustomText();
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -24,18 +27,21 @@ class _CustomButtonState extends State<CustomButton> {
         height: height * 0.060,
         width: double.infinity,
         decoration: BoxDecoration(
-            color: ColorConstants.buttonColor,
-            borderRadius: BorderRadius.circular(width * 0.04),
-            boxShadow: const [
-              BoxShadow(
-                  offset: Offset(2, 4), color: Colors.black45, blurRadius: 9.9)
-            ]),
+          color: ColorConstants.kSecondary,
+          borderRadius: BorderRadius.circular(width * 0.04),
+          boxShadow: const [
+            BoxShadow(
+                offset: Offset(2, 4), color: Colors.black45, blurRadius: 9.9)
+          ],
+        ),
         child: Center(
-          child: Text(
-            widget.buttonText.toString(),
-            style: customText.kTextStyle(
-                22, FontWeight.w700, ColorConstants.kPrimary),
-          ),
+          child: widget.loader
+            ? const CircularProgressIndicator(color: ColorConstants.kPrimary,)
+            :Text(
+                widget.buttonText.toString(),
+                style: customText.kTextStyle(
+                    22, FontWeight.w700, ColorConstants.kPrimary),
+              ),
         ),
       ),
     );

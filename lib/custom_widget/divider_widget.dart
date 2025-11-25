@@ -17,7 +17,7 @@ class _DividerWidgetState extends State<DividerWidget> {
       height: 5,
       width: width * .2,
       decoration: BoxDecoration(
-          color: ColorConstants.kYellow,
+          color: ColorConstants.kSecondary,
           borderRadius: BorderRadius.circular(12)),
     );
   }

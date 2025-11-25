@@ -57,7 +57,7 @@ class _CustomBoxState extends State<CustomBox> {
                 fontWeight: FontWeight.w700,
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 18),
             Text(
               widget.count.toString(),
               style: TextStyle(

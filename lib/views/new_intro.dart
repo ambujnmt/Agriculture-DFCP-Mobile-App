@@ -1,13 +1,16 @@
+import 'dart:developer';
+
 import 'package:dfcp/constants/color_constants.dart';
 import 'package:dfcp/constants/text_constants.dart';
+import 'package:dfcp/controllers/login_controller.dart';
+import 'package:dfcp/custom_widget/custom_app_name.dart';
 import 'package:dfcp/utils/custom_text.dart';
-import 'package:dfcp/views/auth_screen.dart/login_screen.dart';
-import 'package:dfcp/views/new_splash.dart';
-import 'package:dfcp/views/splash_screen.dart';
+import 'package:dfcp/views/bottom_navigation/bottom_navigation.dart';
+import 'package:dfcp/views/without_login/dfcp_intro.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:video_player/video_player.dart';
+import 'package:get/get.dart';
 
 class NewIntroScreen extends StatefulWidget {
   const NewIntroScreen({super.key});
@@ -18,6 +21,7 @@ class NewIntroScreen extends StatefulWidget {
 
 class _NewIntroScreenState extends State<NewIntroScreen>
     with TickerProviderStateMixin {
+
   dynamic size;
   final customText = CustomText();
   bool movedToSplash = false;
@@ -25,6 +29,8 @@ class _NewIntroScreenState extends State<NewIntroScreen>
   late VideoPlayerController videoController1, videoController2;
   late Animation<double> cloudAnimation, logoAnimation;
   late AnimationController cloudController, logoController;
+
+  LoginController loginController = Get.put(LoginController());
 
   @override
   void initState() {
@@ -71,6 +77,7 @@ class _NewIntroScreenState extends State<NewIntroScreen>
   }
 
   moveForward() {
+
     if (introPage == 0) {
       Future.delayed(const Duration(seconds: 6), () {
         setState(() {
@@ -91,16 +98,42 @@ class _NewIntroScreenState extends State<NewIntroScreen>
     } else {
       Future.delayed(
           const Duration(seconds: 5),
-          () => Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => const LoginScreen())));
+          () => isUserLogin()
+      );
     }
+
+  }
+
+  isUserLogin() {
+
+    log("loginController is userloggedIn :- ${loginController.isUserLoggedIn()}");
+
+    if(loginController.isUserLoggedIn()) {
+
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const BottomNavigation() ));
+
+      // if(loginController.userType == TextConstants.superAdmin) {
+      //   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const AdminDashboard() ));
+      // } else if(loginController.userType == TextConstants.advisor) {
+      //   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const AdvisorDashboard() ));
+      // } else if(loginController.userType == TextConstants.farmer) {
+      //   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const FarmerDashboard() ));
+      // } else if(loginController.userType == TextConstants.student) {
+      //   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const StudentDashboard() ));
+      // } else if(loginController.userType == TextConstants.user) {
+      //   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const UserDashboard() ));
+      // }
+
+    } else {
+        // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const ProductsViewScreen() ));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => const AppFeatureIntro() ));
+    }
+
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
-    // animation.removeListener(listener)
     cloudController.dispose();
   }
 
@@ -115,7 +148,7 @@ class _NewIntroScreenState extends State<NewIntroScreen>
           image: DecorationImage(
             // image: AssetImage("assets/images/simple_bgImage.png"),
             image: AssetImage("assets/images/background_bg.png"),
-            fit: BoxFit.fitHeight,
+            fit: BoxFit.cover,
           ),
         ),
         child: Stack(
@@ -165,7 +198,6 @@ class _NewIntroScreenState extends State<NewIntroScreen>
                               left: 0,
                               top: size.height * .070,
                               child: Container(
-
                                   // height: size.height * 0.2,
                                   child: Image.asset(
                                       "assets/images/logo top.png")),
@@ -214,34 +246,22 @@ class _NewIntroScreenState extends State<NewIntroScreen>
                         padding:
                             EdgeInsets.symmetric(horizontal: size.width * 0.02),
                         decoration: BoxDecoration(
-                            color: ColorConstants.kYellow,
+                            color: ColorConstants.kSecondary,
                             borderRadius:
                                 BorderRadius.circular(size.width * 0.03)),
                         child: customText.kText(
                             TextConstants.skip,
                             16,
                             FontWeight.w900,
-                            ColorConstants.kTextGreen,
+                            ColorConstants.kPrimary,
                             TextAlign.center),
                       ),
                       onTap: () {
-                        setState(() {
-                          movedToSplash = true;
-                        });
-                        cloudController.dispose();
-                        Future.delayed(
-                            const Duration(seconds: 5),
-                            () => Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const LoginScreen())));
-                        // Navigator.pushReplacement(
-                        //     context,
-                        //     PageTransition(
-                        //         type: PageTransitionType.leftToRight,
-                        //         child: const NewSplashScreen(),
-                        //         duration: const Duration(seconds: 1)));
+                        // log("skip button pressed");
+                        // setState(() {
+                        //   movedToSplash = true;
+                        // });
+                        isUserLogin();
                       },
                     ),
                   ),
@@ -263,7 +283,7 @@ class _NewIntroScreenState extends State<NewIntroScreen>
                                 TextConstants.intelligentFarming,
                                 45,
                                 FontWeight.w700,
-                                ColorConstants.kYellow,
+                                ColorConstants.kSecondary,
                                 TextAlign.center),
                           )
                         ],
@@ -271,32 +291,7 @@ class _NewIntroScreenState extends State<NewIntroScreen>
                     : Column(
                         children: [
                           SizedBox(height: size.width * 0.7),
-                          Stack(
-                            children: [
-                              SizedBox(
-                                height: size.width * 0.25,
-                                child: customText.kHeadingText(
-                                    TextConstants.appTitle,
-                                    75,
-                                    FontWeight.w800,
-                                    Colors.white,
-                                    TextAlign.center),
-                              ),
-                              Positioned(
-                                top: -1,
-                                left: -1,
-                                child: SizedBox(
-                                  height: size.width * 0.25,
-                                  child: customText.kHeadingText(
-                                      TextConstants.appTitle,
-                                      75,
-                                      FontWeight.w800,
-                                      ColorConstants.kTextGreen,
-                                      TextAlign.center),
-                                ),
-                              ),
-                            ],
-                          ),
+                          CustomAppName()
                         ],
                       )
               ],

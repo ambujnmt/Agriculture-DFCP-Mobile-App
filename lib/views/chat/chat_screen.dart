@@ -40,100 +40,106 @@ class _ChatScreenState extends State<ChatScreen> {
         child: Stack(
           children: [
 
-            // background, profile image and name
-            Row(
+            //background fill color
+            Column(
               children: [
-                SizedBox(
-                  width: size.width * 0.22,
-                  child: Column(
-                    children: [
-                      SizedBox(height: size.height * 0.08),
-                      Expanded(
-                        child: Container(
-                          width: size.width,
-                          decoration: BoxDecoration(
-                            color: ColorConstants.buttonTextColor,
-                            borderRadius: BorderRadius.only(topLeft: Radius.circular(size.width * 0.08))
+                Expanded(
+                  child: SizedBox(
+                    child: Row(
+                      children: [
+                        const Expanded(
+                          child: SizedBox(),
+                        ),
+                        Expanded(
+                          child: Container(
+                            color: ColorConstants.kPrimary,
                           ),
                         ),
-                      )
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-                Container(
-                  height: size.height,
-                  width: size.width * 0.78,
-                  padding: EdgeInsets.all(size.width * 0.03),
-                  decoration: BoxDecoration(
-                    color: ColorConstants.buttonTextColor,
-                    borderRadius: BorderRadius.only(topLeft: Radius.circular(size.width * 0.08))
+                Expanded(
+                  child: Container(
+                    color: ColorConstants.kPrimary,
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        padding: EdgeInsets.all(size.width * 0.01),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: ColorConstants.drawerTextColor,
-                        ),
-                        child: Container(
-                          height: size.width * 0.11,
-                          width: size.width * 0.11,
-                          decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              image: DecorationImage(
-                                  image: NetworkImage("https://s3-alpha-sig.figma.com/img/71d0/e14e/1ffff81188b5ac9981d7e96204f13c3f?Expires=1730073600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=H1E11OX-7lIYPRci78sYbTSeev6r1vX2yqUXMwdj0kWNijWMbslMKd6EnbV7wtIBstHgWpl3toPdz6hubya~qIB4rNTeMK5WZ9BZQxBuHWC4iUxLNw-E8iBBpaExedASzziUenEb6iw~PYuxUcEuiT-TMzsNDuMcTQlqkmdpE4dNGRsH9Bd3Rl7IsMG9plKdOAkNp3Prk6qTcFLjsAqkmLGFd0NlYdZkUArXNgTUAmk-UTtJcesRwbiOkGpp7JPanjEOMt68RUzNBu27oviN9cEvYsYGnbPvIt1ii~4j8pDdcu88gdvMTefB-Pc99Kg-sTrqdvXVyfE9gj45zRzV0w__"),
-                                  fit: BoxFit.cover
-                              )
-                          ),
-                        )
-                      ),
-                      SizedBox(
-                        height: size.height * 0.06,
-                        width: size.width * 0.55,
-                        child: customText.kText("Hannah", 20, FontWeight.w400, ColorConstants.drawerTextColor, TextAlign.start),
-                      )
-                    ],
-                  ),
-                )
+                ),
               ],
             ),
 
-            //back button
-            Container(
-              height: size.height * 0.08,
-              width: size.width * 0.22,
-              decoration: BoxDecoration(
-                color: ColorConstants.buttonTextColor,
-              ),
-              child: Container(
-                height: 90,
-                width: size.width * 0.22,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(bottomRight: Radius.circular(size.width * 0.08))
-                ),
-                child: GestureDetector(
-                  child: Padding(
-                    padding: const EdgeInsets.all(9.0),
-                    child: CircleAvatar(
-                      radius: 10,
-                      backgroundColor: ColorConstants.buttonTextColor,
-                      child: SizedBox(
-                        height: 30,
-                        child: Image.asset('assets/images/send_image1.png'),
-                      ),
+            // overlay cutout
+            SizedBox(
+              height: size.height,
+              width: size.width,
+              child: Image.asset("assets/images/chatBG.png", fit: BoxFit.fill),
+            ),
+
+            Positioned(
+              top: size.height * 0.015,
+              left: size.width * 0.015,
+              child: GestureDetector(
+                child: Container(
+                  margin: const EdgeInsets.only(left: 15),
+                  height: 45,
+                  width: 45,
+                  decoration: const BoxDecoration(
+                      color: ColorConstants.kPrimary, shape: BoxShape.circle),
+                  child: Center(
+                    child: SizedBox(
+                      height: 25,
+                      child: Image.asset('assets/images/send_image1.png'),
                     ),
                   ),
-                  onTap: () {
-                    log("back button pressed");
-                    Navigator.pop(context);
-                  },
                 ),
+                onTap: () {
+                  Navigator.pop(context);
+                  // Navigator.pushReplacement(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //       builder: (context) => const AllChatListScreen()),
+                  // );
+                },
               ),
             ),
+
+             Align(
+               alignment: Alignment.topRight,
+               child: Container(
+                 margin: EdgeInsets.only(top: 10),
+                 width: size.width * 0.7,
+                 // color: Colors.yellow.shade200,
+                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      padding: EdgeInsets.all(size.width * 0.01),
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: ColorConstants.kSecondary,
+                      ),
+                      child: Container(
+                        height: size.width * 0.11,
+                        width: size.width * 0.11,
+                        decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                                image: NetworkImage("https://s3-alpha-sig.figma.com/img/71d0/e14e/1ffff81188b5ac9981d7e96204f13c3f?Expires=1730073600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=H1E11OX-7lIYPRci78sYbTSeev6r1vX2yqUXMwdj0kWNijWMbslMKd6EnbV7wtIBstHgWpl3toPdz6hubya~qIB4rNTeMK5WZ9BZQxBuHWC4iUxLNw-E8iBBpaExedASzziUenEb6iw~PYuxUcEuiT-TMzsNDuMcTQlqkmdpE4dNGRsH9Bd3Rl7IsMG9plKdOAkNp3Prk6qTcFLjsAqkmLGFd0NlYdZkUArXNgTUAmk-UTtJcesRwbiOkGpp7JPanjEOMt68RUzNBu27oviN9cEvYsYGnbPvIt1ii~4j8pDdcu88gdvMTefB-Pc99Kg-sTrqdvXVyfE9gj45zRzV0w__"),
+                                fit: BoxFit.cover
+                            )
+                        ),
+                      )
+                    ),
+                    SizedBox(
+                      height: size.height * 0.07,
+                      width: size.width * 0.55,
+                      // color: Colors.red.shade200,
+                      child: customText.kText("Hannah", 20, FontWeight.w400, ColorConstants.kSecondary, TextAlign.start),
+                    )
+                  ],
+                             ),
+               ),
+             ),
 
             // chat messages list
             Positioned(
@@ -201,11 +207,11 @@ class _ChatScreenState extends State<ChatScreen> {
                       child: TextField(
                         controller: messageController,
                         keyboardType: TextInputType.text,
-                        style: customText.kTextStyle(16, FontWeight.w600, ColorConstants.kChatInputColor),
+                        style: customText.kTextStyle(16, FontWeight.w600, ColorConstants.kTextGrey),
                         decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: TextConstants.chatInputPlaceholder,
-                          hintStyle: customText.kTextStyle(16, FontWeight.w600, ColorConstants.kChatInputColor)
+                          hintStyle: customText.kTextStyle(16, FontWeight.w600, ColorConstants.kTextGrey,)
                         ),
                       ),
                     ),
@@ -230,3 +236,100 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 }
+
+
+// background, profile image and name
+// Row(
+//   children: [
+//     SizedBox(
+//       width: size.width * 0.22,
+//       child: Column(
+//         children: [
+//           SizedBox(height: size.height * 0.08),
+//           Expanded(
+//             child: Container(
+//               width: size.width,
+//               decoration: BoxDecoration(
+//                 color: ColorConstants.kPrimary,
+//                 borderRadius: BorderRadius.only(topLeft: Radius.circular(size.width * 0.08))
+//               ),
+//             ),
+//           )
+//         ],
+//       ),
+//     ),
+//     Container(
+//       height: size.height,
+//       width: size.width * 0.78,
+//       padding: EdgeInsets.all(size.width * 0.03),
+//       decoration: BoxDecoration(
+//         color: ColorConstants.kPrimary,
+//         borderRadius: BorderRadius.only(topLeft: Radius.circular(size.width * 0.08))
+//       ),
+//       // child: Row(
+//       //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//       //   crossAxisAlignment: CrossAxisAlignment.start,
+//       //   children: [
+//       //     Container(
+//       //       padding: EdgeInsets.all(size.width * 0.01),
+//       //       decoration: const BoxDecoration(
+//       //         shape: BoxShape.circle,
+//       //         color: ColorConstants.kSecondary,
+//       //       ),
+//       //       child: Container(
+//       //         height: size.width * 0.11,
+//       //         width: size.width * 0.11,
+//       //         decoration: const BoxDecoration(
+//       //             shape: BoxShape.circle,
+//       //             image: DecorationImage(
+//       //                 image: NetworkImage("https://s3-alpha-sig.figma.com/img/71d0/e14e/1ffff81188b5ac9981d7e96204f13c3f?Expires=1730073600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=H1E11OX-7lIYPRci78sYbTSeev6r1vX2yqUXMwdj0kWNijWMbslMKd6EnbV7wtIBstHgWpl3toPdz6hubya~qIB4rNTeMK5WZ9BZQxBuHWC4iUxLNw-E8iBBpaExedASzziUenEb6iw~PYuxUcEuiT-TMzsNDuMcTQlqkmdpE4dNGRsH9Bd3Rl7IsMG9plKdOAkNp3Prk6qTcFLjsAqkmLGFd0NlYdZkUArXNgTUAmk-UTtJcesRwbiOkGpp7JPanjEOMt68RUzNBu27oviN9cEvYsYGnbPvIt1ii~4j8pDdcu88gdvMTefB-Pc99Kg-sTrqdvXVyfE9gj45zRzV0w__"),
+//       //                 fit: BoxFit.cover
+//       //             )
+//       //         ),
+//       //       )
+//       //     ),
+//       //     SizedBox(
+//       //       height: size.height * 0.06,
+//       //       width: size.width * 0.55,
+//       //       child: customText.kText("Hannah", 20, FontWeight.w400, ColorConstants.kSecondary, TextAlign.start),
+//       //     )
+//       //   ],
+//       // ),
+//     )
+//   ],
+// ),
+
+//back button
+// Container(
+//   height: size.height * 0.08,
+//   width: size.width * 0.22,
+//   decoration: BoxDecoration(
+//     color: ColorConstants.kPrimary,
+//   ),
+//   child: Container(
+//     height: 90,
+//     width: size.width * 0.22,
+//     decoration: BoxDecoration(
+//         color: Colors.white,
+//         borderRadius: BorderRadius.only(bottomRight: Radius.circular(size.width * 0.08))
+//     ),
+//     child: GestureDetector(
+//       child: Padding(
+//         padding: const EdgeInsets.all(9.0),
+//         child: CircleAvatar(
+//           radius: 10,
+//           backgroundColor: ColorConstants.kPrimary,
+//           child: SizedBox(
+//             height: 30,
+//             child: Image.asset('assets/images/send_image1.png'),
+//           ),
+//         ),
+//       ),
+//       onTap: () {
+//         log("back button pressed");
+//         Navigator.pop(context);
+//       },
+//     ),
+//   ),
+// ),
+//

@@ -69,7 +69,7 @@ class Background extends StatelessWidget {
             ),
             Positioned(
               top: height * 0.4,
-              left: -55,
+              left: -60,
               child: SizedBox(
                 height: height * 0.5,
                 width: width * 0.5,

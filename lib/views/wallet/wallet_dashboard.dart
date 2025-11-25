@@ -21,20 +21,148 @@ class _WalletDashboardState extends State<WalletDashboard> {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      body: Stack(
-        children: [
-          Positioned(
-            child: Container(
-              height: height,
-              width: width,
-              color: ColorConstants.kTextGreen,
+      appBar: AppBar(
+        centerTitle: true,
+        leading: GestureDetector(
+          child: Container(
+            margin: const EdgeInsets.only(left: 15),
+            height: 40,
+            width: 40,
+            decoration: const BoxDecoration(
+                color: ColorConstants.kPrimary, shape: BoxShape.circle),
+            child: Center(
+              child: SizedBox(
+                height: 25,
+                child: Image.asset('assets/images/send_image1.png'),
+              ),
+            ),
+          ),
+          onTap: () {
+            Navigator.pop(context);
+          },
+        ),
+        title: customText.kHeadingText(TextConstants.appTitle, 45,
+            FontWeight.w800, ColorConstants.kPrimary, TextAlign.center),
+      ),
+      body: Container(
+        height: height,
+        width: width,
+        color: ColorConstants.kPrimary,
+        child: CustomScrollView(
+          slivers: [
+
+            SliverToBoxAdapter(
               child: Container(
-                margin: const EdgeInsets.only(
-                    top: 320, left: 0, right: 15, bottom: 20),
-                child: ListView.builder(
-                  itemCount: 10,
-                  itemBuilder: (BuildContext context, int index) => Container(
-                    child: Column(
+                height: height * 0.32,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(width * 0.2),
+                  ),
+                ),
+                child: Container(
+                  margin: EdgeInsets.symmetric(horizontal: width * 0.03, vertical: height * 0.01),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+
+                      customText.kText(
+                        TextConstants.yourBalance,
+                        20,
+                        FontWeight.w400,
+                        ColorConstants.kPrimary,
+                        TextAlign.start,
+                      ),
+                      customText.kText(
+                        "₹ 1500",
+                        22,
+                        FontWeight.w700,
+                        Colors.black,
+                        TextAlign.start,
+                      ),
+                      SizedBox(height: height * 0.02),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              customText.kText(
+                                TextConstants.byReferal,
+                                20,
+                                FontWeight.w400,
+                                ColorConstants.kPrimary,
+                                TextAlign.start,
+                              ),
+                              customText.kText(
+                                "₹ 3000",
+                                22,
+                                FontWeight.w700,
+                                Colors.black,
+                                TextAlign.start,
+                              ),
+                            ],
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              customText.kText(
+                                TextConstants.byAdvise,
+                                20,
+                                FontWeight.w400,
+                                ColorConstants.kPrimary,
+                                TextAlign.start,
+                              ),
+                              customText.kText(
+                                "₹ 15000",
+                                22,
+                                FontWeight.w700,
+                                Colors.black,
+                                TextAlign.start,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+
+                      SizedBox(height: height * 0.03),
+                      Center(
+                        child: GestureDetector(
+                          child: Container(
+                            height: height * .055,
+                            width: width * .45,
+                            decoration: BoxDecoration(
+                              color: ColorConstants.kPrimary,
+                              borderRadius: BorderRadius.circular(width * 0.05),
+                            ),
+                            child: Center(
+                              child: customText.kText(
+                                  TextConstants.addMoney,
+                                  22,
+                                  FontWeight.w700,
+                                  ColorConstants.kSecondary,
+                                  TextAlign.center),
+                            ),
+                          ),
+                          onTap: () {
+                            _showBottomSheet();
+                          },
+                        ),
+                      ),
+
+                    ],
+                  ),
+                ),
+              ),
+            ),
+
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                      (context, index) {
+                    return Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -44,7 +172,7 @@ class _WalletDashboardState extends State<WalletDashboard> {
                             "Today",
                             20,
                             FontWeight.w400,
-                            ColorConstants.kYellow,
+                            ColorConstants.kSecondary,
                             TextAlign.start,
                           ),
                         ),
@@ -77,167 +205,20 @@ class _WalletDashboardState extends State<WalletDashboard> {
                               "- 200",
                               16,
                               FontWeight.w700,
-                              ColorConstants.kYellow,
+                              ColorConstants.kSecondary,
                               TextAlign.start),
                         ),
                       ],
-                    ),
-                  ),
-                ),
+                    );
+                  },
+                  childCount: 2
               ),
             ),
-          ),
-          Container(
-            decoration: const BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(72),
-              ),
-            ),
-            height: height * .4,
-            width: width,
-            child: Container(
-              margin: const EdgeInsets.only(top: 30, left: 15, right: 15),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const DashboardScreen(),
-                            ),
-                          );
-                        },
-                        child: Container(
-                          height: 40,
-                          width: 40,
-                          decoration: const BoxDecoration(
-                            color: ColorConstants.kTextGreen,
-                            shape: BoxShape.circle,
-                          ),
-                          child: Center(
-                            child: SizedBox(
-                              height: 25,
-                              child:
-                                  Image.asset('assets/images/send_image1.png'),
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 80),
-                      customText.kHeadingText(
-                        TextConstants.appTitle,
-                        45,
-                        FontWeight.w800,
-                        ColorConstants.kTextGreen,
-                        TextAlign.center,
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: height * .02),
-                  customText.kText(
-                    TextConstants.yourBalance,
-                    20,
-                    FontWeight.w400,
-                    ColorConstants.kTextGreen,
-                    TextAlign.start,
-                  ),
-                  customText.kText(
-                    "₹ 1500",
-                    22,
-                    FontWeight.w700,
-                    Colors.black,
-                    TextAlign.start,
-                  ),
-                  SizedBox(height: height * .020),
-                  Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              customText.kText(
-                                TextConstants.byReferal,
-                                20,
-                                FontWeight.w400,
-                                ColorConstants.kTextGreen,
-                                TextAlign.start,
-                              ),
-                              customText.kText(
-                                "₹ 3000",
-                                22,
-                                FontWeight.w700,
-                                Colors.black,
-                                TextAlign.start,
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              customText.kText(
-                                TextConstants.byAdvise,
-                                20,
-                                FontWeight.w400,
-                                ColorConstants.kTextGreen,
-                                TextAlign.start,
-                              ),
-                              customText.kText(
-                                "₹ 15000",
-                                22,
-                                FontWeight.w700,
-                                Colors.black,
-                                TextAlign.start,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: height * .030),
-                  Center(
-                    child: GestureDetector(
-                      onTap: () {
-                        // bottom sheet
-                        _showBottomSheet();
-                      },
-                      child: Container(
-                        height: height * .0450,
-                        width: width * .45,
-                        decoration: BoxDecoration(
-                            color: ColorConstants.kTextGreen,
-                            borderRadius: BorderRadius.circular(12)),
-                        child: Center(
-                          child: customText.kText(
-                              TextConstants.addMoney,
-                              22,
-                              FontWeight.w700,
-                              ColorConstants.kYellow,
-                              TextAlign.center),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
+
+          ],
+        ),
+      )
+
     );
   }
 
@@ -249,10 +230,9 @@ class _WalletDashboardState extends State<WalletDashboard> {
         context: context,
         builder: (BuildContext context) {
           return Container(
-            // margin: const EdgeInsets.only(left: 15, right: 15),
-            padding: const EdgeInsets.all(20),
-            height: 600,
+            height: h * 0.6,
             width: double.infinity,
+            padding: const EdgeInsets.all(20),
             decoration: const BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(
@@ -260,120 +240,122 @@ class _WalletDashboardState extends State<WalletDashboard> {
                 topRight: Radius.circular(36),
               ),
             ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                customText.kText(
-                  TextConstants.select,
-                  24,
-                  FontWeight.w700,
-                  ColorConstants.kTextGreen,
-                  TextAlign.start,
-                ),
-                SizedBox(height: h * .020),
-                Container(
-                  child: ListTile(
-                    leading: Container(
-                      height: 40,
-                      width: 40,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                            color: ColorConstants.kTextGreen, width: 3),
-                        color: Colors.white,
-                        shape: BoxShape.circle,
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  customText.kText(
+                    TextConstants.select,
+                    24,
+                    FontWeight.w700,
+                    ColorConstants.kPrimary,
+                    TextAlign.start,
+                  ),
+                  SizedBox(height: h * .020),
+                  Container(
+                    child: ListTile(
+                      leading: Container(
+                        height: 40,
+                        width: 40,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                              color: ColorConstants.kPrimary, width: 3),
+                          color: Colors.white,
+                          shape: BoxShape.circle,
+                        ),
+                        child: Center(
+                          child: Image.asset('assets/images/upi.png'),
+                        ),
                       ),
-                      child: Center(
-                        child: Image.asset('assets/images/upi.png'),
+                      title: Container(
+                        child: customText.kText(TextConstants.byUPI, 22,
+                            FontWeight.w700, Colors.black, TextAlign.start),
                       ),
-                    ),
-                    title: Container(
-                      child: customText.kText(TextConstants.byUPI, 22,
-                          FontWeight.w700, Colors.black, TextAlign.start),
                     ),
                   ),
-                ),
-                SizedBox(height: h * .020),
-                Container(
-                  child: ListTile(
-                    onTap: () {},
-                    leading: Container(
-                      height: 40,
-                      width: 40,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                            color: ColorConstants.kTextGreen, width: 3),
-                        color: Colors.white,
-                        shape: BoxShape.circle,
+                  SizedBox(height: h * .020),
+                  Container(
+                    child: ListTile(
+                      onTap: () {},
+                      leading: Container(
+                        height: 40,
+                        width: 40,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                              color: ColorConstants.kPrimary, width: 3),
+                          color: Colors.white,
+                          shape: BoxShape.circle,
+                        ),
+                        child: Center(
+                          child: Image.asset('assets/images/debit_credit.png'),
+                        ),
                       ),
-                      child: Center(
-                        child: Image.asset('assets/images/debit_credit.png'),
+                      title: Container(
+                        child: customText.kText(TextConstants.byDebitCard, 22,
+                            FontWeight.w700, Colors.black, TextAlign.start),
                       ),
-                    ),
-                    title: Container(
-                      child: customText.kText(TextConstants.byDebitCard, 22,
-                          FontWeight.w700, Colors.black, TextAlign.start),
                     ),
                   ),
-                ),
-                SizedBox(height: h * .020),
-                Container(
-                  child: ListTile(
-                    leading: Container(
-                      height: 40,
-                      width: 40,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                            color: ColorConstants.kTextGreen, width: 3),
-                        color: Colors.white,
-                        shape: BoxShape.circle,
+                  SizedBox(height: h * .020),
+                  Container(
+                    child: ListTile(
+                      leading: Container(
+                        height: 40,
+                        width: 40,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                              color: ColorConstants.kPrimary, width: 3),
+                          color: Colors.white,
+                          shape: BoxShape.circle,
+                        ),
+                        child: Center(
+                          child: Image.asset('assets/images/debit_credit.png'),
+                        ),
                       ),
-                      child: Center(
-                        child: Image.asset('assets/images/debit_credit.png'),
+                      title: Container(
+                        child: customText.kText(TextConstants.byCreditCard, 22,
+                            FontWeight.w700, Colors.black, TextAlign.start),
                       ),
-                    ),
-                    title: Container(
-                      child: customText.kText(TextConstants.byCreditCard, 22,
-                          FontWeight.w700, Colors.black, TextAlign.start),
                     ),
                   ),
-                ),
-                SizedBox(height: h * .020),
-                Container(
-                  child: ListTile(
-                    leading: Container(
-                      height: 40,
-                      width: 40,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                            color: ColorConstants.kTextGreen, width: 3),
-                        color: Colors.white,
-                        shape: BoxShape.circle,
+                  SizedBox(height: h * .020),
+                  Container(
+                    child: ListTile(
+                      leading: Container(
+                        height: 40,
+                        width: 40,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                              color: ColorConstants.kPrimary, width: 3),
+                          color: Colors.white,
+                          shape: BoxShape.circle,
+                        ),
+                        child: Center(
+                          child: Image.asset('assets/images/net_banking.png'),
+                        ),
                       ),
-                      child: Center(
-                        child: Image.asset('assets/images/net_banking.png'),
+                      title: Container(
+                        child: customText.kText(TextConstants.byNetBanking, 22,
+                            FontWeight.w700, Colors.black, TextAlign.start),
                       ),
-                    ),
-                    title: Container(
-                      child: customText.kText(TextConstants.byNetBanking, 22,
-                          FontWeight.w700, Colors.black, TextAlign.start),
                     ),
                   ),
-                ),
-                SizedBox(height: h * .040),
-                CustomButton(
-                  buttonText: TextConstants.buttonText,
-                  onpress: () {
-                    // onpress function
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const UpiPayment(),
-                      ),
-                    );
-                  },
-                )
-              ],
+                  SizedBox(height: h * .040),
+                  CustomButton(
+                    buttonText: TextConstants.buttonText,
+                    onpress: () {
+                      // onpress function
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const UpiPayment(),
+                        ),
+                      );
+                    },
+                  )
+                ],
+              ),
             ),
           );
         });

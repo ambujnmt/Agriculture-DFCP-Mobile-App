@@ -1,16 +1,13 @@
-import 'package:dfcp/views/intro_screen.dart';
+import 'package:dfcp/constants/color_constants.dart';
 import 'package:dfcp/views/new_intro.dart';
 import 'package:flutter/material.dart';
-// import 'package:media_kit/media_kit.dart';
-
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
-void main() {
-  // WidgetsFlutterBinding.ensureInitialized();
-  // MediaKit.ensureInitialized();
+void main() async {
+  await GetStorage.init();
   WidgetsFlutterBinding.ensureInitialized();
-  // runApp(const MyApp());
-  // Lock the orientation to portrait mode.
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
@@ -22,14 +19,18 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'DFCP',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: ColorConstants.kPrimary),
         useMaterial3: true,
+        scaffoldBackgroundColor: Colors.white,
+        appBarTheme: const AppBarTheme(
+          color: Colors.white,
+          surfaceTintColor: Colors.white
+        ),
       ),
       debugShowCheckedModeBanner: false,
       home: const NewIntroScreen(),

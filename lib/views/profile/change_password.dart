@@ -4,7 +4,7 @@ import 'package:dfcp/custom_widget/background.dart';
 import 'package:dfcp/custom_widget/custom_button.dart';
 import 'package:dfcp/custom_widget/custom_textField.dart';
 import 'package:dfcp/utils/custom_text.dart';
-import 'package:dfcp/views/auth_screen.dart/success_screen.dart';
+import 'package:dfcp/views/auth/success_screen.dart';
 import 'package:flutter/material.dart';
 
 class ChangePassword extends StatefulWidget {
@@ -54,7 +54,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                         TextConstants.changePassword,
                         32,
                         FontWeight.w700,
-                        ColorConstants.kYellow,
+                        ColorConstants.kSecondary,
                         TextAlign.center,
                       ),
                     ),
@@ -64,7 +64,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                         TextConstants.createPassDesc,
                         18,
                         FontWeight.w400,
-                        ColorConstants.kYellow,
+                        ColorConstants.kSecondary,
                         TextAlign.center,
                       ),
                     ),

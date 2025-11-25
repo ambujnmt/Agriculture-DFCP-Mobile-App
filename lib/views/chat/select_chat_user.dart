@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dfcp/constants/color_constants.dart';
 import 'package:dfcp/constants/text_constants.dart';
 import 'package:dfcp/utils/custom_text.dart';
@@ -7,6 +9,7 @@ import 'package:dfcp/views/chat/farmer_tab_view.dart';
 import 'package:dfcp/views/chat/student_tab_view.dart';
 import 'package:dfcp/views/chat/user_tab_view.dart';
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 
 class SelectChatUser extends StatefulWidget {
   const SelectChatUser({super.key});
@@ -16,11 +19,24 @@ class SelectChatUser extends StatefulWidget {
 }
 
 class _SelectChatUserState extends State<SelectChatUser> {
-  final customText = CustomText();
+
+  String userType = "";
+  final customText = CustomText(), box = GetStorage();
+
+  @override
+  void initState() {
+    super.initState();
+
+    log("check user type :- ${box.read("userType")}");
+    userType = box.read("userType");
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 4,
+      length: userType == "Farmer" || userType == "Advisor"
+        ? 1
+        : 4,
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -30,7 +46,7 @@ class _SelectChatUserState extends State<SelectChatUser> {
               height: 40,
               width: 40,
               decoration: const BoxDecoration(
-                  color: ColorConstants.kTextGreen, shape: BoxShape.circle),
+                  color: ColorConstants.kPrimary, shape: BoxShape.circle),
               child: Center(
                 child: SizedBox(
                   height: 25,
@@ -39,30 +55,56 @@ class _SelectChatUserState extends State<SelectChatUser> {
               ),
             ),
             onTap: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const AllChatListScreen()),
-              );
+              Navigator.pop(context);
+              // Navigator.pushReplacement(
+              //   context,
+              //   MaterialPageRoute(
+              //       builder: (context) => const AllChatListScreen()),
+              // );
             },
           ),
           title: customText.kHeadingText(TextConstants.appTitle, 45,
-              FontWeight.w800, ColorConstants.kTextGreen, TextAlign.center),
+              FontWeight.w800, ColorConstants.kPrimary, TextAlign.center),
         ),
         body: Container(
-          margin: const EdgeInsets.all(15),
-          child: Column(
+          // margin: const EdgeInsets.all(15),
+          child: userType == "Farmer" || userType == "Advisor"
+          ? Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                TabBar(
+                    dividerColor: Colors.transparent,
+                    indicatorColor: ColorConstants.kSecondary,
+                    indicatorWeight: 4.0,
+                    labelColor: Colors.black,
+                    unselectedLabelColor: Colors.grey,
+                    labelStyle:
+                        customText.kTextStyle(14, FontWeight.w700, Colors.black),
+                    tabs: const [
+                      Tab(text: 'Student'),
+                    ]),
+                const Expanded(
+                  child: TabBarView(
+                    children: [
+                      StudentTabView(),
+                    ],
+                  ),
+                ),
+              ],
+            )
+          :  Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               TabBar(
                   dividerColor: Colors.transparent,
-                  indicatorColor: ColorConstants.kYellow,
+                  indicatorColor: ColorConstants.kSecondary,
                   indicatorWeight: 4.0,
                   labelColor: Colors.black,
                   unselectedLabelColor: Colors.grey,
                   labelStyle:
-                      customText.kTextStyle(14, FontWeight.w700, Colors.black),
+                  customText.kTextStyle(14, FontWeight.w700, Colors.black),
                   tabs: const [
                     Tab(text: 'Advisor'),
                     Tab(text: 'Farmer'),
@@ -80,7 +122,7 @@ class _SelectChatUserState extends State<SelectChatUser> {
                 ),
               ),
             ],
-          ),
+          )
         ),
       ),
     );

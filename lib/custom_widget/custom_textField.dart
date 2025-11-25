@@ -39,27 +39,30 @@ class CustomTextField extends StatelessWidget {
       width: width * 0.95,
       padding: EdgeInsets.symmetric(vertical: 5, horizontal: horizontalPadding),
       decoration: BoxDecoration(
-          color: ColorConstants.kTextFieldColor,
+          color: ColorConstants.kPrimary,
           borderRadius: BorderRadius.circular(width * 0.04)),
       child: TextField(
         controller: controller,
         obscureText: obsecureText,
         keyboardType: textInputType,
         textInputAction: textInputAction,
-        style:
-            customText.kTextStyle(20, FontWeight.w400, ColorConstants.kYellow),
+        style: customText.kTextStyle(20, FontWeight.w400, ColorConstants.kSecondary),
+        cursorColor: ColorConstants.kSecondary,
         decoration: InputDecoration(
-            border: InputBorder.none,
-            hintText: hint,
-            hintStyle: customText.kTextStyle(
-                20, FontWeight.w400, ColorConstants.kYellow),
-            prefixIcon: prefixIcon,
-            suffixIcon: isSuffixIcon
-                ? GestureDetector(
-                    child: suffixIcon,
-                    onTap: onSuffixTap,
-                  )
-                : const SizedBox()),
+          isCollapsed: true,
+          contentPadding: const EdgeInsets.only(top: 5),
+          border: InputBorder.none,
+          hintText: hint,
+          hintStyle: customText.kTextStyle(
+              20, FontWeight.w400, ColorConstants.kSecondary),
+          prefixIcon: prefixIcon,
+          suffixIcon: isSuffixIcon
+              ? GestureDetector(
+                  child: suffixIcon,
+                  onTap: onSuffixTap,
+                )
+              : const SizedBox(),
+        ),
       ),
     );
   }

@@ -1,6 +1,7 @@
 import 'package:dfcp/constants/color_constants.dart';
 import 'package:dfcp/constants/text_constants.dart';
 import 'package:dfcp/custom_widget/custom_button.dart';
+import 'package:dfcp/custom_widget/custom_title.dart';
 import 'package:dfcp/custom_widget/divider_widget.dart';
 import 'package:dfcp/utils/custom_text.dart';
 import 'package:dfcp/views/dashboard/dashboard_screen.dart';
@@ -30,7 +31,7 @@ class _UpiPaymentState extends State<UpiPayment> {
             height: 40,
             width: 40,
             decoration: const BoxDecoration(
-                color: ColorConstants.kTextGreen, shape: BoxShape.circle),
+                color: ColorConstants.kPrimary, shape: BoxShape.circle),
             child: Center(
               child: SizedBox(
                 height: 25,
@@ -39,14 +40,11 @@ class _UpiPaymentState extends State<UpiPayment> {
             ),
           ),
           onTap: () {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => const DashboardScreen()),
-            );
+            Navigator.pop(context);
           },
         ),
         title: customText.kHeadingText(TextConstants.appTitle, 45,
-            FontWeight.w800, ColorConstants.kTextGreen, TextAlign.center),
+            FontWeight.w800, ColorConstants.kPrimary, TextAlign.center),
       ),
       body: Container(
         margin: const EdgeInsets.all(15),
@@ -54,17 +52,10 @@ class _UpiPaymentState extends State<UpiPayment> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            customText.kText(
-              TextConstants.completeYourPayment,
-              22,
-              FontWeight.w700,
-              ColorConstants.kTextGreen,
-              TextAlign.center,
-            ),
-            const DividerWidget(),
+            const CustomTitle(title: TextConstants.completeYourPayment,),
             SizedBox(height: height * .030),
             customText.kText(TextConstants.enterAmount, 20, FontWeight.w400,
-                ColorConstants.kTextGreen, TextAlign.start),
+                ColorConstants.kPrimary, TextAlign.start),
             SizedBox(height: height * .010),
             TextFormField(
               decoration: InputDecoration(
@@ -79,17 +70,14 @@ class _UpiPaymentState extends State<UpiPayment> {
             ),
             SizedBox(height: height * .020),
             customText.kText(TextConstants.enterUpi, 20, FontWeight.w400,
-                ColorConstants.kTextGreen, TextAlign.start),
+                ColorConstants.kPrimary, TextAlign.start),
             SizedBox(height: height * .010),
-            Container(
-              height: 40,
-              child: TextFormField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(
-                      color: Colors.grey,
-                    ),
+            TextFormField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: const BorderSide(
+                    color: Colors.grey,
                   ),
                 ),
               ),
@@ -102,7 +90,7 @@ class _UpiPaymentState extends State<UpiPayment> {
                   TextConstants.verifyNow,
                   16,
                   FontWeight.w400,
-                  ColorConstants.kTextGreen,
+                  ColorConstants.kPrimary,
                   TextAlign.center,
                 )
               ],

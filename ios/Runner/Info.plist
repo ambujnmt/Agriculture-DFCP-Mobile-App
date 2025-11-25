@@ -50,5 +50,12 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Need to access photos to upload image</string>
+	<key>NSCameraUsageDescription</key>
+    <string>Need to access camera for taking image</string>
+    <key>NSMicrophoneUsageDescription</key>
+	<string>Need to access camera and microphone for taking image</string>
+
 </dict>
 </plist>

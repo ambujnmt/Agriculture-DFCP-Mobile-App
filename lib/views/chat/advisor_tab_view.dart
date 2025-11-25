@@ -19,9 +19,10 @@ class _AdvisorTabViewState extends State<AdvisorTabView> {
     final double width = MediaQuery.of(context).size.width;
     return Scaffold(
         body: Container(
-      margin: const EdgeInsets.all(15),
+      // margin: const EdgeInsets.all(15),
+          margin: EdgeInsets.symmetric(horizontal: width * 0.03),
       child: ListView.builder(
-        itemCount: 8,
+        itemCount: 10,
         itemBuilder: (BuildContext context, int index) => SizedBox(
           height: 75,
           width: double.infinity,
@@ -39,7 +40,7 @@ class _AdvisorTabViewState extends State<AdvisorTabView> {
                     width: 60,
                     decoration: BoxDecoration(
                       border:
-                          Border.all(width: 4, color: ColorConstants.kYellow),
+                          Border.all(width: 4, color: ColorConstants.kSecondary),
                       color: Colors.red,
                       shape: BoxShape.circle,
                       image: const DecorationImage(
@@ -73,13 +74,13 @@ class _AdvisorTabViewState extends State<AdvisorTabView> {
                         children: [
                           SizedBox(
                             // height: height * 0.045,
-                            width: width * 0.65,
+                            width: width * 0.7,
                             // color: Colors.yellow,
                             child: customText.kEllipseText(
                                 "A good example of a contains paragraph a topic sentence, details and a conclusion. ",
                                 12,
                                 FontWeight.w400,
-                                ColorConstants.chatColor,
+                                ColorConstants.kTextGrey,
                                 TextAlign.start,
                                 TextOverflow.ellipsis,
                                 2),

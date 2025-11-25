@@ -27,7 +27,7 @@ class _SubscribeScreenState extends State<SubscribeScreen> {
             height: 40,
             width: 40,
             decoration: const BoxDecoration(
-                color: ColorConstants.kTextGreen, shape: BoxShape.circle),
+                color: ColorConstants.kPrimary, shape: BoxShape.circle),
             child: Center(
               child: SizedBox(
                 height: 25,
@@ -36,29 +36,34 @@ class _SubscribeScreenState extends State<SubscribeScreen> {
             ),
           ),
           onTap: () {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => const ProfileScreen()),
-            );
+            Navigator.pop(context);
+            // Navigator.pushReplacement(
+            //   context,
+            //   MaterialPageRoute(builder: (context) => const ProfileScreen()),
+            // );
           },
         ),
         title: customText.kHeadingText(TextConstants.appTitle, 45,
-            FontWeight.w800, ColorConstants.kTextGreen, TextAlign.center),
+            FontWeight.w800, ColorConstants.kPrimary, TextAlign.center),
       ),
       body: Container(
-        margin: const EdgeInsets.all(15),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            premiumAndType(TextConstants.premiumMonthly, "1 Month"),
-            SizedBox(height: height * .010),
-            premiumAndType(TextConstants.premiumAnnualy, "12 Month"),
-            SizedBox(height: height * .10),
-            CustomButton(
-              buttonText: TextConstants.continueAndPay,
-            ),
-          ],
+        // color: Colors.yellow,
+        margin: EdgeInsets.symmetric(horizontal: width * 0.02),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              premiumAndType(TextConstants.premiumMonthly, "1 Month"),
+              SizedBox(height: height * .01),
+              premiumAndType(TextConstants.premiumAnnually, "12 Month"),
+              SizedBox(height: height * .1),
+              CustomButton(
+                buttonText: TextConstants.continueAndPay,
+              ),
+              SizedBox(height: height * .05),
+            ],
+          ),
         ),
       ),
     );
@@ -68,11 +73,11 @@ class _SubscribeScreenState extends State<SubscribeScreen> {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
     return Container(
-      padding: EdgeInsets.all(15),
-      height: height * .2,
+      padding: const EdgeInsets.all(15),
+      height: height * .35,
       width: double.infinity,
       decoration: BoxDecoration(
-          color: ColorConstants.kTextGreen,
+          color: ColorConstants.kPrimary,
           borderRadius: BorderRadius.circular(12)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -80,18 +85,18 @@ class _SubscribeScreenState extends State<SubscribeScreen> {
         children: [
           Container(
             child: customText.kText(text, 18, FontWeight.w700,
-                ColorConstants.kYellow, TextAlign.center),
+                ColorConstants.kSecondary, TextAlign.center),
           ),
           Container(
             height: height * .04,
             width: width * .3,
             decoration: BoxDecoration(
-              color: ColorConstants.kYellow,
+              color: ColorConstants.kSecondary,
               borderRadius: BorderRadius.circular(36),
             ),
             child: Center(
               child: customText.kText(premiumText, 12, FontWeight.w700,
-                  ColorConstants.kTextGreen, TextAlign.start),
+                  ColorConstants.kPrimary, TextAlign.start),
             ),
           ),
         ],
